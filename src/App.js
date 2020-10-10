@@ -24,10 +24,14 @@ class App extends React.Component {
   }
 
   render() {
+    //const hex_r = 1;
+    //const hex_s = 1;
+    //const hex_h = Math.sqrt(Math.hex_s^2 - hex_r^2);
+
     return (
       <div className="App">
         <header className="App-header">
-          <form>
+          <form> 
             <label>
               {this.id}
               <input
@@ -43,6 +47,16 @@ class App extends React.Component {
             </label>
           </form>
           <p>Text output: {this.state.Q1}</p>
+          <svg height="360" width="360">
+            <polygon 
+              points="90,0 270,0 360,180 270,360 90,360 0,180" 
+              style={{
+                fill:"lime",
+                stroke:"purple",
+                strokeWidth:1}} 
+            />
+            <text x="90" y="15" fill="red" textLength="180">{this.state.Q1}</text>
+          </svg>
         </header>
     </div>
     );
