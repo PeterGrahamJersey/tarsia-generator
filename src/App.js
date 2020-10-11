@@ -2,20 +2,8 @@ import React from 'react';
 //import QuestionAnswer from './QuestionAnswer.js'
 //import logo from './logo.svg';
 import './App.css';
-import Triangle from './Components';
-
-function triangle(row, n, side) {
-  const h = Math.sqrt(3)*side/2
-  return <>
-      <polygon 
-        points={"0,0 "+side+",0 "+side/2+","+h}
-        style={{
-          fill:"lime",
-          stroke:"purple",
-          strokeWidth:1}} 
-      />
-    </>
-}
+import TarsiaGrid from './ComponentTarsiaGrid';
+import hexGrid from './config';
 
 function PairedText(row, n, side, rotation, value1, value2) {
   const h = Math.sqrt(3)*side/2
@@ -69,13 +57,7 @@ class App extends React.Component {
           </form>
           <p>Text output: {this.state.Q1}</p>
           <svg height="600" width="600">
-            <Triangle row="1" col="2" />
-            <Triangle row="1" col="3" />
-            <Triangle row="1" col="3" />
-            <Triangle row="1" col="3" />
-            <Triangle row="1" col="3" />
-            <Triangle row="2" col="1" />
-            <Triangle row="2" col="2" />
+            <TarsiaGrid config={hexGrid}/>
             {PairedText(1, 1, 100, 0, this.state.Q1, this.state.A1)}
           </svg>
         </header>

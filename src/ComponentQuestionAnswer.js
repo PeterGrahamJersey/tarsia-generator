@@ -3,10 +3,10 @@ import React from 'react'
 class QuestionAnswer extends React.Component {
     constructor(props) {
       super(props);
-      this.id = props.id;
+      this.questionNumber = props.questionNumber;
       this.state = {
-        Q: "question",
-        A: "answer"
+        Q: props.questionNumber + "q",
+        A: props.questionNumber + "a"
       };
   
       this.handleInputChange = this.handleInputChange.bind(this);
