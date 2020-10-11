@@ -3,64 +3,39 @@ import React from 'react';
 //import logo from './logo.svg';
 import './App.css';
 import TarsiaGrid from './ComponentTarsiaGrid';
+import Questions from './ComponentQuestionAnswer'
 import hexGrid from './config';
-
-function PairedText(row, n, side, rotation, value1, value2) {
-  const h = Math.sqrt(3)*side/2
-  const x = side + side/2
-  const y = h/2
-  const cor = x + "," + y
-  return <>
-      <text transform={"rotate("+rotation+" "+cor+")"} x={x} y={y} fill="red" textLength={side}>{value1}</text>
-      <text transform={"rotate("+rotation+180+" "+cor+")"} x={x} y={y} fill="red" textLength={side}>{value2}</text>
-    </>
-}
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.id = props.id;
     this.state = {
-      Q1: "question",
-      A1: "answer"
+      values: {}
     };
 
-    this.handleInputChange = this.handleInputChange.bind(this);
+    this.eventhandler = this.eventhandler.bind(this);
   }
   
-  handleInputChange(event) {
-    const target = event.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    const name = target.name;
-    this.setState({
-      [name]: value    });
+  eventhandler(data) {
+      const updatedValues = this.state.values
+      updatedValues[data.questionNumber] = data.state
+      this.setState({
+        values: updatedValues
+      })
   }
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <form> 
-            <label>
-              {this.id}
-              <input
-                name="Q1"           
-                type="text"
-                value={this.state.Q1}
-                onChange={this.handleInputChange} />
-              <input
-                name="A1"            
-                type="text"
-                value={this.state.A1}
-                onChange={this.handleInputChange} />
-            </label>
-          </form>
-          <p>Text output: {this.state.Q1}</p>
+      <div className="App container">
+        <div> 
+            <Questions onInputChange={(data) => this.eventhandler(data)} nQuestions="5"/>
+        </div>
+        <div>
           <svg height="600" width="600">
-            <TarsiaGrid config={hexGrid}/>
-            {PairedText(1, 1, 100, 0, this.state.Q1, this.state.A1)}
+            <TarsiaGrid config={hexGrid} values={this.state.values}/>
           </svg>
-        </header>
+        </div>
     </div>
     );
   }

@@ -6,7 +6,7 @@ class Triangle extends React.Component {
       this.id = props.id;
       this.row = parseInt(props.row)
       this.col = parseInt(props.col)
-      this.side = 125
+      this.side = 150
       this.state = {
         values: props.values,
       };
@@ -54,11 +54,14 @@ class TarsiaGrid  extends React.Component {
       super(props);
       this.id = props.id;
       this.config = props.config
-      this.state ={}
+      this.state ={
+          values: props.values
+      }
     }
 
     render() {
         const grid = []
+        console.log(this.state.values)
         for (let triangle of this.config) {
             grid.push(<Triangle row={triangle.row} col={triangle.col} values={triangle.values}/>)
         }
@@ -69,4 +72,7 @@ class TarsiaGrid  extends React.Component {
     }
 }
 
+
+
 export default TarsiaGrid
+
