@@ -54,4 +54,4 @@ class TarsiaGrid  extends React.Component {
     }
 }
 
-export default [Triangle, TarsiaGrid]
+export default Triangle
