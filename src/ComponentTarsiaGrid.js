@@ -22,7 +22,8 @@ class Triangle extends React.Component {
       const textStyle = {
           fill: "red"
       }
-      const textPadding = [10, 5]
+      const textPadding = [10, 5] //x, y
+
       return (
         <g transform={transform}>
             <polygon 
@@ -61,9 +62,21 @@ class TarsiaGrid  extends React.Component {
 
     render() {
         const grid = []
-        console.log(this.state.values)
         for (let triangle of this.config) {
-            grid.push(<Triangle row={triangle.row} col={triangle.col} values={triangle.values}/>)
+            let values = []
+            for (let valueCode of triangle.values) { // lookup the value code from the config
+                if (valueCode) { // handles nulls
+                    let valueCodeSplit = [valueCode.substr(0,valueCode.length-1), valueCode.slice(-1)] // split into number and q/a
+                    if (this.state.values[valueCodeSplit[0]]) { // handles nulls
+                        values.push(this.state.values[valueCodeSplit[0]][valueCodeSplit[1]]) // add the value based on the question number and q/a
+                    } else (
+                        values.push(valueCode)
+                    )
+                } else {
+                    values.push(null) // null handling
+                }
+            }
+            grid.push(<Triangle row={triangle.row} col={triangle.col} values={values}/>)
         }
         return (<>
             {grid}
