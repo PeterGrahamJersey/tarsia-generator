@@ -6,8 +6,8 @@ class QuestionAnswer extends React.Component {
       this.questionNumber = props.questionNumber;
       this.onChange = props.onChange
       this.state = {
-        q: "q" + props.questionNumber,
-        a: "a" + props.questionNumber
+        q: "",
+        a: ""
       };
 
       this.handleInputChange = this.handleInputChange.bind(this);
@@ -58,6 +58,7 @@ class Questions extends React.Component {
     super(props);
     this.nQustions = props.nQuestions;
     this.onInputChange = props.onInputChange;
+    this.onSubmit = props.onSubmit;
   }
 
   render() {
@@ -69,7 +70,7 @@ class Questions extends React.Component {
     }
 
     return(
-      <form>
+      <form onSubmit={this.onSubmit}>
         {questions}
       </form>
     )
