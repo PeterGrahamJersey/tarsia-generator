@@ -26,6 +26,7 @@ class App extends React.Component {
   }
 
   render() {
+    console.log(this.state.values)
     return (
       <div className="App container">
         <div> 

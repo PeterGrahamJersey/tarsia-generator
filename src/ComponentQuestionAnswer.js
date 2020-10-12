@@ -37,11 +37,13 @@ class QuestionAnswer extends React.Component {
           <label>
             {this.questionNumber}
             <input
+              key={"q"+this.questionNumber}
               name="q"           
               type="text"
               value={this.state.q}
               onChange={this.handleInputChange} />
             <input
+              key={"a"+this.questionNumber}
               name="a"            
               type="text"
               value={this.state.a}
@@ -62,8 +64,8 @@ class Questions extends React.Component {
     const questions = []
     var i;
     for (i=1; i<=30; i++) {
-      questions.push(<QuestionAnswer questionNumber={i} onChange={(data) => this.onInputChange(data)} />)
-      questions.push(<br/>)
+      questions.push(<QuestionAnswer key={"qa"+i} questionNumber={i} onChange={(data) => this.onInputChange(data)} />)
+      questions.push(<br key={"qabr"+i}/>)
     }
 
     return(
