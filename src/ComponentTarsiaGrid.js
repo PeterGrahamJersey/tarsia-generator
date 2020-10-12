@@ -11,7 +11,7 @@ function triangle(row, col, values) {
   const textStyle = {
     fill: "red"
   }
-  const textPadding = [10, 5] //x, y
+  const textPadding = [20, 5] //x, y
   return (
     <g transform={transform}>
       <polygon 
@@ -22,14 +22,14 @@ function triangle(row, col, values) {
           strokeWidth:2
         }} 
       />
-      <g textLength={side-2*textPadding[0]} style={textStyle}>
-        <text x={side+textPadding[0]} y={-textPadding[1]} transform={"rotate(180 "+side+",0)"}>
+      <g style={textStyle} textAnchor="middle">
+        <text x={side/2} y={-textPadding[1]} transform={"rotate(180 "+side/2+",0)"}>
           {values[0]}
         </text>
-        <text x={textPadding[0]} y={-textPadding[1]} transform={"rotate(60 0,0)"}>
+        <text x={side/2} y={-textPadding[1]} transform={"rotate(60 0,0)"} >
           {values[1]}
         </text>
-        <text x={side/2+textPadding[0]} y={h-textPadding[1]} transform={"rotate(300 "+side/2+","+h+")"}>
+        <text x={side/2} y={-textPadding[1]} transform={"rotate(300 "+side+",0)"}>
           {values[2]}
         </text>
       </g>

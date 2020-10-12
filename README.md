@@ -4,6 +4,7 @@ ToDo:
 - Printable version
 - Sort the text size
 - Tidy up the code
+- Styling -> CSS
 
 # --------
 
