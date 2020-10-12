@@ -1,3 +1,12 @@
+# Tarsia Puzzle Generator
+
+ToDo:
+- Printable version
+- Sort the text size
+- Tidy up the code
+
+# --------
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
