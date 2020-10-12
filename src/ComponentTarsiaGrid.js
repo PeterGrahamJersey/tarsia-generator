@@ -64,12 +64,9 @@ class TarsiaGrid  extends React.Component {
       grid.push(triangle(tri.row, tri.col, valueArray))
     }
 
-    //console.log(this.values)
-    const testVal = this.values["30"] ? this.values["30"]["a"] : "NoVal"
     return (
       <g>
         {grid}
-        <text x="10" y="20" fill="white">{testVal}</text>
       </g>
     )
   }
