@@ -22,8 +22,7 @@ const hexGrid = [
     {row: 4, col: 3, values: [null, "28q", "27a"]},
     {row: 4, col: 4, values: ["25a", "28a", "29q"]},
     {row: 4, col: 5, values: [null, "30q", "29a"]},
-    {row: 4, col: 6, values: ["26a", "30a", null]},
-
+    {row: 4, col: 6, values: ["26a", "30a", null]}
 ]
 
 export default hexGrid
