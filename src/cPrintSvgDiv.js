@@ -1,6 +1,9 @@
 import React from 'react'
 import TarsiaGrid from "./cTarsiaGrid"
+import appConfig from './config'
 
+const printGridWidth = 2.5 // # triangles of same orientation
+const printGridHeight = 2 // # triangles
 const printGrid = [
   {row:1, col:2},
   {row:1, col:3},
@@ -13,18 +16,16 @@ const printGrid = [
 ]
 
 const PrintPage = (props) => {
-  // Print grid dim 3*side x 2h = 2*Math.sqrt(3)/2 * SIDE
-  // A4 size: 210 x 297mm
-  //TODO get from config
-  //let side = 150 //px
-  //let h = Math.sqrt(3)/2 * side
-  let a4ratio = 297/210
+  let width = appConfig.side * printGridWidth
+  let height = width / appConfig.a4ratio
+  let printGridMargin = appConfig.side / 2
+  // Check that height >= print height * side
+  console.log("w:", width, "h:", height, "marginremove:", printGridMargin)
+  if (printGridHeight * appConfig.side <= height) {console.log('Waring: print grid not tall enough for tarsia')}
   return (
-    //<div id={props.id}>
-      <svg id={props.id} viewBox={"0 0 " + 525 + " " + 525/a4ratio} height="525" width={525/a4ratio}>
+      <svg id={props.id} viewBox={printGridMargin + " 0 " + width + " " + height} width={width} height={height}>
         <TarsiaGrid config={props.config} values={props.values}/>
       </svg>
-    //</div>
   )
 } 
 
@@ -52,7 +53,7 @@ const PrintSvgDiv = (props) => {
     }
 
   return (
-    <div id={props.id} style={{display:"none"}}>
+    <div id={props.id}>
       {printArray}
     </div>
   )

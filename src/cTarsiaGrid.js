@@ -1,36 +1,25 @@
 import React from 'react'
+import appConfig from './config'
 
-function triangle(row, col, values) {
-  const side = 150
-  const h = Math.sqrt(3)*side/2
-  const orientation = ((col + row) % 2 === 0) ? "down" : "up"
+const Triangle = (props) => {
+  const orientation = ((props.col + props.row) % 2 === 0) ? "down" : "up"
   const rotate = orientation === "up" ? 180 : 0
-  const translate_x = (col-1) * side / 2
-  const translate_y = (row-1) * h
-  const transform = "translate("+translate_x+","+translate_y+") rotate("+rotate+" "+side/2+","+h/2+")"
-  const textStyle = {
-    fill: "red"
-  }
-  const textPadding = [20, 5] //x, y
+  const translate_x = (props.col-1) * appConfig.side / 2
+  const translate_y = (props.row-1) * appConfig.height
+  const transform = "translate("+translate_x+","+translate_y+") rotate("+rotate+" "+appConfig.side/2+","+appConfig.height/2+")"
+
   return (
     <g transform={transform}>
-      <polygon 
-        points={"0,0 "+side+",0 "+side/2+","+h}
-        style={{
-          fill:"white",
-          stroke:"black",
-          strokeWidth:2
-        }} 
-      />
-      <g style={textStyle} textAnchor="middle">
-        <text x={side/2} y={-textPadding[1]} transform={"rotate(180 "+side/2+",0)"}>
-          {values[0]}
+      <polygon points={"0,0 "+appConfig.side+",0 "+appConfig.side/2+","+appConfig.height} style={appConfig.styleTarsiaTriangle}/>
+      <g textAnchor="middle">
+        <text x={appConfig.side/2} y={-appConfig.triangleYTextPadding} transform={"rotate(180 "+appConfig.side/2+",0)"} style={appConfig.styleTarsiaText}>
+          {props.values[0]}
         </text>
-        <text x={side/2} y={-textPadding[1]} transform={"rotate(60 0,0)"} >
-          {values[1]}
+        <text x={appConfig.side/2} y={-appConfig.triangleYTextPadding} transform={"rotate(60 0,0)"} style={appConfig.styleTarsiaText}>
+          {props.values[1]}
         </text>
-        <text x={side/2} y={-textPadding[1]} transform={"rotate(300 "+side+",0)"}>
-          {values[2]}
+        <text x={appConfig.side/2} y={-appConfig.triangleYTextPadding} transform={"rotate(300 "+appConfig.side+",0)"} style={appConfig.styleTarsiaText}>
+          {props.values[2]}
         </text>
       </g>
     </g>
@@ -61,7 +50,7 @@ class TarsiaGrid  extends React.Component {
           valueArray.push(null) // null handling
         }
       }
-      grid.push(triangle(tri.row, tri.col, valueArray))
+      grid.push(<Triangle row={tri.row} col={tri.col} values={valueArray}/>)
     }
 
     return (
