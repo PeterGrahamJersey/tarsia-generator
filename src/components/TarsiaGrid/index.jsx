@@ -27,7 +27,7 @@ class TarsiaGrid  extends React.Component {
           valueArray.push(null) // null handling
         }
       }
-      grid.push(<Triangle row={tri.row} col={tri.col} values={valueArray} appConfig={appConfig} />)
+      grid.push(<Triangle row={tri.row} col={tri.col} values={valueArray} config={appConfig.triangle} />)
     }
 
     return (
