@@ -68,7 +68,7 @@ class App extends React.Component {
           </div>
           <div id="hexGridSvgDiv">
             <svg viewBox="0 0 600 600" height="600" width="600">
-              <TarsiaGrid config={hexGrid} values={this.state.values}/>
+              <TarsiaGrid grid={hexGrid} values={this.state.values}/>
             </svg>
           </div>
         </div>
