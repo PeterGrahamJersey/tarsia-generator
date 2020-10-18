@@ -1,5 +1,5 @@
 import React from 'react'
-import appConfig from './config'
+import appConfig from '../../config'
 
 const Triangle = (props) => {
   const orientation = ((props.col + props.row) % 2 === 0) ? "down" : "up"

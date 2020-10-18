@@ -2,10 +2,11 @@ import React from 'react';
 import jsPDF from "jspdf";
 import 'svg2pdf.js';
 import './App.css';
-import TarsiaGrid from './cTarsiaGrid';
-import Questions from './cQuestionAnswer'
-import hexGrid from './configGrids';
-import PrintSvgDiv from './cPrintSvgDiv'
+import TarsiaGrid from '../TarsiaGrid';
+import Questions from '../QuestionAnswer'
+import PrintableSVGDiv from '../PrintableSVGDiv'
+
+import hexGrid from '../../data/hexGrid';
 
 class App extends React.Component {
   constructor(props) {
@@ -44,9 +45,9 @@ class App extends React.Component {
         }
       })
     }
-    const parentDivId = "printSvgDiv"
+    const parentDivId = "PrintableSVGDiv"
     const pages = document.getElementById(parentDivId).children.length
-    addNextSvgToPdf(pdf, 0, pages, "printSvgDiv")
+    addNextSvgToPdf(pdf, 0, pages, "PrintableSVGDiv")
   };
   
   eventhandler(data) {
@@ -72,7 +73,7 @@ class App extends React.Component {
           </div>
         </div>
         <div className="container hidden">
-          <PrintSvgDiv id="printSvgDiv" values={this.state.values} grid={hexGrid}/>
+          <PrintableSVGDiv id="PrintableSVGDiv" values={this.state.values} grid={hexGrid}/>
         </div>
       </div>
     );
