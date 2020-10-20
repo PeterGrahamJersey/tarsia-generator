@@ -1,6 +1,6 @@
 import React from 'react'
 import TarsiaGrid from "../TarsiaGrid"
-import appConfig from '../../data/config'
+import appConfig from '../../config'
 
 const printGridWidth = 2.5 // # triangles of same orientation
 const printGridHeight = 2 // # triangles
@@ -16,12 +16,13 @@ const printGrid = [
 ]
 
 const PrintPage = (props) => {
-  let width = appConfig.side * printGridWidth
-  let height = width / appConfig.a4ratio
-  let printGridMargin = appConfig.side / 2
+  const side = appConfig.triangle.side
+  const ratio = appConfig.pdf.ratio
+  const width = side * printGridWidth
+  const height = width / ratio
+  const printGridMargin = side / 2
   // Check that height >= print height * side
-  console.log("w:", width, "h:", height, "marginremove:", printGridMargin)
-  if (printGridHeight * appConfig.side <= height) {console.log('Waring: print grid not tall enough for tarsia')}
+  if (printGridHeight * side <= height) {console.log('Waring: print grid not tall enough for tarsia')}
   return (
       <svg id={props.id} viewBox={printGridMargin + " 0 " + width + " " + height} width={width} height={height}>
         <TarsiaGrid config={props.config} values={props.values}/>
