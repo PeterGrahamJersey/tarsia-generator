@@ -5,11 +5,11 @@ There is a more comprehensive editor available online, but it doesn't seem to su
 
 ToDo:
 - Dale advice
-  - Directory restructure
-  - Remove unneeded service worker
-  - Move components to components dir
-  - Triangle to own component
-  - Restructure config and triangle component
+  - Directory restructure :white_heavy_checkmark:
+  - Remove unneeded service worker :white_heavy_checkmark:
+  - Move components to components dir :white_heavy_checkmark:
+  - Triangle to own component + restructure :white_heavy_checkmark:
+  - Restructure config :white_heavy_checkmark:
   - Class -> function w/ use state
   - Restructure Tarsia Grid to isolate the value lookup logic
 - Sort the text size

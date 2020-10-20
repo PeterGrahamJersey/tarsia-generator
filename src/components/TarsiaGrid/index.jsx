@@ -1,31 +1,7 @@
 import React from 'react'
+import Triangle from '../Triangle'
 import appConfig from '../../config'
 
-const Triangle = (props) => {
-  const {side, style, text, height} = appConfig.triangle
-  const orientation = ((props.col + props.row) % 2 === 0) ? "down" : "up"
-  const rotate = orientation === "up" ? 180 : 0
-  const translate_x = (props.col-1) * side / 2
-  const translate_y = (props.row-1) * height
-  const transform = "translate("+translate_x+","+translate_y+") rotate("+rotate+" "+side/2+","+height/2+")"
-
-  return (
-    <g transform={transform}>
-      <polygon points={"0,0 "+side+",0 "+side/2+","+height} style={style}/>
-      <g textAnchor="middle">
-        <text x={side/2} y={-text.yAdjust} transform={"rotate(180 "+side/2+",0)"} style={text.style}>
-          {props.values[0]}
-        </text>
-        <text x={side/2} y={-text.yAdjust} transform={"rotate(60 0,0)"} style={text.style}>
-          {props.values[1]}
-        </text>
-        <text x={side/2} y={-text.yAdjust} transform={"rotate(300 "+side+",0)"} style={text.style}>
-          {props.values[2]}
-        </text>
-      </g>
-    </g>
-    )
-}
 
 class TarsiaGrid  extends React.Component {
   constructor(props) {
@@ -51,7 +27,7 @@ class TarsiaGrid  extends React.Component {
           valueArray.push(null) // null handling
         }
       }
-      grid.push(<Triangle row={tri.row} col={tri.col} values={valueArray}/>)
+      grid.push(<Triangle row={tri.row} col={tri.col} values={valueArray} config={appConfig.triangle}/>)
     }
 
     return (

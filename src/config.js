@@ -7,7 +7,7 @@ const appConfig = {
       strokeWidth: 2,
     },
     text: {
-      yAdjust: 5, // px
+      paddingY: 5, // px
       style: { // css classes didn't export to pdf, so using style
         fill: "black"
         //fontSize: "12pt",
