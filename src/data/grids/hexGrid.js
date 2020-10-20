@@ -1,4 +1,4 @@
-const hexGrid = [
+export default [
     {row: 1, col: 2, values: ["5q", "1q", null]},
     {row: 1, col: 3, values: [null, "1a", "2q"]},
     {row: 1, col: 4, values: ["6q", "3q", "2a"]},
@@ -24,5 +24,3 @@ const hexGrid = [
     {row: 4, col: 5, values: [null, "30q", "29a"]},
     {row: 4, col: 6, values: ["26a", "30a", null]}
 ]
-
-export default hexGrid

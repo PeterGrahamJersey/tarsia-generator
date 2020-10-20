@@ -2,10 +2,10 @@ import React from 'react';
 import jsPDF from "jspdf";
 import 'svg2pdf.js';
 import './App.css';
-import TarsiaGrid from './cTarsiaGrid';
-import Questions from './cQuestionAnswer'
-import hexGrid from './configGrids';
-import PrintSvgDiv from './cPrintSvgDiv'
+import TarsiaGrid from '../TarsiaGrid';
+import Questions from '../QuestionAnswer'
+import hexGrid from '../../data/grids/hexGrid';
+import PrintSvgDiv from '../PrintableSvgDiv'
 
 class App extends React.Component {
   constructor(props) {

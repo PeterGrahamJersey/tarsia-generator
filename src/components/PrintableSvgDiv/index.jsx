@@ -1,6 +1,6 @@
 import React from 'react'
-import TarsiaGrid from "./cTarsiaGrid"
-import appConfig from './config'
+import TarsiaGrid from "../TarsiaGrid"
+import appConfig from '../../data/config'
 
 const printGridWidth = 2.5 // # triangles of same orientation
 const printGridHeight = 2 // # triangles
