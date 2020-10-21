@@ -1,11 +1,14 @@
+import './index.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './components/App';
+import { DataProvider } from './components/ContextData'
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <DataProvider initalState={{}}>
+      <App />
+    </DataProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

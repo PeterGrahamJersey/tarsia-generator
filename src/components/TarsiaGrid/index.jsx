@@ -1,8 +1,9 @@
 import React from 'react'
 import Triangle from '../Triangle'
-import appConfig from '../../config'
+import { useData } from '../ContextData'
 
-const TarsiaGrid = ({ id, grid, values }) => {
+const TarsiaGrid = ({ id }) => {
+  const { config, hexGrid, values } = useData()
   const formatGridLocationValueArray = ({ values, locationValues }) => locationValues.map(value => {
     if (value) {
       // split into number and q/a
@@ -22,9 +23,9 @@ const TarsiaGrid = ({ id, grid, values }) => {
 
   return (
     <g id={id}>
-      {grid && grid.map((location, index) => {
+      {hexGrid && hexGrid.map((location, index) => {
         const valueArray = formatGridLocationValueArray({ values, locationValues: location.values })
-        return <Triangle key={index} row={location.row} col={location.col} values={valueArray} config={appConfig.triangle} />
+        return <Triangle key={index} row={location.row} col={location.col} values={valueArray} config={config.triangle} />
       })}
     </g>
   )

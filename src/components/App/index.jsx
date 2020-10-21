@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import jsPDF from "jspdf";
 import 'svg2pdf.js';
 import './App.css';
 import TarsiaGrid from '../TarsiaGrid';
 import Questions from '../QuestionAnswer'
 import PrintableSVGDiv from '../PrintableSVGDiv'
-import hexGrid from '../../data/hexGrid';
+import { useData } from '../ContextData'
 
 const App = () => {
-  const [values, setValues] = useState({})
+  const { values, setValues } = useData()
 
   const handleQuestionInput = ({ questionNumber, state }) => {
     const updatedValues = values
@@ -62,12 +62,12 @@ const App = () => {
         </div>
         <div id="hexGridSvgDiv">
           <svg viewBox="0 0 600 600" height="600" width="600">
-            <TarsiaGrid grid={hexGrid} values={values} />
+            <TarsiaGrid />
           </svg>
         </div>
       </div>
       <div className="container hidden">
-        <PrintableSVGDiv id="PrintableSVGDiv" values={values} grid={hexGrid} />
+        <PrintableSVGDiv id="PrintableSVGDiv"/>
       </div>
     </div>
   );
