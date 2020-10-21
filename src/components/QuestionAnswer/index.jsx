@@ -1,80 +1,48 @@
-import React from 'react'
+import React, {useState} from 'react'
 
-class QuestionAnswer extends React.Component {
-    constructor(props) {
-      super(props);
-      this.questionNumber = props.questionNumber;
-      this.onChange = props.onChange
-      this.state = {
-        q: "",
-        a: ""
-      };
+const Input = ({name, questionNumber, onChange, ...props}) => {
+  const [value, setValue] = useState('');
 
-      this.handleInputChange = this.handleInputChange.bind(this);
-    }
-  
-    handleInputChange(event) { 
-      // controlled component method for ensuring the input value and state remain in sync
-      // to do with the differences between react and HTML implementation of inputs
-      const target = event.target;
-      const value = target.type === 'checkbox' ? target.checked : target.value;
-      const name = target.name;
-      this.setState(
-        {
-          [name]: value
-        },
-        // callback, fires after the state update to pass things back to the parent component
-        () => { 
-          if (this.props.onChange) { 
-            this.props.onChange({state: this.state, questionNumber: this.questionNumber});
-          }
-        }
-      )
-    }
-
-    render() {
-      return (
-          <label>
-            {this.questionNumber}
-            <input
-              key={"q"+this.questionNumber}
-              name="q"           
-              type="text"
-              value={this.state.q}
-              onChange={this.handleInputChange} />
-            <input
-              key={"a"+this.questionNumber}
-              name="a"            
-              type="text"
-              value={this.state.a}
-              onChange={this.handleInputChange} />
-          </label>
-      );
-    }
+  const handleInputChange = (event) => {
+    setValue(event.target.value);
+    onChange({name:name, questionNumber:questionNumber, value:event.target.value});
   }
 
-class Questions extends React.Component {
-  constructor(props) {
-    super(props);
-    this.nQustions = props.nQuestions;
-    this.onInputChange = props.onInputChange;
-    this.onSubmit = props.onSubmit;
+  return (
+    <input
+      name={name}
+      value={value}
+      key={`${name}${questionNumber}`}        
+      type="text"
+      onChange={(event) => handleInputChange(event)}
+      {...props} />
+  )
+}
+
+const QuestionAnswer = ({questionNumber, onChange}) => { 
+
+  return (
+    <label>
+      {questionNumber}
+      <Input name='q' questionNumber={questionNumber} onChange={onChange} />
+      <Input name='a' questionNumber={questionNumber} onChange={onChange} />
+    </label>
+  );
+}
+
+const Questions = ({onChange, nQuestions}) => {
+  const questions = []
+  var question;
+  for (question=1; question<=nQuestions; question++) {
+    questions.push(<QuestionAnswer key={`qa${question}`} questionNumber={question} onChange={(data) => onChange(data)} />)
+    questions.push(<br key={`qa${question}-br`}/>)
   }
 
-  render() {
-    const questions = []
-    var i;
-    for (i=1; i<=30; i++) {
-      questions.push(<QuestionAnswer key={"qa"+i} questionNumber={i} onChange={(data) => this.onInputChange(data)} />)
-      questions.push(<br key={"qabr"+i}/>)
-    }
-
-    return(
-      <form onSubmit={this.onSubmit}>
-        {questions}
-      </form>
-    )
-  }
+  return(
+    <form>
+      {questions}
+    </form>
+  )
 }
 
 export default Questions

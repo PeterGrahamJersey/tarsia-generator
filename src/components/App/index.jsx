@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import jsPDF from "jspdf";
 import 'svg2pdf.js';
 import './App.css';
@@ -7,19 +7,11 @@ import Questions from '../QuestionAnswer'
 import hexGrid from '../../data/grids/hexGrid';
 import PrintSvgDiv from '../PrintableSvgDiv'
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.id = props.id;
-    this.state = {
-      values: {}
-    };
+const App = (id) => {
+  const [questions, setQuestions] = useState({})
+  const [answers, setAnswers] = useState({})
 
-    this.eventhandler = this.eventhandler.bind(this);
-    this.exportToPdf = this.exportToPdf.bind(this);
-  }
-
-  exportToPdf() {
+  const exportToPdf = () => {
     //Initialise pdf
     const pdf = new jsPDF({
       orientation: "landscape",
@@ -49,34 +41,33 @@ class App extends React.Component {
     addNextSvgToPdf(pdf, 0, pages, "printSvgDiv")
   };
   
-  eventhandler(data) {
-      const updatedValues = this.state.values
-      updatedValues[data.questionNumber] = data.state
-      this.setState({
-        values: updatedValues
-      })
+  const onInputChange = ({name, questionNumber, value}) => {
+    if (name === 'q') {
+        setQuestions((questions) => ({...questions, [questionNumber]:value}))
+      } else if (name === 'a') {
+        setAnswers((answers) => ({...answers, [questionNumber]:value}))
+      }
   }
 
-  render() {
-    return (
-      <div className="App">
-        <div className="container">
-          <div> 
-              <button onClick={this.exportToPdf}>Export to PDF</button>
-              <Questions onInputChange={(data) => this.eventhandler(data)} nQuestions="30"/>
-          </div>
-          <div id="hexGridSvgDiv">
-            <svg viewBox="0 0 600 600" height="600" width="600">
-              <TarsiaGrid config={hexGrid} values={this.state.values}/>
-            </svg>
-          </div>
+  return (
+    <div className="App">
+      <div className='container'>
+        <div> 
+            <p>{questions[0] && questions[0]}</p>
+            <button onClick={exportToPdf}>Export to PDF</button>
+            <Questions onChange={(data) => onInputChange(data)} nQuestions={30}/>
         </div>
-        <div className="container hidden">
-          <PrintSvgDiv id="printSvgDiv" values={this.state.values} grid={hexGrid}/>
+        <div id="hexGridSvgDiv">
+          <svg viewBox="0 0 600 600" height="600" width="600">
+            <TarsiaGrid id='tarsiaPreview' config={hexGrid} questions={questions} answers={answers}/>
+          </svg>
         </div>
       </div>
-    );
-  }
+      <div className="container hidden">
+        <PrintSvgDiv id="printSvgDiv" questions={questions} answers={answers} grid={hexGrid}/>
+      </div>
+    </div>
+  );
 }
 
 export default App;
