@@ -5,7 +5,7 @@ import './App.css';
 import TarsiaGrid from '../TarsiaGrid';
 import Questions from '../QuestionAnswer'
 import hexGrid from '../../data/grids/hexGrid';
-import PrintSvgDiv from '../PrintableSvgDiv'
+import PrintableSvgDiv from '../PrintableSvgDiv'
 
 const App = (id) => {
   const [questions, setQuestions] = useState({})
@@ -59,12 +59,12 @@ const App = (id) => {
         </div>
         <div id="hexGridSvgDiv">
           <svg viewBox="0 0 600 600" height="600" width="600">
-            <TarsiaGrid id='tarsiaPreview' config={hexGrid} questions={questions} answers={answers}/>
+            <TarsiaGrid id='tarsiaPreview' grid={hexGrid} questions={questions} answers={answers}/>
           </svg>
         </div>
       </div>
       <div className="container hidden">
-        <PrintSvgDiv id="printSvgDiv" questions={questions} answers={answers} grid={hexGrid}/>
+        <PrintableSvgDiv id="printSvgDiv" grid={hexGrid} questions={questions} answers={answers}/>
       </div>
     </div>
   );

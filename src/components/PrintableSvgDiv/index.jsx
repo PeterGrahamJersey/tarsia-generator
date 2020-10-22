@@ -15,7 +15,7 @@ const printGrid = [
   {row:2, col:5},
 ]
 
-const PrintPage = ({id, config, questions, answers}) => {
+const PrintPage = ({id, grid, questions, answers}) => {
   const side = appConfig.triangle.side
   const ratio = appConfig.pdf.ratio
   const width = side * printGridWidth
@@ -25,21 +25,21 @@ const PrintPage = ({id, config, questions, answers}) => {
   if (printGridHeight * side <= height) {console.log('Waring: print grid not tall enough for tarsia')}
   return (
       <svg id={id} viewBox={printGridMargin + " 0 " + width + " " + height} width={width} height={height}>
-        <TarsiaGrid id={`${id}-tarsiaGrid`} config={config} questions={questions} answers={answers} />
+        <TarsiaGrid id={`${id}-tarsiaGrid`} grid={grid} questions={questions} answers={answers} />
       </svg>
   )
 } 
 
-const PrintSvgDiv = ({id, questions, answers, grid}) => {
+const PrintSvgDiv = ({id, grid, questions, answers}) => {
     // TODO: Replace with a more efficient method, probably map or zip?
     let gridTriangleId=0;
     var printTriangle;
     let printArray = [];
     while (gridTriangleId<grid.length) {
-      let printPageConfig = []
+      let printPageGrid = []
       for (printTriangle in printGrid) {
         // Map display grid to print grid
-        printPageConfig.push({
+        printPageGrid.push({
           row: printGrid[printTriangle]["row"],
           col: printGrid[printTriangle]["col"],
           values: grid[gridTriangleId]["values"]
@@ -50,7 +50,7 @@ const PrintSvgDiv = ({id, questions, answers, grid}) => {
         }
       }
       // Generate print tarsiaGrids
-      printArray.push(<PrintPage id={`${id}-${printArray.length}`} key={`${id}-${printArray.length}`} config={printPageConfig} questions={questions} answers={answers} />)
+      printArray.push(<PrintPage id={`${id}-${printArray.length}`} key={`${id}-${printArray.length}`} grid={printPageGrid} questions={questions} answers={answers} />)
     }
 
   return (

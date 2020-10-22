@@ -2,7 +2,7 @@ import React from 'react'
 import Triangle from '../Triangle'
 import appConfig from '../../config'
 
-const TarsiaGrid = ({id, config, questions, answers}) => {
+const TarsiaGrid = ({id, grid, questions, answers}) => {
   
   const getTriangleValues = ({triangleValueCodeArray, questions, answers}) => triangleValueCodeArray.map(valueCode => {
       if (valueCode) { // handles nulls
@@ -14,11 +14,11 @@ const TarsiaGrid = ({id, config, questions, answers}) => {
       return null
     })
 
-  const grid = config.map(triangle => <Triangle row={triangle.row} col={triangle.col} values={getTriangleValues({triangleValueCodeArray:triangle.values, questions, answers})} config={appConfig.triangle} key={`${id}-${triangle.row}-${triangle.col}`}/>)
+  const tarsiaGrid = grid.map(triangle => <Triangle row={triangle.row} col={triangle.col} values={getTriangleValues({triangleValueCodeArray:triangle.values, questions, answers})} config={appConfig.triangle} key={`${id}-${triangle.row}-${triangle.col}`}/>)
 
   return (
     <g>
-      {grid}
+      {tarsiaGrid}
     </g>
   )
 }
