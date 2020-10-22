@@ -5,13 +5,14 @@ There is a more comprehensive editor available online, but it doesn't seem to su
 
 ToDo:
 - Dale advice
-  - Directory restructure :white_heavy_checkmark:
-  - Remove unneeded service worker :white_heavy_checkmark:
-  - Move components to components dir :white_heavy_checkmark:
-  - Triangle to own component + restructure :white_heavy_checkmark:
-  - Restructure config :white_heavy_checkmark:
-  - Class -> function w/ use state
+  - Directory restructure :white_heavy_check_mark:
+  - Remove unneeded service worker :white_heavy_check_mark:
+  - Move components to components dir :white_heavy_check_mark:
+  - Triangle to own component + restructure :white_heavy_check_mark:
+  - Restructure config :white_heavy_check_mark:
+  - Class -> function w/ use state :white_heavy_check_mark:
   - Restructure Tarsia Grid to isolate the value lookup logic
+  - Use of 'Map'
 - Sort the text size
 - General styling
 - Font styling in the pdf export
