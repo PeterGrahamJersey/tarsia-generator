@@ -1,5 +1,5 @@
 import React from 'react'
-import TarsiaGrid from "../TarsiaGrid"
+import TarsiaGrid from '../TarsiaGrid'
 import appConfig from '../../data/config'
 import printGrid from '../../data/printGrid'
 import calculateGridParamaters from '../../utils/calculateGridParamaters'
@@ -37,7 +37,7 @@ const PrintableSvgDiv = ({id, grid, questions, answers}) => {
             row: printGrid[printTriangle].location.row,
             col: printGrid[printTriangle].location.col
           },
-          values: grid[gridTriangleId]["values"]
+          values: grid[gridTriangleId]['values']
         })
         gridTriangleId = gridTriangleId+1
         if (gridTriangleId === grid.length) {
