@@ -12,7 +12,7 @@ const App = (id) => {
   const [questions, setQuestions] = useState({})
   const [answers, setAnswers] = useState({})
   const [grid, setGrid] = useState(hexGrid)
-  let gridParams = calculateGridParameters(grid)
+  const gridParams = calculateGridParameters(grid)
 
   const exportToPdf = () => {
     //Initialise pdf

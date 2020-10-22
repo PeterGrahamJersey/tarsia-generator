@@ -2,20 +2,22 @@ import React from 'react'
 import TarsiaGrid from "../TarsiaGrid"
 import appConfig from '../../data/config'
 import printGrid from '../../data/printGrid'
+import calculateGridParamaters from '../../utils/calculateGridParamaters'
 
 const printGridWidth = 2.5 // # triangles of same orientation
 const printGridHeight = 2 // # triangles
 
 const PrintPage = ({id, grid, questions, answers}) => {
+  const gridParameters = calculateGridParamaters(grid)
   const side = appConfig.triangle.side
   const ratio = appConfig.pdf.ratio
-  const width = side * printGridWidth
+  const width = side * gridParameters.width
   const height = width / ratio
   const printGridMargin = side / 2
   // Check that height >= print height * side
-  if (printGridHeight * side <= height) {console.log('Waring: print grid not tall enough for tarsia')}
+  if (gridParameters.height * side <= height) {console.log('Waring: print grid not tall enough for tarsia')}
   return (
-      <svg id={id} viewBox={printGridMargin + " 0 " + width + " " + height} width={width} height={height}>
+      <svg id={id} viewBox={`${printGridMargin} 0 ${width} ${height}`} width={width} height={height}>
         <TarsiaGrid id={`${id}-tarsiaGrid`} grid={grid} questions={questions} answers={answers} />
       </svg>
   )
@@ -23,6 +25,7 @@ const PrintPage = ({id, grid, questions, answers}) => {
 
 const PrintableSvgDiv = ({id, grid, questions, answers}) => {
     // TODO: Replace with a more efficient method, probably map or zip?
+    console.log(printGrid)
     let gridTriangleId=0;
     var printTriangle;
     let printArray = [];
