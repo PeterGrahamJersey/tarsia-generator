@@ -25,7 +25,6 @@ const PrintPage = ({id, grid, questions, answers}) => {
 
 const PrintableSvgDiv = ({id, grid, questions, answers}) => {
     // TODO: Replace with a more efficient method, probably map or zip?
-    console.log(printGrid)
     let gridTriangleId=0;
     var printTriangle;
     let printArray = [];
@@ -34,8 +33,10 @@ const PrintableSvgDiv = ({id, grid, questions, answers}) => {
       for (printTriangle in printGrid) {
         // Map display grid to print grid
         printPageGrid.push({
-          row: printGrid[printTriangle]["row"],
-          col: printGrid[printTriangle]["col"],
+          location: {
+            row: printGrid[printTriangle].location.row,
+            col: printGrid[printTriangle].location.col
+          },
           values: grid[gridTriangleId]["values"]
         })
         gridTriangleId = gridTriangleId+1

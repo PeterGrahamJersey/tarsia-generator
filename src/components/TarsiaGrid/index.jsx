@@ -14,7 +14,7 @@ const TarsiaGrid = ({id, grid, questions, answers}) => {
       return null
     })
 
-  const tarsiaGrid = grid.map(triangle => <Triangle row={triangle.row} col={triangle.col} values={getTriangleValues({triangleValueCodeArray:triangle.values, questions, answers})} config={appConfig.triangle} key={`${id}-${triangle.row}-${triangle.col}`}/>)
+  const tarsiaGrid = grid.map(triangle => <Triangle row={triangle.location.row} col={triangle.location.col} values={getTriangleValues({triangleValueCodeArray:triangle.values, questions, answers})} config={appConfig.triangle} key={`${id}-${triangle.location.row}-${triangle.location.col}`}/>)
 
   return (
     <g>
