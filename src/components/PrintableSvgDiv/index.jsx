@@ -1,6 +1,6 @@
 import React from 'react'
 import TarsiaGrid from "../TarsiaGrid"
-import appConfig from '../../config'
+import appConfig from '../../data/config'
 
 const printGridWidth = 2.5 // # triangles of same orientation
 const printGridHeight = 2 // # triangles
@@ -30,7 +30,7 @@ const PrintPage = ({id, grid, questions, answers}) => {
   )
 } 
 
-const PrintSvgDiv = ({id, grid, questions, answers}) => {
+const PrintableSvgDiv = ({id, grid, questions, answers}) => {
     // TODO: Replace with a more efficient method, probably map or zip?
     let gridTriangleId=0;
     var printTriangle;
@@ -60,4 +60,4 @@ const PrintSvgDiv = ({id, grid, questions, answers}) => {
   )
 }
 
-export default PrintSvgDiv
+export default PrintableSvgDiv

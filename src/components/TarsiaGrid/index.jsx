@@ -1,6 +1,6 @@
 import React from 'react'
 import Triangle from '../Triangle'
-import appConfig from '../../config'
+import appConfig from '../../data/config'
 
 const TarsiaGrid = ({id, grid, questions, answers}) => {
   

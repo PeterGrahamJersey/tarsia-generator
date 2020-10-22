@@ -11,7 +11,7 @@ ToDo:
   - Triangle to own component + restructure ✅
   - Restructure config ✅
   - Class -> function w/ use state ✅
-  - Restructure Tarsia Grid to isolate the value lookup logic
+  - Restructure Tarsia Grid to isolate the value lookup logic ✅
   - Use of 'Map'
 - Sort the text size
 - General styling
