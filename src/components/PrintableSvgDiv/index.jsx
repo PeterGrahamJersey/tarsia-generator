@@ -1,19 +1,10 @@
 import React from 'react'
 import TarsiaGrid from "../TarsiaGrid"
 import appConfig from '../../data/config'
+import printGrid from '../../data/printGrid'
 
 const printGridWidth = 2.5 // # triangles of same orientation
 const printGridHeight = 2 // # triangles
-const printGrid = [
-  {row:1, col:2},
-  {row:1, col:3},
-  {row:1, col:4},
-  {row:1, col:5},
-  {row:2, col:2},
-  {row:2, col:3},
-  {row:2, col:4},
-  {row:2, col:5},
-]
 
 const PrintPage = ({id, grid, questions, answers}) => {
   const side = appConfig.triangle.side
