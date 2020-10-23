@@ -16,5 +16,5 @@ ToDo:
 - Sort the text size
 - General styling
 - Font styling in the pdf export
-- Add some other common layouts
-  - What should happen to the state when changing format?
+- Add some other common layouts ✅
+  - What should happen to the state when changing format? ✅
