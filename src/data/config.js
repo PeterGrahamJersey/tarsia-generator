@@ -1,13 +1,13 @@
 const appConfig = {
   triangle: {
-    side: 150, // px 
+    side: 250, // px 
     style: { // css classes didn't export to pdf, so using style
       fill: "white",
       stroke: "black",
       strokeWidth: 2,
     },
     text: {
-      paddingY: 5, // px
+      paddingY: 8, // px
       style: { // css classes didn't export to pdf, so using style
         fill: "black"
         //fontSize: "12pt",
