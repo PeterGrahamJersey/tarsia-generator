@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import appConfig from '../../data/config'
 
 const Input = ({name, questionNumber, onChange, ...props}) => {
   const [value, setValue] = useState('');
@@ -33,9 +34,14 @@ const QuestionAnswer = ({questionNumber, onChange}) => {
 const Questions = ({onChange, nQuestions}) => {
   const questions = []
   var question;
-  for (question=1; question<=nQuestions; question++) {
-    questions.push(<QuestionAnswer key={`qa${question}`} questionNumber={question} onChange={(data) => onChange(data)} />)
-    questions.push(<br key={`qa${question}-br`}/>)
+  for (question=1; question<=appConfig.questions.maxQuestions; question++) {
+    let display = question <= nQuestions ? 'block' : 'none'
+    questions.push(
+      <div key={`qa${question}-div`} style={{display:display}}>
+        <QuestionAnswer key={`qa${question}`} questionNumber={question} onChange={(data) => onChange(data)} />
+        <br key={`qa${question}-br`}/>
+      </div>
+      )
   }
 
   return(

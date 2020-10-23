@@ -27,6 +27,9 @@ const appConfig = {
       stroke: "black",
       strokeWidth: 2,
     },
+  },
+  questions: {
+    maxQuestions:30
   }
 }
 
