@@ -12,8 +12,9 @@ ToDo:
   - Restructure config ✅
   - Class -> function w/ use state ✅
   - Restructure Tarsia Grid to isolate the value lookup logic ✅
-  - Use of 'Map'
+  - Use of 'Map' - consider for print triangles and questions
 - Sort the text size
 - General styling
 - Font styling in the pdf export
 - Add some other common layouts
+  - What should happen to the state when changing format?
