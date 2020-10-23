@@ -18,3 +18,4 @@ ToDo:
 - Font styling in the pdf export
 - Add some other common layouts ✅
   - What should happen to the state when changing format? ✅
+- Fixed viewbox for print grid
