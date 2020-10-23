@@ -3,7 +3,6 @@ import appConfig from '../../data/config'
 import TarsiaGrid from '../TarsiaGrid'
 
 const PreviewSvg = ({id, grid, gridParams, questions, answers}) => {
-  console.log(gridParams)
   // Assuming our SVG has width = height
   const viewBoxMinWidth = gridParams.width * appConfig.triangle.side
   const viewBoxMinHeight = gridParams.height * appConfig.triangle.height

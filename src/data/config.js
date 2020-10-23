@@ -13,13 +13,20 @@ const appConfig = {
         //fontSize: "12pt",
       }
     }
-
   },
   pdf: {
     units: 'mm',
     width: 297, // a4 landscape
     height: 210, // a4 landscape
     printMargin: 7,
+  },
+  icons: {
+    size:50, // 50px
+    style: { // could it be in css?
+      fill: "white",
+      stroke: "black",
+      strokeWidth: 2,
+    },
   }
 }
 

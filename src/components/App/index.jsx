@@ -7,6 +7,8 @@ import grids from '../../data/grids';
 import PrintableSvgDiv from '../PrintableSvgDiv'
 import calculateGridParameters from '../../utils/calculateGridParamaters'
 import PreviewSvg from '../PreviewSvgDiv';
+import gridIcons from '../../data/gridIcons'
+import GridIcon from '../GridIcon'
 
 const App = (id) => {
   const [questions, setQuestions] = useState({})
@@ -55,6 +57,10 @@ const App = (id) => {
   return (
     <div className='App'>
       <div className='container'>
+        <div>
+          <GridIcon icon={gridIcons.hexGrid} onClick={() => setGrid(grids.hexGrid)}/>
+          <GridIcon icon={gridIcons.triangleGrid} onClick={() => setGrid(grids.triangleGrid)}/>
+        </div>
         <div> 
             <p>{questions[0] && questions[0]}</p>
             <button onClick={exportToPdf}>Export to PDF</button>
