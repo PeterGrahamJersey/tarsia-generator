@@ -16,6 +16,7 @@ const Input = ({name, questionNumber, onChange, ...props}) => {
       key={`${name}${questionNumber}`}        
       type="text"
       onChange={(event) => handleInputChange(event)}
+      maxlength={appConfig.questions.maxLength}
       {...props} />
   )
 }

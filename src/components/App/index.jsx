@@ -22,8 +22,6 @@ const App = (id) => {
       orientation: 'landscape',
       unit:'mm'
     });
-    pdf.setFont('Helvetica')
-
     const addNextSvgToPdf = (pdf, page, pages, parentDivId) => {
       // Recursive, adds an svg, waits for it to finish, then adds the next one until saving
       // Get svg
