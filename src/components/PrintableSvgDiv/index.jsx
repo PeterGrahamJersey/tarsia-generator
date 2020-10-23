@@ -2,10 +2,9 @@ import React from 'react'
 import TarsiaGrid from '../TarsiaGrid'
 import appConfig from '../../data/config'
 import printGrid from '../../data/printGrid'
-import calculateGridParamaters from '../../utils/calculateGridParamaters'
+import calculateGridParameters from '../../utils/calculateGridParameters'
 
-const PrintPage = ({id, grid, questions, answers}) => {
-  const gridParameters = calculateGridParamaters(grid)
+const PrintPage = ({id, grid, gridParameters, questions, answers}) => {
   const side = appConfig.triangle.side
   const ratio = appConfig.pdf.ratio
   const width = side * gridParameters.width
@@ -22,6 +21,7 @@ const PrintPage = ({id, grid, questions, answers}) => {
 
 const PrintableSvgDiv = ({id, grid, questions, answers}) => {
     // TODO: Replace with a more efficient method, probably map or zip?
+    const gridParameters = calculateGridParameters(printGrid);
     let gridTriangleId=0;
     var printTriangle;
     let printArray = [];
@@ -42,7 +42,7 @@ const PrintableSvgDiv = ({id, grid, questions, answers}) => {
         }
       }
       // Generate print tarsiaGrids
-      printArray.push(<PrintPage id={`${id}-${printArray.length}`} key={`${id}-${printArray.length}`} grid={printPageGrid} questions={questions} answers={answers} />)
+      printArray.push(<PrintPage id={`${id}-${printArray.length}`} key={`${id}-${printArray.length}`} grid={printPageGrid} gridParameters={gridParameters} questions={questions} answers={answers} />)
     }
 
   return (

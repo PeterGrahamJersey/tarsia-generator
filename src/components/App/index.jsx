@@ -5,7 +5,7 @@ import './App.css';
 import Questions from '../QuestionAnswer'
 import grids from '../../data/grids';
 import PrintableSvgDiv from '../PrintableSvgDiv'
-import calculateGridParameters from '../../utils/calculateGridParamaters'
+import calculateGridParameters from '../../utils/calculateGridParameters'
 import PreviewSvg from '../PreviewSvgDiv';
 import gridIcons from '../../data/gridIcons'
 import GridIcon from '../GridIcon'
