@@ -4,9 +4,6 @@ import appConfig from '../../data/config'
 import printGrid from '../../data/printGrid'
 import calculateGridParamaters from '../../utils/calculateGridParamaters'
 
-const printGridWidth = 2.5 // # triangles of same orientation
-const printGridHeight = 2 // # triangles
-
 const PrintPage = ({id, grid, questions, answers}) => {
   const gridParameters = calculateGridParamaters(grid)
   const side = appConfig.triangle.side

@@ -2,17 +2,17 @@ import React, {useState} from 'react';
 import jsPDF from 'jspdf';
 import 'svg2pdf.js';
 import './App.css';
-import TarsiaGrid from '../TarsiaGrid';
 import Questions from '../QuestionAnswer'
-import hexGrid from '../../data/grids/hexGrid';
+import grids from '../../data/grids';
 import PrintableSvgDiv from '../PrintableSvgDiv'
 import calculateGridParameters from '../../utils/calculateGridParamaters'
+import PreviewSvg from '../PreviewSvgDiv';
 
 const App = (id) => {
   const [questions, setQuestions] = useState({})
   const [answers, setAnswers] = useState({})
-  const [grid, setGrid] = useState(hexGrid)
-  const gridParams = calculateGridParameters(grid)
+  const [grid, setGrid] = useState(grids.triangleGrid)
+  const gridParams = calculateGridParameters(grid) // not sure this is the best place for this calculation
 
   const exportToPdf = () => {
     //Initialise pdf
@@ -61,9 +61,7 @@ const App = (id) => {
             <Questions onChange={(data) => onInputChange(data)} nQuestions={gridParams.nQuestions}/>
         </div>
         <div id='hexGridSvgDiv'>
-          <svg viewBox='0 0 600 600' height='600' width='600'>
-            <TarsiaGrid id='tarsiaPreview' grid={grid} questions={questions} answers={answers}/>
-          </svg>
+          <PreviewSvg id='tarsiaPreview' grid={grid} gridParams={gridParams} questions={questions} answers={answers}/>
         </div>
       </div>
       <div className='container hidden'>

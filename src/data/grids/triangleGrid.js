@@ -1,0 +1,18 @@
+export default [
+  {location: {row:1, col:4}, values: ['1q', null, null]},
+  {location: {row:2, col:3}, values: ['4q', '2q', null]},
+  {location: {row:2, col:4}, values: ['1a', '2a', '3q']},
+  {location: {row:2, col:5}, values: ['5q', null, '3a']},
+  {location: {row:3, col:2}, values: ['10q', '6q', null]},
+  {location: {row:3, col:3}, values: ['4q', '6a', '7q']},
+  {location: {row:3, col:4}, values: ['11q', '8q', '7a']},
+  {location: {row:3, col:5}, values: ['5a', '8a', '9q']},
+  {location: {row:3, col:6}, values: ['12q', null, '9a']},
+  {location: {row:4, col:1}, values: [null, '13q', null]},
+  {location: {row:4, col:2}, values: ['10a', '13a', '14q']},
+  {location: {row:4, col:3}, values: [null, '15q', '14a']},
+  {location: {row:4, col:4}, values: ['11a', '15a', '16q']},
+  {location: {row:4, col:5}, values: [null, '17q', '16a']},
+  {location: {row:4, col:6}, values: ['12a', '17a', '18q']},
+  {location: {row:4, col:7}, values: [null, null, '18a']},
+]
