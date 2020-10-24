@@ -1,14 +1,99 @@
+:root {
+  --bg-dark: #4c5355;
+  --bg-light: #cbcdcb;
+  --text-light: #eee;
+  --text-dark: #222;
+  --accent-1: #c44b4f;
+  --accent-1-dark:#AB3236; 
+  --accent-2: #607d86;
+}
+
 .App {
-  background-color: #282c34;
+  background-color:var(--bg-dark);
   font-family: Helvetica, sans-serif;
   font-size: 12pt;
-  color: white;
+  color: var(--text-light);
+}
+
+.title {
+  display: inline-block;
+  font-size: 2em;
 }
 
 .container {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr 2fr;
+  grid-template-rows: auto auto auto;
+  grid-template-areas:
+    'header header header'
+    'gridSelect questions preview'
+    'footer footer footer'
+}
+.item-header {
+  grid-area: header;
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
+  background-color: var(--accent-2);
+}
+.item-gridSelect {
+  grid-area: gridSelect;
+}
+.item-preview {
+  grid-area: preview;
+}
+.item-questions {
+  grid-area: questions;
+}
+.item-footer {
+  grid-area: footer;
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+}
+
+button {
+  display: inline-block;
+  border: none;
+  padding: 1em 2em;
+  margin: 0;
+  text-decoration: none;
+  background: var(--accent-1);
+  color: #ffffff;
+  font-size: 1rem;
+  cursor: pointer;
+  text-align: center;
+  transition: background 250ms ease-in-out, 
+              transform 150ms ease;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+button:hover,
+button:focus {
+  background:var(--accent-1-dark);
+}
+button:focus {
+  outline: 1px solid #fff;
+  outline-offset: -4px;
+}
+button:active {
+  transform: scale(0.99);
+}
+
+button.icon-button {
+  display: block;
+  padding: 1em 1em;
+  background: none;
+}
+
+button.icon-button svg {
+  fill: var(--accent-1);
+  stroke:black;
+  stroke-width: 2;
+}
+
+button:hover.icon-button svg {
+  fill: var(--accent-1-dark);
 }
 
 .hidden {

@@ -22,7 +22,7 @@ const appConfig = {
     printMargin: 7,
   },
   icons: {
-    size:50, // 50px
+    width:50, // 50px
     style: { // could it be in css?
       fill: 'white',
       stroke: 'black',
@@ -38,5 +38,6 @@ const appConfig = {
 appConfig.triangle.height = Math.sqrt(3)/2 * appConfig.triangle.side // height of an equilateral triangle = sqrt(3)/2 * side
 appConfig.pdf.orientation = appConfig.pdf.width > appConfig.pdf.height ? 'landscape' : 'portrait'
 appConfig.pdf.ratio = appConfig.pdf.width / appConfig.pdf.height
+appConfig.icons.height = Math.sqrt(3)/2 * appConfig.icons.width
 
 export default appConfig

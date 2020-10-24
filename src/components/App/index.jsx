@@ -55,22 +55,25 @@ const App = (id) => {
   return (
     <div className='App'>
       <div className='container'>
-        <div>
-          <GridIcon icon={gridIcons.hexGrid} onClick={() => setGrid(grids.hexGrid)}/>
-          <GridIcon icon={gridIcons.triangleGrid} onClick={() => setGrid(grids.triangleGrid)}/>
-          <GridIcon icon={gridIcons.smallHexGrid} onClick={() => setGrid(grids.smallHexGrid)}/>
-          <GridIcon icon={gridIcons.smallTriangleGrid} onClick={() => setGrid(grids.smallTriangleGrid)}/>
+        <div className='item-header'>
+          <div className='title'>Tarsia Puzzle Builder</div>
+          <button onClick={exportToPdf}>Export to PDF</button>
         </div>
-        <div> 
-            <p>{questions[0] && questions[0]}</p>
-            <button onClick={exportToPdf}>Export to PDF</button>
-            <Questions onChange={(data) => onInputChange(data)} nQuestions={gridParams.nQuestions}/>
+        <div className='item-gridSelect'>
+            <GridIcon icon={gridIcons.hexGrid} onClick={() => setGrid(grids.hexGrid)}/>
+            <GridIcon icon={gridIcons.triangleGrid} onClick={() => setGrid(grids.triangleGrid)}/>
+            <GridIcon icon={gridIcons.smallHexGrid} onClick={() => setGrid(grids.smallHexGrid)}/>
+            <GridIcon icon={gridIcons.smallTriangleGrid} onClick={() => setGrid(grids.smallTriangleGrid)}/>
         </div>
-        <div id='hexGridSvgDiv'>
+        <div className='item-questions'>
+          <Questions onChange={(data) => onInputChange(data)} nQuestions={gridParams.nQuestions}/>
+        </div>
+        <div id='hexGridSvgDiv' className='item-preview'>
           <PreviewSvg id='tarsiaPreview' grid={grid} gridParams={gridParams} questions={questions} answers={answers}/>
         </div>
+        <div className='item-footer'>Footer</div>
       </div>
-      <div className='container hidden'>
+      <div className='hidden'>
         <PrintableSvgDiv id='printSvgDiv' grid={grid} questions={questions} answers={answers}/>
       </div>
     </div>
