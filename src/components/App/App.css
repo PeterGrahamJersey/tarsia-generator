@@ -13,6 +13,7 @@
   font-family: Helvetica, sans-serif;
   font-size: 12pt;
   color: var(--text-light);
+  padding-top: 60px;
 }
 
 .title {
@@ -22,34 +23,41 @@
 
 .container {
   display: grid;
-  grid-template-columns: auto 1fr 2fr;
-  grid-template-rows: auto auto auto;
+  grid-template-columns: auto auto 1fr;
+  grid-template-rows: 500px auto;
+  row-gap: 1em;
   grid-template-areas:
-    'header header header'
     'gridSelect questions preview'
     'footer footer footer'
 }
-.item-header {
-  grid-area: header;
+
+.fixed-header {
+  width:100%;
+  position: fixed;
+  top:0;
   display:flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   background-color: var(--accent-2);
+  padding-left: 0.2em;
 }
 .item-gridSelect {
   grid-area: gridSelect;
 }
 .item-preview {
   grid-area: preview;
+  text-align: center;
 }
 .item-questions {
   grid-area: questions;
+  overflow-y: scroll;
 }
 .item-footer {
   grid-area: footer;
   background-color: var(--bg-light);
   color: var(--text-dark);
+  padding-left: 0.2em;
 }
 
 button {
@@ -80,6 +88,15 @@ button:active {
   transform: scale(0.99);
 }
 
+.hidden {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+
 button.icon-button {
   display: block;
   padding: 1em 1em;
@@ -96,10 +113,3 @@ button:hover.icon-button svg {
   fill: var(--accent-1-dark);
 }
 
-.hidden {
-  display: none;
-}
-
-.show {
-  display: block;
-}

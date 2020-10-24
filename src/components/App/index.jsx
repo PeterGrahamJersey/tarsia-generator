@@ -54,11 +54,11 @@ const App = (id) => {
 
   return (
     <div className='App'>
+      <div className='fixed-header'>
+        <div className='title'>Tarsia Puzzle Builder</div>
+        <button onClick={exportToPdf}>Export to PDF</button>
+      </div>
       <div className='container'>
-        <div className='item-header'>
-          <div className='title'>Tarsia Puzzle Builder</div>
-          <button onClick={exportToPdf}>Export to PDF</button>
-        </div>
         <div className='item-gridSelect'>
             <GridIcon icon={gridIcons.hexGrid} onClick={() => setGrid(grids.hexGrid)}/>
             <GridIcon icon={gridIcons.triangleGrid} onClick={() => setGrid(grids.triangleGrid)}/>
@@ -71,7 +71,11 @@ const App = (id) => {
         <div id='hexGridSvgDiv' className='item-preview'>
           <PreviewSvg id='tarsiaPreview' grid={grid} gridParams={gridParams} questions={questions} answers={answers}/>
         </div>
-        <div className='item-footer'>Footer</div>
+        <div className='item-footer'>
+          <p>Feedback or ideas? Reach out to me on twitter at <a href='https://twitter.com/peter_graham_'>@peter_graham_</a>.</p>
+          <p>A more comprehensive editor is available online (not created or supported by me), links to it and ideas on how to use Tarsia Puzzles are available from <a href='http://mrbartonmaths.com/teachers/rich-tasks/tarsia-jigsaw.html'>Mr Burton Maths</a>.</p>
+          <p><a href='https://github.com/PeterGrahamJersey/tarsia-generator'>Source code</a></p>
+        </div>
       </div>
       <div className='hidden'>
         <PrintableSvgDiv id='printSvgDiv' grid={grid} questions={questions} answers={answers}/>

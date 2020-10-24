@@ -1,0 +1,13 @@
+label {
+  display: flex;
+  margin-bottom: 0.2em;
+}
+.qa-label-text {
+  width: 1.5em;
+  display:inline-block;
+  text-align: right;
+  margin-right: 1em;
+}
+.qa-input-question {
+  margin-right: 0.1em
+}

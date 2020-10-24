@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import appConfig from '../../data/config'
+import './QuestionAnswer.css'
 
 const Input = ({name, questionNumber, onChange, ...props}) => {
   const [value, setValue] = useState('');
@@ -25,8 +26,8 @@ const QuestionAnswer = ({questionNumber, onChange}) => {
 
   return (
     <label>
-      {questionNumber}
-      <Input name='q' questionNumber={questionNumber} onChange={onChange} />
+      <div className='qa-label-text'>{questionNumber}</div>
+      <Input name='q' className='qa-input-question' questionNumber={questionNumber} onChange={onChange} />
       <Input name='a' questionNumber={questionNumber} onChange={onChange} />
     </label>
   );
@@ -40,7 +41,6 @@ const Questions = ({onChange, nQuestions}) => {
     questions.push(
       <div key={`qa${question}-div`} style={{display:display}}>
         <QuestionAnswer key={`qa${question}`} questionNumber={question} onChange={(data) => onChange(data)} />
-        <br key={`qa${question}-br`}/>
       </div>
       )
   }
