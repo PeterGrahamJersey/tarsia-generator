@@ -3,6 +3,8 @@
 Allows you to create and print a tarsia style puzzle.
 There is a more comprehensive editor available online, but it doesn't seem to support mac.
 
+Huge thanks to [Dale Blackburn](https://github.com/dakebl) for his amazing advice in this project 💛
+
 ToDo:
 - Dale advice
   - Directory restructure ✅
