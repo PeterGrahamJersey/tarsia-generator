@@ -22,16 +22,11 @@ const appConfig = {
     printMargin: 7,
   },
   icons: {
-    width:50, // 50px
-    style: { // could it be in css?
-      fill: 'white',
-      stroke: 'black',
-      strokeWidth: 2,
-    },
+    width:50 // 50px
   },
   questions: {
     maxQuestions:30,
-    maxLength:15
+    maxLength:25
   }
 }
 
