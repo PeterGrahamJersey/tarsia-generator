@@ -21,11 +21,12 @@ ToDo:
 - Add some other common layouts ✅
   - What should happen to the state when changing format? ✅
 - Fixed viewbox for print grid ✅
+- Correct GridIcon alignment, not centered
 
 Features to add
 - Accessibility check + improvement
 - Title + site icon
-- Adjust CSS to be adaptive
+- Adjust CSS to be adaptive ✅
 - Randomised order for print out
 - Print-out solution sheet
 - Distractors (that end up on the outside)
