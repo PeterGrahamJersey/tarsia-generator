@@ -55,27 +55,29 @@ const App = (id) => {
   return (
     <div className='App'>
       <div className='fixed-header'>
-        <div className='title'>Tarsia Puzzle Builder</div>
+        <div className='title'>Tarsia Maker</div>
         <button onClick={exportToPdf}>Export to PDF</button>
       </div>
-      <div className='container'>
-        <div className='item-gridSelect'>
-            <GridIcon icon={gridIcons.hexGrid} onClick={() => setGrid(grids.hexGrid)}/>
-            <GridIcon icon={gridIcons.triangleGrid} onClick={() => setGrid(grids.triangleGrid)}/>
-            <GridIcon icon={gridIcons.smallHexGrid} onClick={() => setGrid(grids.smallHexGrid)}/>
-            <GridIcon icon={gridIcons.smallTriangleGrid} onClick={() => setGrid(grids.smallTriangleGrid)}/>
+      <div className='content'>
+        <div className='gridSelect'>
+          <GridIcon icon={gridIcons.smallTriangleGrid} onClick={() => setGrid(grids.smallTriangleGrid)}/>
+          <GridIcon icon={gridIcons.smallHexGrid} onClick={() => setGrid(grids.smallHexGrid)}/>
+          <GridIcon icon={gridIcons.triangleGrid} onClick={() => setGrid(grids.triangleGrid)}/>
+          <GridIcon icon={gridIcons.hexGrid} onClick={() => setGrid(grids.hexGrid)}/>  
         </div>
-        <div className='item-questions'>
+        <div className='questions'>
           <Questions onChange={(data) => onInputChange(data)} nQuestions={gridParams.nQuestions}/>
         </div>
-        <div id='hexGridSvgDiv' className='item-preview'>
+        <div id='hexGridSvgDiv' className='preview'>
           <PreviewSvg id='tarsiaPreview' grid={grid} gridParams={gridParams} questions={questions} answers={answers}/>
         </div>
-        <div className='item-footer'>
-          <p>Feedback or ideas? Reach out to me on twitter at <a href='https://twitter.com/peter_graham_'>@peter_graham_</a>.</p>
-          <p>A more comprehensive editor is available online (not created or supported by me), links to it and ideas on how to use Tarsia Puzzles are available from <a href='http://mrbartonmaths.com/teachers/rich-tasks/tarsia-jigsaw.html'>Mr Burton Maths</a>.</p>
-          <p><a href='https://github.com/PeterGrahamJersey/tarsia-generator'>Source code</a></p>
-        </div>
+      </div>
+      <div className='footer'>
+        <ul>
+          <li>Feedback or ideas? Reach out to me on twitter at <a href='https://twitter.com/peter_graham_'>@peter_graham_</a>.</li>
+          <li>A more comprehensive editor is available online (not created or supported by me), links to it and ideas on how to use Tarsia Puzzles are available from <a href='http://mrbartonmaths.com/teachers/rich-tasks/tarsia-jigsaw.html'>Mr Burton Maths</a>.</li>
+          <li><a href='https://github.com/PeterGrahamJersey/tarsia-generator'>Source code</a></li>
+        </ul>
       </div>
       <div className='hidden'>
         <PrintableSvgDiv id='printSvgDiv' grid={grid} questions={questions} answers={answers}/>

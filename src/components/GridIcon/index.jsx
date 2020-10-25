@@ -6,7 +6,7 @@ const GridIcon = ({icon, onClick}) => {
   const h = appConfig.icons.height
   return (
     <button className='icon-button' onClick={onClick}>
-      <svg viewBox={`0 0 ${w} ${h}`} width={w} height={h}>
+      <svg viewBox={`${-w*0.05} ${-h*0.05} ${w*1.1} ${h*1.1}`}>
         {icon}
       </svg>
     </button>
