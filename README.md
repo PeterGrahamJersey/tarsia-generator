@@ -26,7 +26,7 @@ ToDo:
 Features to add
 - Accessibility check + improvement
 - Title + site icon
-- Adjust CSS to be adaptive ✅
+- Adjust CSS to be adaptive - improved, but mobile w/ pop-up keyboard is a stuggle
 - Randomised order for print out
 - Print-out solution sheet
 - Distractors (that end up on the outside)
