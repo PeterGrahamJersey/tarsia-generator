@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { Helmet } from 'react-helmet';
 import jsPDF from 'jspdf';
 import 'svg2pdf.js';
 import './App.css';
@@ -9,6 +10,7 @@ import calculateGridParameters from '../../utils/calculateGridParameters'
 import PreviewSvg from '../PreviewSvgDiv';
 import gridIcons from '../../data/gridIcons'
 import GridIcon from '../GridIcon'
+import favicon from '../../data/favicon.svg'
 
 const App = (id) => {
   const [questions, setQuestions] = useState({})
@@ -54,6 +56,12 @@ const App = (id) => {
 
   return (
     <div className='App'>
+      <Helmet>
+        <title>Tarsia Maker</title>
+        <meta name='description' content='Create and download your own Tarsia puzzles.' />
+        <meta name='theme-color' content="#607d86" />
+        <link rel="icon" type='image/svg+xml' href={favicon} />
+      </Helmet>
       <div className='fixed-header'>
         <div className='title'>Tarsia Maker</div>
         <button onClick={exportToPdf}>Export to PDF</button>
