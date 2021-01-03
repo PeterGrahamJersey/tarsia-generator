@@ -6,33 +6,13 @@ There is a more comprehensive editor available online, but it doesn't seem to su
 Huge thanks to [Dale Blackburn](https://github.com/dakebl) for his amazing advice in this project 💛
 
 ToDo:
-- Dale advice
-  - Directory restructure ✅
-  - Remove unneeded service worker ✅
-  - Move components to components dir ✅
-  - Triangle to own component + restructure ✅
-  - Restructure config ✅
-  - Class -> function w/ use state ✅
-  - Restructure Tarsia Grid to isolate the value lookup logic ✅
-  - Use of 'Map' - consider for print triangles and questions
-- Sort the text size ✅
-- General styling ✅
-- Font styling in the pdf export ✅
-- Add some other common layouts ✅
-  - What should happen to the state when changing format? ✅
-- Fixed viewbox for print grid ✅
-- Correct GridIcon alignment, not centered
-
-Features to add
-- Accessibility check + improvement
-- Title + site icon
-- Adjust CSS to be adaptive - improved, but mobile w/ pop-up keyboard is a stuggle
-- Randomised order for print out
-- Print-out solution sheet
-- Distractors (that end up on the outside)
-- Save/load functionality
-
-Questions
-- CSS hierarchy, how to move icon button style to GridIcon.css
-- Where should the icon data be stored?
-- Does the data structure make sense?
+- Behind the scenes
+    - Use of 'Map' - consider for print triangles and questions
+    - Correct GridIcon alignment, not centered
+    - CSS tidying
+- Functionality
+    - Save/load functionality
+    - Accessibility check + improvement
+    - Randomised order for print out
+    - Print-out solution sheet
+    - Distractors (that end up on the outside)

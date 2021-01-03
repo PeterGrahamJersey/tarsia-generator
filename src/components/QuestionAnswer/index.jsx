@@ -27,8 +27,8 @@ const QuestionAnswer = ({questionNumber, onChange}) => {
   return (
     <label>
       <div className='qa-label-text'>{questionNumber}</div>
-      <Input name='q' className='qa-input-question' questionNumber={questionNumber} onChange={onChange} />
-      <Input name='a' questionNumber={questionNumber} onChange={onChange} />
+      <Input name='q' className='qa-input-question qa-input' questionNumber={questionNumber} onChange={onChange} />
+      <Input name='a' className='qa-input' questionNumber={questionNumber} onChange={onChange} />
     </label>
   );
 }
