@@ -45,7 +45,23 @@ const App = (id) => {
     const pages = document.getElementById(parentDivId).children.length
     addNextSvgToPdf(pdf, 0, pages, 'printSvgDiv')
   };
+
+  const saveToText = () => {
+    var output = {questions, answers}
+    console.log(output)
+    const element = document.createElement("a");
+    const file = new Blob([JSON.stringify(output)],    
+                {type: 'text/plain;charset=utf-8'});
+    element.href = URL.createObjectURL(file);
+    element.download = "tarsia.txt";
+    document.body.appendChild(element);
+    element.click();
+  }
   
+  const loadFromText = () => {
+    console.log('load')
+  }
+
   const onInputChange = ({name, questionNumber, value}) => {
     if (name === 'q') {
         setQuestions((questions) => ({...questions, [questionNumber]:value}))
@@ -67,6 +83,10 @@ const App = (id) => {
         <button onClick={exportToPdf}>Export to PDF</button>
       </div>
       <div className='content'>
+        <div>
+          <button onClick={saveToText}>Save</button>
+          <button onClick={loadFromText}>Load</button>
+        </div>
         <div className='gridSelect'>
           <GridIcon icon={gridIcons.smallTriangleGrid} onClick={() => setGrid(grids.smallTriangleGrid)}/>
           <GridIcon icon={gridIcons.smallHexGrid} onClick={() => setGrid(grids.smallHexGrid)}/>
