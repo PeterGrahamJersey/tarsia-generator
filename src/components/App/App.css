@@ -141,6 +141,9 @@ button:hover.icon-button svg {
     width: 100%;
     justify-content:space-around;
   }
+  .title {
+    font-size: 1.5rem;
+  }
   .questions {
     flex-shrink: 1;
   }
