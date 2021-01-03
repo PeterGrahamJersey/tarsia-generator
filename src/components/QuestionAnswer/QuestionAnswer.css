@@ -12,3 +12,7 @@ label {
 .qa-input-question {
   margin-right: 0.1em
 }
+
+.qa-input {
+  max-width: 40%;
+}

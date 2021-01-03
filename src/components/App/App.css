@@ -10,6 +10,8 @@
 }
 
 .App {
+  width:100%;
+  min-width: 320px;
   background-color:var(--bg-dark);
   font-family: Helvetica, sans-serif;
   font-size: 12pt;
@@ -19,6 +21,7 @@
 
 .fixed-header {
   width:100%;
+  min-width:320px;
   height:var(--fixed-header-height);
   position: fixed;
   top:0;
