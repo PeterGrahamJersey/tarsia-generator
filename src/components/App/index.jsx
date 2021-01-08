@@ -50,25 +50,39 @@ const App = (id) => {
   };
 
   const saveToText = () => {
-    var output = {questions, answers}
-    console.log(output)
-    const element = document.createElement("a");
+    // Prep Output
+    var output = {questions, answers, grid}
     const file = new Blob([JSON.stringify(output, null, 2)],    
                 {type: 'text/plain;charset=utf-8'});
+    // Prep Href link to output
+    const element = document.createElement("a");
     element.href = URL.createObjectURL(file);
     element.download = "tarsia.txt";
     document.body.appendChild(element);
+    // Click then remove link
     element.click();
+    element.remove();
   }
   
   const loadFromText = () => {
-    //var prompt = window.prompt('Paste the contents of your saved tarsia file:')
-    //var input = {"questions":{"1":"test"},"answers":{"1":"oops"}}
-    setLoadedQuestions({"1":"testQ"})
-    setQuestions({"1":"testQ"})
-    setLoadedAnswers({"1":"testA"})
-    setAnswers({"1":"testA"})
-    setloadCount(loadCount+1)
+    var prompt = window.prompt('Paste the contents of your saved tarsia file:')
+    if (prompt) { 
+      console.log(JSON.parse(prompt))
+      // Validate input
+      var parsedPrompt = JSON.parse(prompt)
+      var promptQ = parsedPrompt['questions']
+      var promptA = parsedPrompt['answers']
+      var promptGrid = parsedPrompt['grid']
+      // Set states
+      console.log(promptGrid)
+      setGrid(promptGrid)
+      setLoadedQuestions(promptQ)
+      setQuestions(promptQ)
+      setLoadedAnswers(promptA)
+      setAnswers(promptA)
+      // Increment load count (to trigger re-render of Questions)
+      setloadCount(loadCount+1)
+    }
   }
 
   const onInputChange = ({name, questionNumber, value}) => {
