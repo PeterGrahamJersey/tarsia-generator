@@ -14,7 +14,10 @@ import favicon from '../../data/favicon.svg'
 
 const App = (id) => {
   const [questions, setQuestions] = useState({})
+  const [loadedQuestions, setLoadedQuestions] = useState({})
   const [answers, setAnswers] = useState({})
+  const [loadedAnswers, setLoadedAnswers] = useState({})
+  const [loadCount, setloadCount] = useState(0)
   const [grid, setGrid] = useState(grids.triangleGrid)
   const gridParams = calculateGridParameters(grid) // not sure this is the best place for this calculation
 
@@ -50,7 +53,7 @@ const App = (id) => {
     var output = {questions, answers}
     console.log(output)
     const element = document.createElement("a");
-    const file = new Blob([JSON.stringify(output)],    
+    const file = new Blob([JSON.stringify(output, null, 2)],    
                 {type: 'text/plain;charset=utf-8'});
     element.href = URL.createObjectURL(file);
     element.download = "tarsia.txt";
@@ -59,7 +62,13 @@ const App = (id) => {
   }
   
   const loadFromText = () => {
-    console.log('load')
+    //var prompt = window.prompt('Paste the contents of your saved tarsia file:')
+    //var input = {"questions":{"1":"test"},"answers":{"1":"oops"}}
+    setLoadedQuestions({"1":"testQ"})
+    setQuestions({"1":"testQ"})
+    setLoadedAnswers({"1":"testA"})
+    setAnswers({"1":"testA"})
+    setloadCount(loadCount+1)
   }
 
   const onInputChange = ({name, questionNumber, value}) => {
@@ -94,7 +103,7 @@ const App = (id) => {
           <GridIcon icon={gridIcons.hexGrid} onClick={() => setGrid(grids.hexGrid)}/>  
         </div>
         <div className='questions'>
-          <Questions onChange={(data) => onInputChange(data)} nQuestions={gridParams.nQuestions}/>
+          <Questions onChange={(data) => onInputChange(data)} nQuestions={gridParams.nQuestions} loadedQuestions={loadedQuestions} loadedAnswers={loadedAnswers} key={`questions-${loadCount}`}/>
         </div>
         <div id='hexGridSvgDiv' className='preview'>
           <PreviewSvg id='tarsiaPreview' grid={grid} gridParams={gridParams} questions={questions} answers={answers}/>
