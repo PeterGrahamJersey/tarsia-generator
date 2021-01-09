@@ -1,6 +1,7 @@
 import React from 'react'
 import appConfig from '../../data/config'
 import TarsiaGrid from '../TarsiaGrid'
+import './PreviewSvgDiv.css';
 
 const PreviewSvg = ({id, grid, gridParams, questions, answers}) => {
   // Assuming our SVG has width = height
@@ -10,7 +11,7 @@ const PreviewSvg = ({id, grid, gridParams, questions, answers}) => {
   //const ViewBoxSide = Math.max(viewBoxMinWidth, viewBoxMinHeight)
 
   return (
-    <svg viewBox={`${viewBoxOffsetX} 0 ${viewBoxMinWidth} ${viewBoxMinHeight}`}>
+    <svg viewBox={`${viewBoxOffsetX} 0 ${viewBoxMinWidth} ${viewBoxMinHeight}`} className="previewSvg">
       <TarsiaGrid id={id} grid={grid} questions={questions} answers={answers}/>
     </svg>
   )

@@ -101,26 +101,27 @@ const App = (id) => {
         <meta name='theme-color' content="#607d86" />
         <link rel="icon" type='image/svg+xml' href={favicon} />
       </Helmet>
-      <div className='fixed-header'>
+      <div className='header'>
         <div className='title'>Tarsia Maker</div>
-        <button onClick={exportToPdf}>Export to PDF</button>
       </div>
       <div className='content'>
-        <div>
-          <button onClick={saveToText}>Save</button>
-          <button onClick={loadFromText}>Load</button>
-        </div>
         <div className='gridSelect'>
           <GridIcon icon={gridIcons.smallTriangleGrid} onClick={() => setGrid(grids.smallTriangleGrid)}/>
           <GridIcon icon={gridIcons.smallHexGrid} onClick={() => setGrid(grids.smallHexGrid)}/>
           <GridIcon icon={gridIcons.triangleGrid} onClick={() => setGrid(grids.triangleGrid)}/>
           <GridIcon icon={gridIcons.hexGrid} onClick={() => setGrid(grids.hexGrid)}/>  
         </div>
+        <div id='hexGridSvgDiv' className='previewContainer'>
+          <PreviewSvg id='tarsiaPreview' grid={grid} gridParams={gridParams} questions={questions} answers={answers}/>
+        </div>
+        <div className='buttons'>
+          <button className='buttonsButton' onClick={exportToPdf}>Export to PDF</button>
+          <button className='buttonsButton' onClick={saveToText}>Save</button>
+          <button className='buttonsButton' onClick={loadFromText}>Load</button>
+          <button className='buttonsButton'>Clear</button>
+        </div>
         <div className='questions'>
           <Questions onChange={(data) => onInputChange(data)} nQuestions={gridParams.nQuestions} loadedQuestions={loadedQuestions} loadedAnswers={loadedAnswers} key={`questions-${loadCount}`}/>
-        </div>
-        <div id='hexGridSvgDiv' className='preview'>
-          <PreviewSvg id='tarsiaPreview' grid={grid} gridParams={gridParams} questions={questions} answers={answers}/>
         </div>
       </div>
       <div className='footer'>
