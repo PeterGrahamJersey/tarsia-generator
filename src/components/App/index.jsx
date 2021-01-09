@@ -14,7 +14,10 @@ import favicon from '../../data/favicon.svg'
 
 const App = (id) => {
   const [questions, setQuestions] = useState({})
+  const [loadedQuestions, setLoadedQuestions] = useState({})
   const [answers, setAnswers] = useState({})
+  const [loadedAnswers, setLoadedAnswers] = useState({})
+  const [loadCount, setloadCount] = useState(0)
   const [grid, setGrid] = useState(grids.triangleGrid)
   const gridParams = calculateGridParameters(grid) // not sure this is the best place for this calculation
 
@@ -45,7 +48,51 @@ const App = (id) => {
     const pages = document.getElementById(parentDivId).children.length
     addNextSvgToPdf(pdf, 0, pages, 'printSvgDiv')
   };
-  
+
+  const saveToText = () => {
+    // Prep Output
+    var output = {questions, answers, grid}
+    const file = new Blob([JSON.stringify(output, null, 2)],    
+                {type: 'text/plain;charset=utf-8'});
+    // Prep Href link to output
+    const element = document.createElement("a");
+    element.href = URL.createObjectURL(file);
+    element.download = "tarsia.txt";
+    document.body.appendChild(element);
+    // Click then remove link
+    element.click();
+    element.remove();
+  }
+
+  const valuesForInputs = (questionValues, answerValues, gridValue) => {
+    // Set states
+    setGrid(gridValue)
+    setLoadedQuestions(questionValues)
+    setQuestions(questionValues)
+    setLoadedAnswers(answerValues)
+    setAnswers(answerValues)
+    // Increment load count (to trigger re-render of Questions)
+    setloadCount(loadCount+1)
+  }
+  const clearInputs = () => {
+    var prompt = window.confirm('Clear all inputs?')
+    if (prompt) {
+      valuesForInputs({}, {}, grid)
+    }
+  }
+  const loadFromText = () => {
+    var text = window.prompt('Paste the contents of your saved tarsia file:')
+    if (text) { 
+      console.log(JSON.parse(text))
+      // Validate input
+      var parsedText = JSON.parse(text)
+      var promptQ = parsedText['questions']
+      var promptA = parsedText['answers']
+      var promptGrid = parsedText['grid']
+      valuesForInputs(promptQ, promptA, promptGrid)
+    }
+  }
+
   const onInputChange = ({name, questionNumber, value}) => {
     if (name === 'q') {
         setQuestions((questions) => ({...questions, [questionNumber]:value}))
@@ -62,9 +109,8 @@ const App = (id) => {
         <meta name='theme-color' content="#607d86" />
         <link rel="icon" type='image/svg+xml' href={favicon} />
       </Helmet>
-      <div className='fixed-header'>
+      <div className='header'>
         <div className='title'>Tarsia Maker</div>
-        <button onClick={exportToPdf}>Export to PDF</button>
       </div>
       <div className='content'>
         <div className='gridSelect'>
@@ -73,11 +119,17 @@ const App = (id) => {
           <GridIcon icon={gridIcons.triangleGrid} onClick={() => setGrid(grids.triangleGrid)}/>
           <GridIcon icon={gridIcons.hexGrid} onClick={() => setGrid(grids.hexGrid)}/>  
         </div>
-        <div className='questions'>
-          <Questions onChange={(data) => onInputChange(data)} nQuestions={gridParams.nQuestions}/>
-        </div>
-        <div id='hexGridSvgDiv' className='preview'>
+        <div id='hexGridSvgDiv' className='previewContainer'>
           <PreviewSvg id='tarsiaPreview' grid={grid} gridParams={gridParams} questions={questions} answers={answers}/>
+        </div>
+        <div className='buttons'>
+          <button className='buttonsButton' onClick={exportToPdf}>Export to PDF</button>
+          <button className='buttonsButton' onClick={saveToText}>Save</button>
+          <button className='buttonsButton' onClick={loadFromText}>Load</button>
+          <button className='buttonsButton' onClick={clearInputs}>Clear</button>
+        </div>
+        <div className='questions'>
+          <Questions onChange={(data) => onInputChange(data)} nQuestions={gridParams.nQuestions} loadedQuestions={loadedQuestions} loadedAnswers={loadedAnswers} key={`questions-${loadCount}`}/>
         </div>
       </div>
       <div className='footer'>

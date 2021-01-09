@@ -2,8 +2,8 @@ import React, {useState} from 'react'
 import appConfig from '../../data/config'
 import './QuestionAnswer.css'
 
-const Input = ({name, questionNumber, onChange, ...props}) => {
-  const [value, setValue] = useState('');
+const Input = ({name, loadedValue, questionNumber, onChange, ...props}) => {
+  const [value, setValue] = useState(loadedValue ? loadedValue : '');
 
   const handleInputChange = (event) => {
     setValue(event.target.value);
@@ -17,30 +17,32 @@ const Input = ({name, questionNumber, onChange, ...props}) => {
       key={`${name}${questionNumber}`}        
       type="text"
       onChange={(event) => handleInputChange(event)}
-      maxlength={appConfig.questions.maxLength}
+      maxLength={appConfig.questions.maxLength}
       {...props} />
   )
 }
 
-const QuestionAnswer = ({questionNumber, onChange}) => { 
+const QuestionAnswer = ({questionNumber, onChange, loadedQuestion, loadedAnswer}) => { 
 
   return (
     <label>
       <div className='qa-label-text'>{questionNumber}</div>
-      <Input name='q' className='qa-input-question qa-input' questionNumber={questionNumber} onChange={onChange} />
-      <Input name='a' className='qa-input' questionNumber={questionNumber} onChange={onChange} />
+      <Input name='q' className='qa-input-question qa-input' loadedValue={loadedQuestion} questionNumber={questionNumber} onChange={onChange} />
+      <Input name='a' className='qa-input' loadedValue={loadedAnswer} questionNumber={questionNumber} onChange={onChange} />
     </label>
   );
 }
 
-const Questions = ({onChange, nQuestions}) => {
+const Questions = ({onChange, nQuestions, loadedQuestions, loadedAnswers}) => {
   const questions = []
   var question;
   for (question=1; question<=appConfig.questions.maxQuestions; question++) {
+    var loadedQuestion = loadedQuestions[question] || ''
+    var loadedAnswer = loadedAnswers[question] || ''
     let display = question <= nQuestions ? 'block' : 'none'
     questions.push(
       <div key={`qa${question}-div`} style={{display:display}}>
-        <QuestionAnswer key={`qa${question}`} questionNumber={question} onChange={(data) => onChange(data)} />
+        <QuestionAnswer key={`qa${question}`} questionNumber={question} onChange={(data) => onChange(data)} loadedQuestion={loadedQuestion} loadedAnswer={loadedAnswer}/>
       </div>
       )
   }
