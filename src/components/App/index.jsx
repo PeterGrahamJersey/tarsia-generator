@@ -63,25 +63,33 @@ const App = (id) => {
     element.click();
     element.remove();
   }
-  
+
+  const valuesForInputs = (questionValues, answerValues, gridValue) => {
+    // Set states
+    setGrid(gridValue)
+    setLoadedQuestions(questionValues)
+    setQuestions(questionValues)
+    setLoadedAnswers(answerValues)
+    setAnswers(answerValues)
+    // Increment load count (to trigger re-render of Questions)
+    setloadCount(loadCount+1)
+  }
+  const clearInputs = () => {
+    var prompt = window.confirm('Clear all inputs?')
+    if (prompt) {
+      valuesForInputs({}, {}, grid)
+    }
+  }
   const loadFromText = () => {
-    var prompt = window.prompt('Paste the contents of your saved tarsia file:')
-    if (prompt) { 
-      console.log(JSON.parse(prompt))
+    var text = window.prompt('Paste the contents of your saved tarsia file:')
+    if (text) { 
+      console.log(JSON.parse(text))
       // Validate input
-      var parsedPrompt = JSON.parse(prompt)
-      var promptQ = parsedPrompt['questions']
-      var promptA = parsedPrompt['answers']
-      var promptGrid = parsedPrompt['grid']
-      // Set states
-      console.log(promptGrid)
-      setGrid(promptGrid)
-      setLoadedQuestions(promptQ)
-      setQuestions(promptQ)
-      setLoadedAnswers(promptA)
-      setAnswers(promptA)
-      // Increment load count (to trigger re-render of Questions)
-      setloadCount(loadCount+1)
+      var parsedText = JSON.parse(text)
+      var promptQ = parsedText['questions']
+      var promptA = parsedText['answers']
+      var promptGrid = parsedText['grid']
+      valuesForInputs(promptQ, promptA, promptGrid)
     }
   }
 
@@ -118,7 +126,7 @@ const App = (id) => {
           <button className='buttonsButton' onClick={exportToPdf}>Export to PDF</button>
           <button className='buttonsButton' onClick={saveToText}>Save</button>
           <button className='buttonsButton' onClick={loadFromText}>Load</button>
-          <button className='buttonsButton'>Clear</button>
+          <button className='buttonsButton' onClick={clearInputs}>Clear</button>
         </div>
         <div className='questions'>
           <Questions onChange={(data) => onInputChange(data)} nQuestions={gridParams.nQuestions} loadedQuestions={loadedQuestions} loadedAnswers={loadedAnswers} key={`questions-${loadCount}`}/>
