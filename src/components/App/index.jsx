@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { Helmet } from 'react-helmet';
 import jsPDF from 'jspdf';
 import 'svg2pdf.js';
+import LZString from 'lz-string'
 import './App.css';
 import Questions from '../QuestionAnswer'
 import grids from '../../data/grids';
@@ -10,8 +11,8 @@ import calculateGridParameters from '../../utils/calculateGridParameters'
 import PreviewSvg from '../PreviewSvgDiv';
 import gridIcons from '../../data/gridIcons'
 import GridIcon from '../GridIcon'
+import {Modal, SaveModal} from '../Modal'
 import favicon from '../../data/favicon.svg'
-import LZString from 'lz-string'
 
 const App = (id) => {
   const [questions, setQuestions] = useState({})
@@ -20,7 +21,15 @@ const App = (id) => {
   const [loadedAnswers, setLoadedAnswers] = useState({})
   const [loadCount, setloadCount] = useState(0)
   const [grid, setGrid] = useState(grids.triangleGrid)
+  const [showSaveModal, setShowSaveModal] = useState(false)
+  const [saveString, setSaveString] = useState('')
+  const [showLoadModal, setShowLoadModal] = useState(false)
   const gridParams = calculateGridParameters(grid) // not sure this is the best place for this calculation
+
+  const hideModals = () => {
+    setShowSaveModal(false)
+    setShowLoadModal(false)
+  }
 
   const exportToPdf = () => {
     //Initialise pdf
@@ -55,19 +64,9 @@ const App = (id) => {
     var output = {questions, answers, grid, saveVersion:1}
     var outputString = JSON.stringify(output)
     var compressedOutputString = LZString.compressToBase64(outputString)
-    // SHOW COPIABLE OUTPUT MOODAL
-    window.alert(`Code: ${compressedOutputString}`)
-    // Download txt file
-    // const file = new Blob([compressedOutputString],    
-    //             {type: 'text/plain;charset=utf-8'});
-    // // Prep Href link to output
-    // const element = document.createElement("a");
-    // element.href = URL.createObjectURL(file);
-    // element.download = "tarsia.txt";
-    // document.body.appendChild(element);
-    // // Click then remove link
-    // element.click();
-    // element.remove();
+    //Show output modal
+    setSaveString(compressedOutputString)
+    setShowSaveModal(true)
   }
 
   const valuesForInputs = (questionValues, answerValues, gridValue) => {
@@ -149,6 +148,8 @@ const App = (id) => {
           <li><a href='https://github.com/PeterGrahamJersey/tarsia-generator'>Source code</a></li>
         </ul>
       </div>
+      <SaveModal handleClose={hideModals} show={showSaveModal} saveString={saveString}/>
+      <Modal handleClose={hideModals} show={showLoadModal}></Modal>
       <div className='hidden'>
         <PrintableSvgDiv id='printSvgDiv' grid={grid} questions={questions} answers={answers}/>
       </div>
