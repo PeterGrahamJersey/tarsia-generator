@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { Helmet } from 'react-helmet';
 import jsPDF from 'jspdf';
 import 'svg2pdf.js';
+import LZString from 'lz-string'
 import './App.css';
 import Questions from '../QuestionAnswer'
 import grids from '../../data/grids';
@@ -10,6 +11,7 @@ import calculateGridParameters from '../../utils/calculateGridParameters'
 import PreviewSvg from '../PreviewSvgDiv';
 import gridIcons from '../../data/gridIcons'
 import GridIcon from '../GridIcon'
+import {ClearModal, LoadModal, SaveModal} from '../Modal'
 import favicon from '../../data/favicon.svg'
 
 const App = (id) => {
@@ -19,7 +21,17 @@ const App = (id) => {
   const [loadedAnswers, setLoadedAnswers] = useState({})
   const [loadCount, setloadCount] = useState(0)
   const [grid, setGrid] = useState(grids.triangleGrid)
+  const [showSaveModal, setShowSaveModal] = useState(false)
+  const [saveString, setSaveString] = useState('')
+  const [showLoadModal, setShowLoadModal] = useState(false)
+  const [showClearModal, setShowClearModal] = useState(false) 
   const gridParams = calculateGridParameters(grid) // not sure this is the best place for this calculation
+
+  const hideModals = () => {
+    setShowSaveModal(false)
+    setShowLoadModal(false)
+    setShowClearModal(false)
+  }
 
   const exportToPdf = () => {
     //Initialise pdf
@@ -51,19 +63,17 @@ const App = (id) => {
 
   const saveToText = () => {
     // Prep Output
-    var output = {questions, answers, grid}
-    const file = new Blob([JSON.stringify(output, null, 2)],    
-                {type: 'text/plain;charset=utf-8'});
-    // Prep Href link to output
-    const element = document.createElement("a");
-    element.href = URL.createObjectURL(file);
-    element.download = "tarsia.txt";
-    document.body.appendChild(element);
-    // Click then remove link
-    element.click();
-    element.remove();
+    var output = {questions, answers, grid, saveVersion:1}
+    var outputString = JSON.stringify(output)
+    var compressedOutputString = LZString.compressToBase64(outputString)
+    //Show output modal
+    setSaveString(compressedOutputString)
+    setShowSaveModal(true)
   }
 
+  const loadModalShow = () => {
+    setShowLoadModal(true)
+  }
   const valuesForInputs = (questionValues, answerValues, gridValue) => {
     // Set states
     setGrid(gridValue)
@@ -74,23 +84,27 @@ const App = (id) => {
     // Increment load count (to trigger re-render of Questions)
     setloadCount(loadCount+1)
   }
-  const clearInputs = () => {
-    var prompt = window.confirm('Clear all inputs?')
-    if (prompt) {
-      valuesForInputs({}, {}, grid)
+  const loadFromText = (text) => {
+    if (text) { 
+      // Validate input
+      try {
+        var parsedText = JSON.parse(LZString.decompressFromBase64(text))
+        var promptQ = parsedText['questions']
+        var promptA = parsedText['answers']
+        var promptGrid = parsedText['grid']
+        valuesForInputs(promptQ, promptA, promptGrid)
+      }
+      catch {
+        window.alert('Invalid tarsia code.')
+      }
     }
   }
-  const loadFromText = () => {
-    var text = window.prompt('Paste the contents of your saved tarsia file:')
-    if (text) { 
-      console.log(JSON.parse(text))
-      // Validate input
-      var parsedText = JSON.parse(text)
-      var promptQ = parsedText['questions']
-      var promptA = parsedText['answers']
-      var promptGrid = parsedText['grid']
-      valuesForInputs(promptQ, promptA, promptGrid)
-    }
+
+  const clearModalShow = () => {
+    setShowClearModal(true)
+  }
+  const clearInputs = () => {
+      valuesForInputs({}, {}, grid)
   }
 
   const onInputChange = ({name, questionNumber, value}) => {
@@ -125,8 +139,8 @@ const App = (id) => {
         <div className='buttons'>
           <button className='buttonsButton' onClick={exportToPdf}>Export to PDF</button>
           <button className='buttonsButton' onClick={saveToText}>Save</button>
-          <button className='buttonsButton' onClick={loadFromText}>Load</button>
-          <button className='buttonsButton' onClick={clearInputs}>Clear</button>
+          <button className='buttonsButton' onClick={loadModalShow}>Load</button>
+          <button className='buttonsButton' onClick={clearModalShow}>Clear</button>
         </div>
         <div className='questions'>
           <Questions onChange={(data) => onInputChange(data)} nQuestions={gridParams.nQuestions} loadedQuestions={loadedQuestions} loadedAnswers={loadedAnswers} key={`questions-${loadCount}`}/>
@@ -139,6 +153,9 @@ const App = (id) => {
           <li><a href='https://github.com/PeterGrahamJersey/tarsia-generator'>Source code</a></li>
         </ul>
       </div>
+      <SaveModal handleClose={hideModals} show={showSaveModal} saveString={saveString}/>
+      <LoadModal handleClose={hideModals} show={showLoadModal} loadFromText={loadFromText}></LoadModal>
+      <ClearModal handleClose={hideModals} show={showClearModal} clearInputs={clearInputs}></ClearModal>
       <div className='hidden'>
         <PrintableSvgDiv id='printSvgDiv' grid={grid} questions={questions} answers={answers}/>
       </div>
