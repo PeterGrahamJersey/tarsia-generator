@@ -149,7 +149,7 @@ const App = (id) => {
       <div className='footer'>
         <ul>
           <li>Feedback or ideas? Reach out to me on twitter at <a href='https://twitter.com/peter_graham_'>@peter_graham_</a>.</li>
-          <li>A more comprehensive editor is available online (not created or supported by me), links to it and ideas on how to use Tarsia Puzzles are available from <a href='http://mrbartonmaths.com/teachers/rich-tasks/tarsia-jigsaw.html'>Mr Burton Maths</a>.</li>
+          <li>A more comprehensive editor is available online (not created or supported by me), links to it and ideas on how to use Tarsia Puzzles are available from <a href='http://mrbartonmaths.com/teachers/rich-tasks/tarsia-jigsaw.html'>Mr Barton Maths</a>.</li>
           <li><a href='https://github.com/PeterGrahamJersey/tarsia-generator'>Source code</a></li>
         </ul>
       </div>
