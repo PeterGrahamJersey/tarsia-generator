@@ -11,7 +11,7 @@ import calculateGridParameters from '../../utils/calculateGridParameters'
 import PreviewSvg from '../PreviewSvgDiv';
 import gridIcons from '../../data/gridIcons'
 import GridIcon from '../GridIcon'
-import {LoadModal, SaveModal} from '../Modal'
+import {ClearModal, LoadModal, SaveModal} from '../Modal'
 import favicon from '../../data/favicon.svg'
 
 const App = (id) => {
@@ -24,11 +24,13 @@ const App = (id) => {
   const [showSaveModal, setShowSaveModal] = useState(false)
   const [saveString, setSaveString] = useState('')
   const [showLoadModal, setShowLoadModal] = useState(false)
+  const [showClearModal, setShowClearModal] = useState(false) 
   const gridParams = calculateGridParameters(grid) // not sure this is the best place for this calculation
 
   const hideModals = () => {
     setShowSaveModal(false)
     setShowLoadModal(false)
+    setShowClearModal(false)
   }
 
   const exportToPdf = () => {
@@ -72,7 +74,6 @@ const App = (id) => {
   const loadModalShow = () => {
     setShowLoadModal(true)
   }
-
   const valuesForInputs = (questionValues, answerValues, gridValue) => {
     // Set states
     setGrid(gridValue)
@@ -83,13 +84,6 @@ const App = (id) => {
     // Increment load count (to trigger re-render of Questions)
     setloadCount(loadCount+1)
   }
-  const clearInputs = () => {
-    var prompt = window.confirm('Clear all inputs?')
-    if (prompt) {
-      valuesForInputs({}, {}, grid)
-    }
-  }
-
   const loadFromText = (text) => {
     if (text) { 
       // Validate input
@@ -104,6 +98,13 @@ const App = (id) => {
         window.alert('Invalid tarsia code.')
       }
     }
+  }
+
+  const clearModalShow = () => {
+    setShowClearModal(true)
+  }
+  const clearInputs = () => {
+      valuesForInputs({}, {}, grid)
   }
 
   const onInputChange = ({name, questionNumber, value}) => {
@@ -139,7 +140,7 @@ const App = (id) => {
           <button className='buttonsButton' onClick={exportToPdf}>Export to PDF</button>
           <button className='buttonsButton' onClick={saveToText}>Save</button>
           <button className='buttonsButton' onClick={loadModalShow}>Load</button>
-          <button className='buttonsButton' onClick={clearInputs}>Clear</button>
+          <button className='buttonsButton' onClick={clearModalShow}>Clear</button>
         </div>
         <div className='questions'>
           <Questions onChange={(data) => onInputChange(data)} nQuestions={gridParams.nQuestions} loadedQuestions={loadedQuestions} loadedAnswers={loadedAnswers} key={`questions-${loadCount}`}/>
@@ -154,6 +155,7 @@ const App = (id) => {
       </div>
       <SaveModal handleClose={hideModals} show={showSaveModal} saveString={saveString}/>
       <LoadModal handleClose={hideModals} show={showLoadModal} loadFromText={loadFromText}></LoadModal>
+      <ClearModal handleClose={hideModals} show={showClearModal} clearInputs={clearInputs}></ClearModal>
       <div className='hidden'>
         <PrintableSvgDiv id='printSvgDiv' grid={grid} questions={questions} answers={answers}/>
       </div>

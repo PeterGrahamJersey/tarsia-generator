@@ -1,6 +1,20 @@
 import React, { useState } from 'react'
 import './Modal.css';
 
+const ClearModal = ({handleClose, show, clearInputs}) => {
+  const clearAndClose = () => {
+    clearInputs()
+    handleClose()
+  }
+  return (
+    <Modal handleClose={handleClose} show={show} closeButton={false}>
+      <p>Clear all input?</p>
+      <button onClick={clearAndClose} className='clearModalButton'>Ok</button>
+      <button onClick={handleClose} className='clearModalButton'>Cancel</button>
+    </Modal>
+  )
+}
+
 const LoadModal = ({handleClose, show, loadFromText}) => {
   const [value, setValue] = useState()
   const closeAndLoad = () => {
@@ -70,5 +84,6 @@ const Modal = ({handleClose, show, children, closeButton=true}) => {
 export {
   Modal,
   LoadModal,
-  SaveModal
+  SaveModal,
+  ClearModal
 }
