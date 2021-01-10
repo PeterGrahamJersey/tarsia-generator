@@ -1,6 +1,30 @@
-import React from 'react'
-import appConfig from '../../data/config'
+import React, { useState } from 'react'
 import './Modal.css';
+
+const LoadModal = ({handleClose, show, loadFromText}) => {
+  const [value, setValue] = useState()
+  const closeAndLoad = () => {
+    loadFromText(value)
+    handleClose()
+  }
+  const handleInputChange = (event) => {
+    setValue(event.target.value);
+    //onChange({name:name, questionNumber:questionNumber, value:event.target.value}); // pass back to parent
+  }
+
+  return (
+    <Modal handleClose={handleClose} show={show} closeButton={false}>
+      <p>Paste your tarsia code here:</p>
+      <div className='loadModalContent'>
+        <input id='loadStringInput' value={value} onChange={(event) => handleInputChange(event)} className='loadModalInput'/>
+      </div>
+      <div>
+        <button onClick={closeAndLoad} className='loadModalButton'>Load</button>
+        <button onClick={handleClose} className='loadModalButton'>Cancel</button>
+      </div>
+    </Modal>
+  )
+}
 
 const SaveModal = ({handleClose, show, saveString}) => {
   const copySaveString = () => {
@@ -23,15 +47,21 @@ const SaveModal = ({handleClose, show, saveString}) => {
   )
 }
 
-const Modal = ({handleClose, show, children}) => {
+const Modal = ({handleClose, show, children, closeButton=true}) => {
   const modalDisplay = show ? {display:'block'} : {display:'none'}
+  const closeButtonElement = () => {
+    if (closeButton) {
+      return (<button onClick={handleClose}>Ok</button>)
+    } else {
+      return null
+    }
+  }
+
   return (
     <div className='modal' style={modalDisplay}>
       <div className='modalContent'>
         {children}
-        <div>
-          <button onClick={handleClose}>Ok</button>
-        </div>
+        {closeButtonElement()}
       </div>
     </div>
   )
@@ -39,5 +69,6 @@ const Modal = ({handleClose, show, children}) => {
 
 export {
   Modal,
+  LoadModal,
   SaveModal
 }

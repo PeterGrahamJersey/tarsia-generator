@@ -11,7 +11,7 @@ import calculateGridParameters from '../../utils/calculateGridParameters'
 import PreviewSvg from '../PreviewSvgDiv';
 import gridIcons from '../../data/gridIcons'
 import GridIcon from '../GridIcon'
-import {Modal, SaveModal} from '../Modal'
+import {LoadModal, SaveModal} from '../Modal'
 import favicon from '../../data/favicon.svg'
 
 const App = (id) => {
@@ -69,6 +69,10 @@ const App = (id) => {
     setShowSaveModal(true)
   }
 
+  const loadModalShow = () => {
+    setShowLoadModal(true)
+  }
+
   const valuesForInputs = (questionValues, answerValues, gridValue) => {
     // Set states
     setGrid(gridValue)
@@ -85,8 +89,8 @@ const App = (id) => {
       valuesForInputs({}, {}, grid)
     }
   }
-  const loadFromText = () => {
-    var text = window.prompt('Paste the contents of your saved tarsia file:')
+
+  const loadFromText = (text) => {
     if (text) { 
       // Validate input
       try {
@@ -134,7 +138,7 @@ const App = (id) => {
         <div className='buttons'>
           <button className='buttonsButton' onClick={exportToPdf}>Export to PDF</button>
           <button className='buttonsButton' onClick={saveToText}>Save</button>
-          <button className='buttonsButton' onClick={loadFromText}>Load</button>
+          <button className='buttonsButton' onClick={loadModalShow}>Load</button>
           <button className='buttonsButton' onClick={clearInputs}>Clear</button>
         </div>
         <div className='questions'>
@@ -149,7 +153,7 @@ const App = (id) => {
         </ul>
       </div>
       <SaveModal handleClose={hideModals} show={showSaveModal} saveString={saveString}/>
-      <Modal handleClose={hideModals} show={showLoadModal}></Modal>
+      <LoadModal handleClose={hideModals} show={showLoadModal} loadFromText={loadFromText}></LoadModal>
       <div className='hidden'>
         <PrintableSvgDiv id='printSvgDiv' grid={grid} questions={questions} answers={answers}/>
       </div>
