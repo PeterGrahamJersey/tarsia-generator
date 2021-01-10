@@ -18,3 +18,16 @@
   width: 60%; /* Could be more or less, depending on screen size */
   color: var(--text-dark)
 }
+
+.saveModalContent {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: left;
+  margin-bottom: 0.5rem;
+}
+.saveStringInput {
+  width: 90%;
+  margin-right: 0.5rem;
+}
