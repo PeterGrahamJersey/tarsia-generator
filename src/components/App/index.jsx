@@ -11,6 +11,7 @@ import PreviewSvg from '../PreviewSvgDiv';
 import gridIcons from '../../data/gridIcons'
 import GridIcon from '../GridIcon'
 import favicon from '../../data/favicon.svg'
+import LZString from 'lz-string'
 
 const App = (id) => {
   const [questions, setQuestions] = useState({})
@@ -51,17 +52,22 @@ const App = (id) => {
 
   const saveToText = () => {
     // Prep Output
-    var output = {questions, answers, grid}
-    const file = new Blob([JSON.stringify(output, null, 2)],    
-                {type: 'text/plain;charset=utf-8'});
-    // Prep Href link to output
-    const element = document.createElement("a");
-    element.href = URL.createObjectURL(file);
-    element.download = "tarsia.txt";
-    document.body.appendChild(element);
-    // Click then remove link
-    element.click();
-    element.remove();
+    var output = {questions, answers, grid, saveVersion:1}
+    var outputString = JSON.stringify(output)
+    var compressedOutputString = LZString.compressToBase64(outputString)
+    // SHOW COPIABLE OUTPUT MOODAL
+    window.alert(`Code: ${compressedOutputString}`)
+    // Download txt file
+    // const file = new Blob([compressedOutputString],    
+    //             {type: 'text/plain;charset=utf-8'});
+    // // Prep Href link to output
+    // const element = document.createElement("a");
+    // element.href = URL.createObjectURL(file);
+    // element.download = "tarsia.txt";
+    // document.body.appendChild(element);
+    // // Click then remove link
+    // element.click();
+    // element.remove();
   }
 
   const valuesForInputs = (questionValues, answerValues, gridValue) => {
@@ -83,13 +89,17 @@ const App = (id) => {
   const loadFromText = () => {
     var text = window.prompt('Paste the contents of your saved tarsia file:')
     if (text) { 
-      console.log(JSON.parse(text))
       // Validate input
-      var parsedText = JSON.parse(text)
-      var promptQ = parsedText['questions']
-      var promptA = parsedText['answers']
-      var promptGrid = parsedText['grid']
-      valuesForInputs(promptQ, promptA, promptGrid)
+      try {
+        var parsedText = JSON.parse(LZString.decompressFromBase64(text))
+        var promptQ = parsedText['questions']
+        var promptA = parsedText['answers']
+        var promptGrid = parsedText['grid']
+        valuesForInputs(promptQ, promptA, promptGrid)
+      }
+      catch {
+        window.alert('Invalid tarsia code.')
+      }
     }
   }
 
