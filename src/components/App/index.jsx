@@ -13,6 +13,7 @@ import gridIcons from '../../data/gridIcons'
 import GridIcon from '../GridIcon'
 import {ClearModal, LoadModal, SaveModal} from '../Modal'
 import favicon from '../../data/favicon.svg'
+import appConfig from '../../data/config';
 
 const App = (id) => {
   const [questions, setQuestions] = useState({})
@@ -39,35 +40,60 @@ const App = (id) => {
       orientation: 'landscape',
       unit:'mm'
     });
-    const addNextSvgToPdf = (pdf, page, pages, parentDivId) => {
+    const addSaveCodeToPdf = (pdf, saveCode) => {
+      const formattedSaveCode = pdf.splitTextToSize(saveCode, appConfig.pdf.width-appConfig.pdf.printMargin*2)
+      pdf.addPage({orientation:'l', format:'a4'})
+      pdf.text(
+        'To edit your tarsia, go to tarsiamaker.co.uk click load and paste this code:',
+        appConfig.pdf.printMargin, //x
+        appConfig.pdf.printMargin  //y
+      )
+      pdf.text(
+        formattedSaveCode,
+        appConfig.pdf.printMargin, //x
+        appConfig.pdf.printMargin + 15  //y
+      )
+    }
+    const addNextSvgToPdf = (pdf, page, pages, svgsToExport, saveCode) => {
       // Recursive, adds an svg, waits for it to finish, then adds the next one until saving
       // Get svg
-      let svgToExport = document.getElementById(document.getElementById(parentDivId).children[page].id)
+      let svgToExport = svgsToExport[page]
       // Add to pdf
       pdf.svg(svgToExport,{x:5,y:5,width:287,height:200}).then(() => {
         page = page+1
-        if (page === pages) {
-          // if done then save
-          pdf.save('Tarsia Puzzle.pdf')
-        } else {
-          // else iterate
+        if (page !== pages) {
+          // iterate
           pdf.addPage({orientation:'l', format:'a4'})
-          addNextSvgToPdf(pdf, page, pages, parentDivId)
+          addNextSvgToPdf(pdf, page, pages, svgsToExport, saveCode)
+        } else {
+          addSaveCodeToPdf(pdf, saveCode)
+          pdf.save('tarsia.pdf')
         }
       })
     }
-    const parentDivId = 'printSvgDiv'
-    const pages = document.getElementById(parentDivId).children.length
-    addNextSvgToPdf(pdf, 0, pages, 'printSvgDiv')
+    const saveCode = generateSaveCode()
+    const previewSvg = document.getElementById('previewSvg')
+    const printSvgs = document.getElementById('printSvgDiv').children
+    var svgsToExport = []
+    svgsToExport.push(previewSvg)
+    for (const printSvg of printSvgs) {
+      svgsToExport.push(printSvg)
+    }
+    const svgPages = svgsToExport.length
+    addNextSvgToPdf(pdf, 0, svgPages, svgsToExport, saveCode)
   };
 
-  const saveToText = () => {
+  const generateSaveCode = () => {
     // Prep Output
     var output = {questions, answers, grid, saveVersion:1}
     var outputString = JSON.stringify(output)
     var compressedOutputString = LZString.compressToBase64(outputString)
+    return compressedOutputString
+  }
+  const saveToText = () => {
+    var saveCode = generateSaveCode()
     //Show output modal
-    setSaveString(compressedOutputString)
+    setSaveString(saveCode)
     setShowSaveModal(true)
   }
 
