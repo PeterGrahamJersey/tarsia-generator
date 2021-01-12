@@ -185,7 +185,7 @@ const App = (id) => {
         </ul>
       </div>
       <SaveModal handleClose={hideModals} show={showSaveModal} saveString={saveString}/>
-      <LoadModal handleClose={hideModals} show={showLoadModal} loadFromText={loadFromText}></LoadModal>
+      <LoadModal key={`loadModal-${loadCount}`} handleClose={hideModals} show={showLoadModal} loadFromText={loadFromText}></LoadModal>
       <ClearModal handleClose={hideModals} show={showClearModal} clearInputs={clearInputs}></ClearModal>
       <div className='hidden'>
         <PrintableSvgDiv id='printSvgDiv' grid={grid} questions={questions} answers={answers}/>
