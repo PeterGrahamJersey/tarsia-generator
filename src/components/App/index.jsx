@@ -152,6 +152,11 @@ const App = (id) => {
         <title>Tarsia Maker</title>
         <meta name='description' content='Create and download your own Tarsia puzzles.' />
         <meta name='theme-color' content="#607d86" />
+        <meta name='title' content='Tarsia Maker' />
+        <meta name='og:title' content='Tarsia Maker' />
+        <meta name='og:type' content='website' />
+        <meta name='og:url' content='https://www.tarsiamaker.co.uk/' />
+        <meta name='og:description' content='Create and download your own Tarsia puzzles.' />
         <link rel="icon" type='image/svg+xml' href={favicon} />
       </Helmet>
       <div className='header'>

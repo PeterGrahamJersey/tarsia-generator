@@ -11,7 +11,7 @@ ToDo:
     - Correct GridIcon alignment, not centered
     - CSS tidying
 - Functionality
-    - Add solution + save code to export
+    - Add og:image tag
     - Signpost / initial test prompting people to enter a question / answer
     - Accessibility check + improvement
     - Randomised order for print out
