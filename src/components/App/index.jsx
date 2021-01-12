@@ -12,6 +12,7 @@ import PreviewSvg from '../PreviewSvgDiv';
 import gridIcons from '../../data/gridIcons'
 import GridIcon from '../GridIcon'
 import {ClearModal, LoadModal, SaveModal} from '../Modal'
+import preview_img from '../../data/preview_image.png'
 import favicon from '../../data/favicon.svg'
 import appConfig from '../../data/config';
 
@@ -150,13 +151,14 @@ const App = (id) => {
     <div className='App'>
       <Helmet>
         <title>Tarsia Maker</title>
-        <meta name='description' content='Create and download your own Tarsia puzzles.' />
+        <meta name='description' content='A simple, online editor for Tarsia puzzles.' />
         <meta name='theme-color' content="#607d86" />
         <meta name='title' content='Tarsia Maker' />
         <meta name='og:title' content='Tarsia Maker' />
         <meta name='og:type' content='website' />
         <meta name='og:url' content='https://www.tarsiamaker.co.uk/' />
-        <meta name='og:description' content='Create and download your own Tarsia puzzles.' />
+        <meta name='og:description' content='A simple, online editor for Tarsia puzzles.' />
+        <meta name='og:image' content={preview_img}/>
         <link rel="icon" type='image/svg+xml' href={favicon} />
       </Helmet>
       <div className='header'>
