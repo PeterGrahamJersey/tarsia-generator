@@ -1,0 +1,12 @@
+{
+  "name": "Tarsia Maker",
+  "short_name": "Tarsia Maker",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#607d86",
+  "description": "A simple, online editor for Tarsia puzzles.",
+  "icons": [{
+    "src": "favicon.ico",
+    "sizes": "48x48"
+  }]
+}
