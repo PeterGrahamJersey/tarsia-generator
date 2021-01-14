@@ -156,6 +156,7 @@ const App = (id) => {
         <meta property='og:type' content='website' />
         <meta property='og:url' content='https://www.tarsiamaker.co.uk/' />
         <meta property='og:description' content='A simple, online editor for Tarsia puzzles.' />
+        <meta property='og:image' content='https://i.postimg.cc/MTnhLVH3/preview-image.png' />
       </Helmet>
       <div className='header'>
         <div className='title'>Tarsia Maker</div>
