@@ -149,13 +149,13 @@ const App = (id) => {
     <div className='App'>
       <Helmet>
         <title>Tarsia Maker</title>
-        <meta name='description' content='A simple, online editor for Tarsia puzzles.' />
-        <meta name='theme-color' content="#607d86" />
-        <meta name='title' content='Tarsia Maker' />
-        <meta name='og:title' content='Tarsia Maker' />
-        <meta name='og:type' content='website' />
-        <meta name='og:url' content='https://www.tarsiamaker.co.uk/' />
-        <meta name='og:description' content='A simple, online editor for Tarsia puzzles.' />
+        <meta property='description' content='A simple, online editor for Tarsia puzzles.' />
+        <meta property='theme-color' content="#607d86" />
+        <meta property='title' content='Tarsia Maker' />
+        <meta property='og:title' content='Tarsia Maker' />
+        <meta property='og:type' content='website' />
+        <meta property='og:url' content='https://www.tarsiamaker.co.uk/' />
+        <meta property='og:description' content='A simple, online editor for Tarsia puzzles.' />
       </Helmet>
       <div className='header'>
         <div className='title'>Tarsia Maker</div>
