@@ -10,7 +10,9 @@ const appConfig = {
       paddingY: 8, // px
       style: { // css classes didn't export to pdf, so using style
         fill: 'black',
-        fontSize: 15, // px? pdf doesn't like 
+        fontSize: 15, // px? pdf doesn't like
+        lineSpace: 1, // gap as number of lines 
+        lineLength: [25, 15, 10], // max line lengths
         fontFamily: 'helvetica'
       }
     }
@@ -25,8 +27,7 @@ const appConfig = {
     width:50 // 50px
   },
   questions: {
-    maxQuestions:30,
-    maxLength:25
+    maxQuestions:30
   }
 }
 
@@ -34,5 +35,6 @@ appConfig.triangle.height = Math.sqrt(3)/2 * appConfig.triangle.side // height o
 appConfig.pdf.orientation = appConfig.pdf.width > appConfig.pdf.height ? 'landscape' : 'portrait'
 appConfig.pdf.ratio = appConfig.pdf.width / appConfig.pdf.height
 appConfig.icons.height = Math.sqrt(3)/2 * appConfig.icons.width
-
+appConfig.triangle.text.maxLines = Math.floor(appConfig.triangle.height / (2*(appConfig.triangle.text.style.fontSize + appConfig.triangle.text.style.fontSize*appConfig.triangle.text.style.lineSpace)))
+appConfig.questions.maxLength = appConfig.triangle.text.style.lineLength.reduce((a,b) => (a+b))
 export default appConfig

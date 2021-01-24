@@ -5,8 +5,45 @@ import './QuestionAnswer.css'
 const Input = ({name, loadedValue, questionNumber, onChange, ...props}) => {
   const [value, setValue] = useState(loadedValue ? loadedValue : '');
 
+  const smartSplitByNChars = (text, n) => {
+    if (text && text.length>n) {
+      const r = new RegExp('(^|\\s).{0,'+(n+1)+'}$');
+      const matchedString = text.match(r)[0].trim()
+      const remainingString = text.replace(r,'')
+      return [remainingString, matchedString]
+    }
+    return [text]
+  }
+  const splitUpText = (text) => {
+    if (text) {
+      // Try with regexp
+      var i;
+      let textArray = [text]
+      for(i=0; i<appConfig.triangle.text.maxLines; i++) {
+        let lineLength = appConfig.triangle.text.style.lineLength[i]
+        let textToSplit = textArray.shift()
+        console.log([i, textToSplit])
+        if (textToSplit !== '') {
+          let splitText = smartSplitByNChars(textToSplit, lineLength)
+          //console.log([textToSplit, splitText, textArray])
+          textArray = splitText.concat(textArray)
+          //console.log(textArray)
+        } else {
+          break
+        }
+      }
+      // console.log(textArray)
+
+      // Test if too long
+      // Resort to hyphens otherwise
+      return textArray
+    }
+    return text
+  }
+
   const handleInputChange = (event) => {
     setValue(event.target.value);
+    splitUpText(event.target.value)
     onChange({name:name, questionNumber:questionNumber, value:event.target.value});
   }
 
