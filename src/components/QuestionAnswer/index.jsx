@@ -7,43 +7,47 @@ const Input = ({name, loadedValue, questionNumber, onChange, ...props}) => {
 
   const smartSplitByNChars = (text, n) => {
     if (text && text.length>n) {
-      const r = new RegExp('(^|\\s).{0,'+(n+1)+'}$');
-      const matchedString = text.match(r)[0].trim()
-      const remainingString = text.replace(r,'')
-      return [remainingString, matchedString]
+      try {
+        const r = new RegExp('(^|\\s).{0,'+(n+1)+'}$');
+        const matchedString = text.match(r)[0].trim()
+        const remainingString = text.replace(r,'')
+        return [remainingString, matchedString]
+      } catch {
+        // If the regex fails, resort to n characters
+        const matchedString = text.substring(text.length - n);
+        const remainingString = text.substring(0, text.length - n) + '-';
+        return [remainingString, matchedString]
+      }
     }
     return [text]
   }
   const splitUpText = (text) => {
-    if (text) {
-      // Try with regexp
+    // if shorter than 1st line, don't split it up
+    let textArray = [text]
+    if (text && text.length > appConfig.triangle.text.style.lineLength[0]) {
+      // Split with regexp
       var i;
-      let textArray = [text]
+      var splitText;
       for(i=0; i<appConfig.triangle.text.maxLines; i++) {
         let lineLength = appConfig.triangle.text.style.lineLength[i]
         let textToSplit = textArray.shift()
-        console.log([i, textToSplit])
-        if (textToSplit !== '') {
-          let splitText = smartSplitByNChars(textToSplit, lineLength)
-          //console.log([textToSplit, splitText, textArray])
+        if (textToSplit.length <= lineLength) {
+          // if text length less than line length, no need to split it up
+          splitText = [textToSplit]
           textArray = splitText.concat(textArray)
-          //console.log(textArray)
+          return textArray
         } else {
-          break
+          splitText = smartSplitByNChars(textToSplit, lineLength)
+          textArray = splitText.concat(textArray)
         }
       }
-      // console.log(textArray)
-
-      // Test if too long
-      // Resort to hyphens otherwise
-      return textArray
     }
-    return text
+    return textArray
   }
 
   const handleInputChange = (event) => {
     setValue(event.target.value);
-    splitUpText(event.target.value)
+    console.log(splitUpText(event.target.value));
     onChange({name:name, questionNumber:questionNumber, value:event.target.value});
   }
 
