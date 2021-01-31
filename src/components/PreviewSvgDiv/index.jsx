@@ -9,7 +9,6 @@ const PreviewSvg = ({id, grid, gridParams, questions, answers}) => {
   const viewBoxMinWidth = gridParams.width * appConfig.triangle.side
   const viewBoxMinHeight = gridParams.height * appConfig.triangle.height
   //const ViewBoxSide = Math.max(viewBoxMinWidth, viewBoxMinHeight)
-
   return (
     <svg viewBox={`${viewBoxOffsetX} 0 ${viewBoxMinWidth} ${viewBoxMinHeight}`} id='previewSvg' className="previewSvg">
       <TarsiaGrid id={id} grid={grid} questions={questions} answers={answers}/>

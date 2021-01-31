@@ -191,7 +191,7 @@ const App = (id) => {
       <SaveModal handleClose={hideModals} show={showSaveModal} saveString={saveString}/>
       <LoadModal key={`loadModal-${loadCount}`} handleClose={hideModals} show={showLoadModal} loadFromText={loadFromText}></LoadModal>
       <ClearModal handleClose={hideModals} show={showClearModal} clearInputs={clearInputs}></ClearModal>
-      <div className='hidden'>
+      <div>
         <PrintableSvgDiv id='printSvgDiv' grid={grid} questions={questions} answers={answers}/>
       </div>
     </div>
