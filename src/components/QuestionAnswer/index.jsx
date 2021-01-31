@@ -47,8 +47,8 @@ const Input = ({name, loadedValue, questionNumber, onChange, ...props}) => {
 
   const handleInputChange = (event) => {
     setValue(event.target.value);
-    console.log(splitUpText(event.target.value));
-    onChange({name:name, questionNumber:questionNumber, value:event.target.value});
+    //console.log(splitUpText(event.target.value));
+    onChange({name:name, questionNumber:questionNumber, value:splitUpText(event.target.value)});
   }
 
   return (

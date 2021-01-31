@@ -11,8 +11,8 @@ const appConfig = {
       style: { // css classes didn't export to pdf, so using style
         fill: 'black',
         fontSize: 15, // px? pdf doesn't like
-        lineSpace: 1, // gap as number of lines 
-        lineLength: [25, 15, 10], // max line lengths
+        lineSpace: 0.1, // gap as number of lines 
+        lineLength: [25, 18, 10], // max line lengths
         fontFamily: 'helvetica'
       }
     }
@@ -37,4 +37,7 @@ appConfig.pdf.ratio = appConfig.pdf.width / appConfig.pdf.height
 appConfig.icons.height = Math.sqrt(3)/2 * appConfig.icons.width
 appConfig.triangle.text.maxLines = Math.floor(appConfig.triangle.height / (2*(appConfig.triangle.text.style.fontSize + appConfig.triangle.text.style.fontSize*appConfig.triangle.text.style.lineSpace)))
 appConfig.questions.maxLength = appConfig.triangle.text.style.lineLength.reduce((a,b) => (a+b))
+
+appConfig.triangle.text.yHeightStep = appConfig.triangle.text.style.fontSize * (1 + appConfig.triangle.text.style.lineSpace)
+
 export default appConfig
