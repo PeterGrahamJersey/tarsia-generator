@@ -10,6 +10,8 @@ ToDo:
     - Use of 'Map' - consider for print triangles and questions
     - Correct GridIcon alignment, not centered
     - CSS tidying
+    - Update package versions
+    - Tests & github actions
 - Functionality
     - Add og:image tag
     - Signpost / initial test prompting people to enter a question / answer
