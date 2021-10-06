@@ -18,3 +18,12 @@ ToDo:
     - Accessibility check + improvement
     - Randomised order for print out
     - Distractors (that end up on the outside)
+
+## To Run
+
+**Development Mode**
+In console:
+```
+npm install // when hasn't been run before
+npm start // each time from then on, but has auto-reload
+```
