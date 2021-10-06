@@ -118,7 +118,8 @@ const App = (id) => {
     if (text) { 
       // Validate input
       try {
-        var parsedText = JSON.parse(LZString.decompressFromBase64(text))
+        var strippedText = text.split(' ').join('') // removing spaces that copying from a pdf introduces
+        var parsedText = JSON.parse(LZString.decompressFromBase64(strippedText))
         var promptQ = parsedText['questions']
         var promptA = parsedText['answers']
         var promptGrid = parsedText['grid']

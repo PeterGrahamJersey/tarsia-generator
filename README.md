@@ -10,9 +10,20 @@ ToDo:
     - Use of 'Map' - consider for print triangles and questions
     - Correct GridIcon alignment, not centered
     - CSS tidying
+    - Update package versions
+    - Tests & github actions
 - Functionality
     - Add og:image tag
     - Signpost / initial test prompting people to enter a question / answer
     - Accessibility check + improvement
     - Randomised order for print out
     - Distractors (that end up on the outside)
+
+## To Run
+
+**Development Mode**
+In console:
+```
+npm install // when hasn't been run before
+npm start // each time from then on, but has auto-reload
+```
