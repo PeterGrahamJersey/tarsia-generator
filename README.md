@@ -12,6 +12,7 @@ ToDo:
     - CSS tidying
     - Update package versions
     - Tests & github actions
+        - inlc. duplicate q and a in config
 - Functionality
     - Add og:image tag
     - Signpost / initial test prompting people to enter a question / answer
