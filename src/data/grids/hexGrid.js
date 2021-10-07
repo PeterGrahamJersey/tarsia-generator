@@ -8,7 +8,7 @@ export default [
   {location: {row:2, col:2}, values: ['5a', '8a', '9q']},
   {location: {row:2, col:3}, values: ['15q', '10q', '9a']},
   {location: {row:2, col:4}, values: ['6a', '10a', '11q']},
-  {location: {row:2, col:5}, values: ['10q', '12q', '11a']},
+  {location: {row:2, col:5}, values: ['16q', '12q', '11a']},
   {location: {row:2, col:6}, values: ['7a', '12a', '13q']},
   {location: {row:2, col:7}, values: ['17q', null, '13a']},
   {location: {row:3, col:1}, values: ['14a', null, '18q']},
