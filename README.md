@@ -12,12 +12,14 @@ ToDo:
     - CSS tidying
     - Update package versions
     - Tests & github actions
+        - inlc. duplicate q and a in config
 - Functionality
     - Add og:image tag
     - Signpost / initial test prompting people to enter a question / answer
     - Accessibility check + improvement
     - Randomised order for print out
     - Distractors (that end up on the outside)
+    - Support longer inputs
 
 ## To Run
 
