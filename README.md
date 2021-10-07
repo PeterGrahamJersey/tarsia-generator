@@ -18,6 +18,7 @@ ToDo:
     - Accessibility check + improvement
     - Randomised order for print out
     - Distractors (that end up on the outside)
+    - Support longer inputs
 
 ## To Run
 
