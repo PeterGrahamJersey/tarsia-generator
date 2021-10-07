@@ -8,7 +8,6 @@ Huge thanks to [Dale Blackburn](https://github.com/dakebl) for his amazing advic
 ToDo:
 - Behind the scenes
     - Use of 'Map' - consider for print triangles and questions
-    - Correct GridIcon alignment, not centered
     - CSS tidying
     - Update package versions
     - Tests & github actions

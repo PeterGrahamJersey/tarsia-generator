@@ -119,6 +119,10 @@ button.icon-button {
   width: 50px;
   padding: 0.2em 0.2em;
   background: none;
+  /* Aligning the content vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 button.icon-button svg {
