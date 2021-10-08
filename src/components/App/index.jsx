@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import { Helmet } from 'react-helmet';
 import jsPDF from 'jspdf';
 import 'svg2pdf.js';
-import LZString from 'lz-string'
 import './App.css';
 
 // Components
@@ -17,7 +16,7 @@ import {ClearModal, LoadModal, SaveModal} from '../Modal'
 import appConfig from '../../data/config';
 
 // Functions
-import {generateSaveCode} from '../../utils/saveLoadExport.js'
+import {generateSaveCode, parseSaveCode} from '../../utils/saveLoadExport.js'
 
 const App = (id) => {
   const [questions, setQuestions] = useState({})
@@ -114,13 +113,8 @@ const App = (id) => {
   }
   const loadFromText = (text) => {
     if (text) { 
-      // Validate input
       try {
-        var strippedText = text.split(' ').join('') // removing spaces that copying from a pdf introduces
-        var parsedText = JSON.parse(LZString.decompressFromBase64(strippedText))
-        var promptQ = parsedText['questions']
-        var promptA = parsedText['answers']
-        var promptGrid = parsedText['grid']
+        var {promptQ, promptA, promptGrid} = parseSaveCode(text)
         valuesForInputs(promptQ, promptA, promptGrid)
       }
       catch {

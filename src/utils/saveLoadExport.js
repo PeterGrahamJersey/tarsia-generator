@@ -13,23 +13,17 @@ const generateSaveCode = (questions, answers, grid) => {
 };
 
 
-// // Load from string
-// const loadFromText = (text) => {
-//   if (text) { 
-//     // Validate input
-//     try {
-//       var strippedText = text.split(' ').join('') // removing spaces that copying from a pdf introduces
-//       var parsedText = JSON.parse(LZString.decompressFromBase64(strippedText))
-//       var promptQ = parsedText['questions']
-//       var promptA = parsedText['answers']
-//       var promptGrid = parsedText['grid']
-//       valuesForInputs(promptQ, promptA, promptGrid)
-//     }
-//     catch {
-//       window.alert('Invalid tarsia code.')
-//     }
-//   }
-// }
+// Load from string
+const parseSaveCode = (text) => {
+  if (text) { 
+    var strippedText = text.split(' ').join('') // removing spaces that copying from a pdf introduces
+    var parsedText = JSON.parse(LZString.decompressFromBase64(strippedText))
+    var promptQ = parsedText['questions']
+    var promptA = parsedText['answers']
+    var promptGrid = parsedText['grid']
+    return {promptQ, promptA, promptGrid}
+  }
+};
 
 // // Export to PDF
 // const exportToPdf = () => {
@@ -86,4 +80,4 @@ const generateSaveCode = (questions, answers, grid) => {
 //   addNextSvgToPdf(pdf, 0, svgPages, svgsToExport, textToExport, saveCode)
 // };
 
-export {generateSaveCode};
+export {generateSaveCode, parseSaveCode};
