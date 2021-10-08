@@ -92,13 +92,6 @@ const App = (id) => {
     addNextSvgToPdf(pdf, 0, svgPages, svgsToExport, textToExport, saveCode)
   };
 
-  // const generateSaveCode = () => {
-  //   // Prep Output
-  //   var output = {questions, answers, grid, saveVersion:1}
-  //   var outputString = JSON.stringify(output)
-  //   var compressedOutputString = LZString.compressToBase64(outputString)
-  //   return compressedOutputString
-  // }
   const saveToText = () => {
     var saveCode = generateSaveCode(questions, answers, grid)
     //Show output modal
