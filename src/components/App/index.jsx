@@ -4,6 +4,8 @@ import jsPDF from 'jspdf';
 import 'svg2pdf.js';
 import LZString from 'lz-string'
 import './App.css';
+
+// Components
 import Questions from '../QuestionAnswer'
 import grids from '../../data/grids';
 import PrintableSvgDiv from '../PrintableSvgDiv'
@@ -13,6 +15,9 @@ import gridIcons from '../../data/gridIcons'
 import GridIcon from '../GridIcon'
 import {ClearModal, LoadModal, SaveModal} from '../Modal'
 import appConfig from '../../data/config';
+
+// Functions
+import {generateSaveCode} from '../../utils/saveLoadExport.js'
 
 const App = (id) => {
   const [questions, setQuestions] = useState({})
@@ -72,7 +77,7 @@ const App = (id) => {
         }
       })
     }
-    const saveCode = generateSaveCode()
+    const saveCode = generateSaveCode(questions, answers, grid)
     const previewSvg = document.getElementById('previewSvg')
     const printSvgs = document.getElementById('printSvgDiv').children
     var svgsToExport = []
@@ -87,15 +92,15 @@ const App = (id) => {
     addNextSvgToPdf(pdf, 0, svgPages, svgsToExport, textToExport, saveCode)
   };
 
-  const generateSaveCode = () => {
-    // Prep Output
-    var output = {questions, answers, grid, saveVersion:1}
-    var outputString = JSON.stringify(output)
-    var compressedOutputString = LZString.compressToBase64(outputString)
-    return compressedOutputString
-  }
+  // const generateSaveCode = () => {
+  //   // Prep Output
+  //   var output = {questions, answers, grid, saveVersion:1}
+  //   var outputString = JSON.stringify(output)
+  //   var compressedOutputString = LZString.compressToBase64(outputString)
+  //   return compressedOutputString
+  // }
   const saveToText = () => {
-    var saveCode = generateSaveCode()
+    var saveCode = generateSaveCode(questions, answers, grid)
     //Show output modal
     setSaveString(saveCode)
     setShowSaveModal(true)
