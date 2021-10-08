@@ -114,7 +114,7 @@ const App = (id) => {
   const loadFromText = (text) => {
     if (text) { 
       try {
-        var {promptQ, promptA, promptGrid} = parseSaveCode(text)
+        var {promptQ, promptA, promptGrid} = parseSaveCode(text) //TODO: must be a 1 line way to do this
         valuesForInputs(promptQ, promptA, promptGrid)
       }
       catch {
