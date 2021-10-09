@@ -1,5 +1,5 @@
 import React from 'react'
-import appConfig from '../../data/config'
+import {appConfig} from '../../data/config'
 
 const GridIcon = ({icon, onClick}) => {
   const w = appConfig.icons.width

@@ -1,6 +1,6 @@
 import React from 'react'
 import TarsiaGrid from '../TarsiaGrid'
-import appConfig from '../../data/config'
+import {appConfig} from '../../data/config'
 import printGrid from '../../data/printGrid'
 import calculateGridParameters from '../../utils/calculateGridParameters'
 

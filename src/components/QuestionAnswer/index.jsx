@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import appConfig from '../../data/config'
+import {appConfig} from '../../data/config'
 import './QuestionAnswer.css'
 
 const Input = ({name, loadedValue, questionNumber, onChange, ...props}) => {

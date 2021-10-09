@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { Helmet } from 'react-helmet';
-import 'svg2pdf.js';
 import './App.css';
+import {appConfig} from '../../data/config';
 
 // Components
 import Questions from '../QuestionAnswer'
@@ -39,7 +39,7 @@ const App = (id) => {
     const saveCode = generateSaveCode(questions, answers, grid)
     const previewSvg = document.getElementById('previewSvg')
     const printSvgs = document.getElementById('printSvgDiv').children
-    generateAndSavePdf(saveCode, previewSvg, printSvgs)
+    generateAndSavePdf(saveCode, previewSvg, printSvgs, appConfig)
   };
 
   const saveToText = () => {

@@ -1,7 +1,6 @@
 import jsPDF from 'jspdf';
 import LZString from 'lz-string'
 import 'svg2pdf.js';
-import appConfig from '../data/config';
 
 // Save to string
 const generateSaveCode = (questions, answers, grid) => {
@@ -26,7 +25,7 @@ const parseSaveCode = (text) => {
 };
 
 // Export to PDF
-const generateAndSavePdf = (saveCode, previewSvg, printSvgs) => {
+const generateAndSavePdf = (saveCode, previewSvg, printSvgs, appConfig) => {
   //Initialise pdf
   const pdf = new jsPDF({
     orientation: 'landscape',

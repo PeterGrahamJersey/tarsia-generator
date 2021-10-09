@@ -1,5 +1,5 @@
 import React from 'react'
-import appConfig from '../../data/config'
+import {appConfig} from '../../data/config'
 import TarsiaGrid from '../TarsiaGrid'
 import './PreviewSvgDiv.css';
 
