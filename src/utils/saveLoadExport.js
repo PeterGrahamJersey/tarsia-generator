@@ -25,41 +25,41 @@ const parseSaveCode = (text) => {
 };
 
 // Export to PDF
-const generateAndSavePdf = (saveCode, previewSvg, printSvgs, appConfig) => {
+const generateAndSavePdf = (saveCode, previewSvg, printSvgs, pdfConfig) => {
   //Initialise pdf
   const pdf = new jsPDF({
     orientation: 'landscape',
     unit:'mm'
   });
-  const addSaveCodeToPdf = (pdf, saveCode) => {
-    const formattedSaveCode = pdf.splitTextToSize(saveCode, appConfig.pdf.width-appConfig.pdf.printMargin*2)
+  const addSaveCodeToPdf = (pdf, saveCode, pdfConfig) => {
+    const formattedSaveCode = pdf.splitTextToSize(saveCode, pdfConfig.width-pdfConfig.printMargin*2)
     pdf.addPage({orientation:'l', format:'a4'})
     pdf.text(
       'To edit your tarsia, go to www.tarsiamaker.co.uk, click load and paste this code:',
-      appConfig.pdf.printMargin, //x
-      appConfig.pdf.printMargin + 5  //y
+      pdfConfig.printMargin, //x
+      pdfConfig.printMargin + 5  //y
     )
     pdf.text(
       formattedSaveCode,
-      appConfig.pdf.printMargin, //x
-      appConfig.pdf.printMargin + 15  //y
+      pdfConfig.printMargin, //x
+      pdfConfig.printMargin + 15  //y
     )
   }
-  const addNextSvgToPdf = (pdf, page, pages, svgsToExport, textToExport, saveCode) => {
+  const addNextSvgToPdf = (pdf, page, pages, svgsToExport, textToExport, saveCode, pdfConfig) => {
     // Recursive, adds an svg, waits for it to finish, then adds the next one until saving
     // Get svg
     let svgToExport = svgsToExport[page]
     let text = textToExport[page]
     // Add to pdf
-    pdf.text(text, appConfig.pdf.printMargin, appConfig.pdf.printMargin+5)
+    pdf.text(text, pdfConfig.printMargin, pdfConfig.printMargin+5)
     pdf.svg(svgToExport,{x:5,y:5,width:287,height:200}).then(() => {
       page = page+1
       if (page !== pages) {
         // iterate
         pdf.addPage({orientation:'l', format:'a4'})
-        addNextSvgToPdf(pdf, page, pages, svgsToExport, textToExport, saveCode)
+        addNextSvgToPdf(pdf, page, pages, svgsToExport, textToExport, saveCode, pdfConfig)
       } else {
-        addSaveCodeToPdf(pdf, saveCode)
+        addSaveCodeToPdf(pdf, saveCode, pdfConfig)
         pdf.save('tarsia.pdf')
       }
     })
@@ -74,7 +74,7 @@ const generateAndSavePdf = (saveCode, previewSvg, printSvgs, appConfig) => {
     textToExport.push('Print and cut out:')
   }
   const svgPages = svgsToExport.length
-  addNextSvgToPdf(pdf, 0, svgPages, svgsToExport, textToExport, saveCode)
+  addNextSvgToPdf(pdf, 0, svgPages, svgsToExport, textToExport, saveCode, pdfConfig)
 };
 
 export {

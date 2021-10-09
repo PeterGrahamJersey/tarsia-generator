@@ -39,7 +39,7 @@ const App = (id) => {
     const saveCode = generateSaveCode(questions, answers, grid)
     const previewSvg = document.getElementById('previewSvg')
     const printSvgs = document.getElementById('printSvgDiv').children
-    generateAndSavePdf(saveCode, previewSvg, printSvgs, appConfig)
+    generateAndSavePdf(saveCode, previewSvg, printSvgs, appConfig.pdf)
   };
 
   const saveToText = () => {
