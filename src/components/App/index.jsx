@@ -7,7 +7,6 @@ import {appConfig} from '../../data/config';
 import Questions from '../QuestionAnswer'
 import grids from '../../data/grids';
 import PrintableSvgDiv from '../PrintableSvgDiv'
-import calculateGridParameters from '../../utils/calculateGridParameters'
 import PreviewSvg from '../PreviewSvgDiv';
 import gridIcons from '../../data/gridIcons'
 import GridIcon from '../GridIcon'
@@ -15,6 +14,7 @@ import {ClearModal, LoadModal, SaveModal} from '../Modal'
 
 // Functions
 import {generateSaveCode, parseSaveCode, generateAndSavePdf} from '../../utils/saveLoadExport'
+import {calculateGridParameters} from '../../utils/grid'
 
 const App = (id) => {
   const [questions, setQuestions] = useState({})
