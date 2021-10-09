@@ -3,6 +3,10 @@ import { Helmet } from 'react-helmet';
 import './App.css';
 import {appConfig} from '../../data/config';
 
+/** @jsx jsx */
+import { ThemeProvider, jsx } from 'theme-ui'
+import { theme } from '../../data/theme'
+
 // Components
 import Questions from '../QuestionAnswer'
 import grids from '../../data/grids';
@@ -90,55 +94,57 @@ const App = (id) => {
   }
 
   return (
-    <div className='App'>
-      <Helmet>
-        <title>Tarsia Maker</title>
-        <meta property='description' content='A simple, online editor for Tarsia puzzles.' />
-        <meta property='theme-color' content="#607d86" />
-        <meta property='title' content='Tarsia Maker' />
-        <meta property='og:title' content='Tarsia Maker' />
-        <meta property='og:type' content='website' />
-        <meta property='og:url' content='https://www.tarsiamaker.co.uk/' />
-        <meta property='og:description' content='A simple, online editor for Tarsia puzzles.' />
-        <meta property='og:image' content='https://i.postimg.cc/MTnhLVH3/preview-image.png' />
-      </Helmet>
-      <div className='header'>
-        <div className='title'>Tarsia Maker</div>
-      </div>
-      <div className='content'>
-        <div className='gridSelect'>
-          <GridIcon icon={gridIcons.smallTriangleGrid} onClick={() => setGrid(grids.smallTriangleGrid)}/>
-          <GridIcon icon={gridIcons.smallHexGrid} onClick={() => setGrid(grids.smallHexGrid)}/>
-          <GridIcon icon={gridIcons.triangleGrid} onClick={() => setGrid(grids.triangleGrid)}/>
-          <GridIcon icon={gridIcons.hexGrid} onClick={() => setGrid(grids.hexGrid)}/>  
+    <ThemeProvider theme={theme}>
+      <div className='App'>
+        <Helmet>
+          <title>Tarsia Maker</title>
+          <meta property='description' content='A simple, online editor for Tarsia puzzles.' />
+          <meta property='theme-color' content="#607d86" />
+          <meta property='title' content='Tarsia Maker' />
+          <meta property='og:title' content='Tarsia Maker' />
+          <meta property='og:type' content='website' />
+          <meta property='og:url' content='https://www.tarsiamaker.co.uk/' />
+          <meta property='og:description' content='A simple, online editor for Tarsia puzzles.' />
+          <meta property='og:image' content='https://i.postimg.cc/MTnhLVH3/preview-image.png' />
+        </Helmet>
+        <div className='header'>
+          <div className='title'>Tarsia Maker</div>
         </div>
-        <div id='hexGridSvgDiv' className='previewContainer'>
-          <PreviewSvg id='tarsiaPreview' grid={grid} gridParams={gridParams} questions={questions} answers={answers}/>
+        <div className='content'>
+          <div className='gridSelect'>
+            <GridIcon icon={gridIcons.smallTriangleGrid} onClick={() => setGrid(grids.smallTriangleGrid)}/>
+            <GridIcon icon={gridIcons.smallHexGrid} onClick={() => setGrid(grids.smallHexGrid)}/>
+            <GridIcon icon={gridIcons.triangleGrid} onClick={() => setGrid(grids.triangleGrid)}/>
+            <GridIcon icon={gridIcons.hexGrid} onClick={() => setGrid(grids.hexGrid)}/>  
+          </div>
+          <div id='hexGridSvgDiv' className='previewContainer'>
+            <PreviewSvg id='tarsiaPreview' grid={grid} gridParams={gridParams} questions={questions} answers={answers}/>
+          </div>
+          <div className='buttons'>
+            <button className='buttonsButton' onClick={exportToPdf}>Export to PDF</button>
+            <button className='buttonsButton' onClick={saveToText}>Save</button>
+            <button className='buttonsButton' onClick={loadModalShow}>Load</button>
+            <button className='buttonsButton' onClick={clearModalShow}>Clear</button>
+          </div>
+          <div className='questions'>
+            <Questions onChange={(data) => onInputChange(data)} nQuestions={gridParams.nQuestions} loadedQuestions={loadedQuestions} loadedAnswers={loadedAnswers} key={`questions-${loadCount}`}/>
+          </div>
         </div>
-        <div className='buttons'>
-          <button className='buttonsButton' onClick={exportToPdf}>Export to PDF</button>
-          <button className='buttonsButton' onClick={saveToText}>Save</button>
-          <button className='buttonsButton' onClick={loadModalShow}>Load</button>
-          <button className='buttonsButton' onClick={clearModalShow}>Clear</button>
+        <div className='footer'>
+          <ul>
+            <li>Feedback or ideas? Reach out to me on twitter at <a href='https://twitter.com/peter_graham_'>@peter_graham_</a>.</li>
+            <li>A more comprehensive editor is available online (not created or supported by me), links to it and ideas on how to use Tarsia Puzzles are available from <a href='http://mrbartonmaths.com/teachers/rich-tasks/tarsia-jigsaw.html'>Mr Barton Maths</a>.</li>
+            <li><a href='https://github.com/PeterGrahamJersey/tarsia-generator'>Source code</a></li>
+          </ul>
         </div>
-        <div className='questions'>
-          <Questions onChange={(data) => onInputChange(data)} nQuestions={gridParams.nQuestions} loadedQuestions={loadedQuestions} loadedAnswers={loadedAnswers} key={`questions-${loadCount}`}/>
+        <SaveModal handleClose={hideModals} show={showSaveModal} saveString={saveString}/>
+        <LoadModal key={`loadModal-${loadCount}`} handleClose={hideModals} show={showLoadModal} loadFromText={loadFromText}></LoadModal>
+        <ClearModal handleClose={hideModals} show={showClearModal} clearInputs={clearInputs}></ClearModal>
+        <div className='hidden'>
+          <PrintableSvgDiv id='printSvgDiv' grid={grid} questions={questions} answers={answers}/>
         </div>
       </div>
-      <div className='footer'>
-        <ul>
-          <li>Feedback or ideas? Reach out to me on twitter at <a href='https://twitter.com/peter_graham_'>@peter_graham_</a>.</li>
-          <li>A more comprehensive editor is available online (not created or supported by me), links to it and ideas on how to use Tarsia Puzzles are available from <a href='http://mrbartonmaths.com/teachers/rich-tasks/tarsia-jigsaw.html'>Mr Barton Maths</a>.</li>
-          <li><a href='https://github.com/PeterGrahamJersey/tarsia-generator'>Source code</a></li>
-        </ul>
-      </div>
-      <SaveModal handleClose={hideModals} show={showSaveModal} saveString={saveString}/>
-      <LoadModal key={`loadModal-${loadCount}`} handleClose={hideModals} show={showLoadModal} loadFromText={loadFromText}></LoadModal>
-      <ClearModal handleClose={hideModals} show={showClearModal} clearInputs={clearInputs}></ClearModal>
-      <div className='hidden'>
-        <PrintableSvgDiv id='printSvgDiv' grid={grid} questions={questions} answers={answers}/>
-      </div>
-    </div>
+    </ThemeProvider>
   );
 }
 
