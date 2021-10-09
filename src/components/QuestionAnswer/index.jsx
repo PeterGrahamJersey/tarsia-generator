@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
-import appConfig from '../../data/config'
 import './QuestionAnswer.css'
+import {appConfig} from '../../data/config'
 
 const Input = ({name, loadedValue, questionNumber, onChange, ...props}) => {
   const [value, setValue] = useState(loadedValue ? loadedValue : '');

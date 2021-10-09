@@ -1,5 +1,5 @@
 import React from 'react'
-import appConfig from './config'
+import {appConfig} from './config'
 
 const w = appConfig.icons.width
 const h = appConfig.icons.height

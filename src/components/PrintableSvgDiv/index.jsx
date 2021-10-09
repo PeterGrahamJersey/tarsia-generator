@@ -1,8 +1,10 @@
 import React from 'react'
+// Components
 import TarsiaGrid from '../TarsiaGrid'
-import appConfig from '../../data/config'
 import printGrid from '../../data/printGrid'
-import calculateGridParameters from '../../utils/calculateGridParameters'
+// Functions
+import {appConfig} from '../../data/config'
+import {calculateGridParameters} from '../../utils/grid'
 
 const PrintPage = ({id, grid, gridParameters, questions, answers}) => {
   const side = appConfig.triangle.side

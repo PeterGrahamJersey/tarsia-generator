@@ -1,7 +1,7 @@
 import React from 'react'
-import appConfig from '../../data/config'
 import TarsiaGrid from '../TarsiaGrid'
 import './PreviewSvgDiv.css';
+import {appConfig} from '../../data/config'
 
 const PreviewSvg = ({id, grid, gridParams, questions, answers}) => {
   // Assuming our SVG has width = height

@@ -35,4 +35,4 @@ appConfig.pdf.orientation = appConfig.pdf.width > appConfig.pdf.height ? 'landsc
 appConfig.pdf.ratio = appConfig.pdf.width / appConfig.pdf.height
 appConfig.icons.height = Math.sqrt(3)/2 * appConfig.icons.width
 
-export default appConfig
+export {appConfig}

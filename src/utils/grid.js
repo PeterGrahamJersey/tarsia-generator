@@ -14,4 +14,6 @@ const calculateGridParameters = (grid) => {
   }
 }
 
-export default calculateGridParameters
+export {
+  calculateGridParameters
+}
