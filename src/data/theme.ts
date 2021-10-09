@@ -18,4 +18,14 @@ export const theme: Theme = {
     // background: '#fff',
     // primary: '#33e',
   },
+
+  buttons: {
+    primary: {
+      color: 'textLight',
+      bg: 'accent1',
+      '&:hover': {
+        bg: 'accent1Dark',
+      },
+    },
+  },
 }

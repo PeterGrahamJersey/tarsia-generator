@@ -5,6 +5,7 @@ import {appConfig} from '../../data/config';
 
 /** @jsx jsx */
 import { ThemeProvider, jsx } from 'theme-ui'
+import { Button, Flex } from 'theme-ui'
 import { theme } from '../../data/theme'
 
 // Components
@@ -120,12 +121,12 @@ const App = (id) => {
           <div id='hexGridSvgDiv' className='previewContainer'>
             <PreviewSvg id='tarsiaPreview' grid={grid} gridParams={gridParams} questions={questions} answers={answers}/>
           </div>
-          <div className='buttons'>
-            <button className='buttonsButton' onClick={exportToPdf}>Export to PDF</button>
-            <button className='buttonsButton' onClick={saveToText}>Save</button>
-            <button className='buttonsButton' onClick={loadModalShow}>Load</button>
-            <button className='buttonsButton' onClick={clearModalShow}>Clear</button>
-          </div>
+          <Flex >
+            <Button mr={2} onClick={exportToPdf}>Export to PDF</Button>
+            <Button mr={2} onClick={saveToText}>Save</Button>
+            <Button mr={2} onClick={loadModalShow}>Load</Button>
+            <Button onClick={clearModalShow}>Clear</Button>
+          </Flex>
           <div className='questions'>
             <Questions onChange={(data) => onInputChange(data)} nQuestions={gridParams.nQuestions} loadedQuestions={loadedQuestions} loadedAnswers={loadedAnswers} key={`questions-${loadCount}`}/>
           </div>
