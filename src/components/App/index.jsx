@@ -112,12 +112,12 @@ const App = (id) => {
           <div className='title'>Tarsia Maker</div>
         </div>
         <div className='content'>
-          <div className='gridSelect'>
+          <Flex mt={2} mb={2}>
             <GridIcon ariaLabel='Small triangle grid' icon={gridIcons.smallTriangleGrid} onClick={() => setGrid(grids.smallTriangleGrid)}/>
             <GridIcon ariaLabel='Small hexagon grid' icon={gridIcons.smallHexGrid} onClick={() => setGrid(grids.smallHexGrid)}/>
             <GridIcon ariaLabel='Large triangle grid' icon={gridIcons.triangleGrid} onClick={() => setGrid(grids.triangleGrid)}/>
             <GridIcon ariaLabel='Large hexagon grid' icon={gridIcons.hexGrid} onClick={() => setGrid(grids.hexGrid)}/>  
-          </div>
+          </Flex>
           <div id='hexGridSvgDiv' className='previewContainer'>
             <PreviewSvg id='tarsiaPreview' grid={grid} gridParams={gridParams} questions={questions} answers={answers}/>
           </div>
