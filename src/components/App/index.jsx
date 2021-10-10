@@ -5,7 +5,7 @@ import {appConfig} from '../../data/config';
 
 /** @jsx jsx */
 import { ThemeProvider, jsx } from 'theme-ui'
-import { Button, IconButton, Flex } from 'theme-ui'
+import { Button, Flex } from 'theme-ui'
 import { theme } from '../../data/theme'
 
 // Components
