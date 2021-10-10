@@ -27,5 +27,11 @@ export const theme: Theme = {
         bg: 'accent1Dark',
       },
     },
+    icon: {
+      width: '50px',
+      fill: 'accent1',
+      stroke:'textDark',
+      strokeWidth: '3',
+    },
   },
 }

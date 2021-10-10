@@ -5,7 +5,7 @@ import {appConfig} from '../../data/config';
 
 /** @jsx jsx */
 import { ThemeProvider, jsx } from 'theme-ui'
-import { Button, Flex } from 'theme-ui'
+import { Button, IconButton, Flex } from 'theme-ui'
 import { theme } from '../../data/theme'
 
 // Components
@@ -113,10 +113,10 @@ const App = (id) => {
         </div>
         <div className='content'>
           <div className='gridSelect'>
-            <GridIcon icon={gridIcons.smallTriangleGrid} onClick={() => setGrid(grids.smallTriangleGrid)}/>
-            <GridIcon icon={gridIcons.smallHexGrid} onClick={() => setGrid(grids.smallHexGrid)}/>
-            <GridIcon icon={gridIcons.triangleGrid} onClick={() => setGrid(grids.triangleGrid)}/>
-            <GridIcon icon={gridIcons.hexGrid} onClick={() => setGrid(grids.hexGrid)}/>  
+            <GridIcon ariaLabel='Small triangle grid' icon={gridIcons.smallTriangleGrid} onClick={() => setGrid(grids.smallTriangleGrid)}/>
+            <GridIcon ariaLabel='Small hexagon grid' icon={gridIcons.smallHexGrid} onClick={() => setGrid(grids.smallHexGrid)}/>
+            <GridIcon ariaLabel='Large triangle grid' icon={gridIcons.triangleGrid} onClick={() => setGrid(grids.triangleGrid)}/>
+            <GridIcon ariaLabel='Large hexagon grid' icon={gridIcons.hexGrid} onClick={() => setGrid(grids.hexGrid)}/>  
           </div>
           <div id='hexGridSvgDiv' className='previewContainer'>
             <PreviewSvg id='tarsiaPreview' grid={grid} gridParams={gridParams} questions={questions} answers={answers}/>

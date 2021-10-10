@@ -115,25 +115,25 @@ button:active {
 }
 
 
-button.icon-button {
+/* button.icon-button {
   width: 50px;
   padding: 0.2em 0.2em;
   background: none;
-  /* Aligning the content vertically */
+  
   display: flex;
   justify-content: center;
   align-items: center;
-}
+} */
 
-button.icon-button svg {
+/* button.icon-button svg {
   fill: var(--accent-1);
   stroke:black;
   stroke-width: 2;
-}
+} */
 
-button:hover.icon-button svg {
+/* button:hover.icon-button svg {
   fill: var(--accent-1-dark);
-}
+} */
 
 @media only screen and (max-width: 768px) {
   /* For mobile phones: */
