@@ -5,7 +5,7 @@ import {appConfig} from '../../data/config';
 
 /** @jsx jsx */
 import { ThemeProvider, jsx } from 'theme-ui'
-import { Button, Flex,  Container, Heading, Divider} from 'theme-ui'
+import { Button, Flex,  Container, Heading, Box} from 'theme-ui'
 import { theme } from '../../data/theme'
 
 // Components
@@ -114,19 +114,16 @@ const App = (id) => {
             <GridIcon ariaLabel='Large triangle grid' icon={gridIcons.triangleGrid} onClick={() => setGrid(grids.triangleGrid)}/>
             <GridIcon ariaLabel='Large hexagon grid' icon={gridIcons.hexGrid} onClick={() => setGrid(grids.hexGrid)}/>  
           </Flex>
-          <div id='hexGridSvgDiv' className='previewContainer'>
+          <Container variant='previewSvg'>
             <PreviewSvg id='tarsiaPreview' grid={grid} gridParams={gridParams} questions={questions} answers={answers}/>
-          </div>
+          </Container>
           <Flex variant='layout.menu'>
             <Button mr={2} onClick={exportToPdf}>Export to PDF</Button>
             <Button mr={2} onClick={saveToText}>Save</Button>
             <Button mr={2} onClick={loadModalShow}>Load</Button>
             <Button onClick={clearModalShow}>Clear</Button>
           </Flex>
-          <div className='questions'>
-            <Questions onChange={(data) => onInputChange(data)} nQuestions={gridParams.nQuestions} loadedQuestions={loadedQuestions} loadedAnswers={loadedAnswers} key={`questions-${loadCount}`}/>
-          </div>
-
+          <Questions onChange={(data) => onInputChange(data)} nQuestions={gridParams.nQuestions} loadedQuestions={loadedQuestions} loadedAnswers={loadedAnswers} key={`questions-${loadCount}`}/>
         </Container>
 
         <Container variant='footer'>

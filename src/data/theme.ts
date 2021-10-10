@@ -3,7 +3,8 @@ import type { Theme } from 'theme-ui'
 export const theme: Theme = {
   sizes: {
     maxApp: '600px',
-    minApp: '90%'
+    minApp: '90%',
+    maxPreview: '500px'
   },
   fonts: {
     body: 'system-ui, sans-serif',
@@ -39,14 +40,16 @@ export const theme: Theme = {
     },
     header: {
       bg:'accent',
-      p:'0.5em 1em'
+      px:'2',
+      py:'1'
     },
     body: {
       width: ['minApp', 'maxApp'],
     },
     footer: {
       bg:'muted',
-      py: '0.5em',
+      py: '2',
+      mt: '4',
       color: 'textDark'
     },
     modal: {
@@ -67,9 +70,17 @@ export const theme: Theme = {
       width: ['minApp', 'maxApp'], /* Could be more or less, depending on screen size */
       color: 'text',
     },
+    
     menu: {
       justifyContent: 'space-evenly',
     },
+    
+    previewSvg: {
+      maxWidth: 'maxPreview',
+      // mx: 'auto'
+    },
+
+
   },
 
   buttons: {

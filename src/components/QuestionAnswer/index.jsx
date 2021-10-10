@@ -27,7 +27,7 @@ const ManagedInput = ({name, loadedValue, questionNumber, onChange, ...props}) =
 const QuestionAnswer = ({questionNumber, onChange, loadedQuestion, loadedAnswer}) => { 
 
   return (
-    <Box mb={2}>
+    <Box>
       <Label>{questionNumber}</Label>
       <Flex>
         <ManagedInput mr={2} name='q' className='qa-input-question qa-input' loadedValue={loadedQuestion} questionNumber={questionNumber} onChange={onChange} />
@@ -45,9 +45,9 @@ const Questions = ({onChange, nQuestions, loadedQuestions, loadedAnswers}) => {
     var loadedAnswer = loadedAnswers[question] || ''
     let display = question <= nQuestions ? 'block' : 'none'
     questions.push(
-      <div key={`qa${question}-div`} style={{display:display}}>
+      <Box my={2} key={`qa${question}-div`} sx={{display:display}}>
         <QuestionAnswer key={`qa${question}`} questionNumber={question} onChange={(data) => onChange(data)} loadedQuestion={loadedQuestion} loadedAnswer={loadedAnswer}/>
-      </div>
+      </Box>
       )
   }
 
