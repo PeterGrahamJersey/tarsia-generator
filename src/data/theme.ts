@@ -1,13 +1,18 @@
 import type { Theme } from 'theme-ui'
 
 export const theme: Theme = {
+  sizes: {
+    maxApp: '600px',
+    minApp: '90%'
+  },
   fonts: {
     body: 'system-ui, sans-serif',
     heading: '"Helvetica", sans-serif',
     monospace: 'Menlo, monospace',
   },
   colors: {
-    text: '#222',
+    text: '#eee',
+    textDark: '#222',
     background: '#4c5355',
     primary: '#c44b4f',
     secondary: '#AB3236',
@@ -32,6 +37,18 @@ export const theme: Theme = {
   layout: {
     container: {
     },
+    header: {
+      bg:'accent',
+      p:'0.5em 1em'
+    },
+    body: {
+      width: ['minApp', 'maxApp'],
+    },
+    footer: {
+      bg:'muted',
+      py: '0.5em',
+      color: 'textDark'
+    },
     modal: {
       position: 'fixed', /* Stay in place */
       zIndex: 1, /* Sit on top */
@@ -47,9 +64,12 @@ export const theme: Theme = {
       mt: '15%', /* 15% from the top and centered */
       padding: '20px',
       border: '1px solid #888',
-      width: ['90%', '600px'], /* Could be more or less, depending on screen size */
+      width: ['minApp', 'maxApp'], /* Could be more or less, depending on screen size */
       color: 'text',
-    }
+    },
+    menu: {
+      justifyContent: 'space-evenly',
+    },
   },
 
   buttons: {
@@ -62,7 +82,7 @@ export const theme: Theme = {
     icon: {
       width: '50px',
       fill: 'primary',
-      stroke:'text',
+      stroke:'textDark',
       strokeWidth: '3',
       '&:hover': {
         fill: 'primaryDark',

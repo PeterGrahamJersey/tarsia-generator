@@ -5,7 +5,7 @@ import {appConfig} from '../../data/config';
 
 /** @jsx jsx */
 import { ThemeProvider, jsx } from 'theme-ui'
-import { Button, Flex } from 'theme-ui'
+import { Button, Flex,  Container, Heading, Divider} from 'theme-ui'
 import { theme } from '../../data/theme'
 
 // Components
@@ -39,21 +39,18 @@ const App = (id) => {
     setShowLoadModal(false)
     setShowClearModal(false)
   }
-
   const exportToPdf = () => {
     const saveCode = generateSaveCode(questions, answers, grid)
     const previewSvg = document.getElementById('previewSvg')
     const printSvgs = document.getElementById('printSvgDiv').children
     generateAndSavePdf(saveCode, previewSvg, printSvgs, appConfig.pdf)
   };
-
   const saveToText = () => {
     var saveCode = generateSaveCode(questions, answers, grid)
     //Show output modal
     setSaveString(saveCode)
     setShowSaveModal(true)
   }
-
   const loadModalShow = () => {
     setShowLoadModal(true)
   }
@@ -78,14 +75,12 @@ const App = (id) => {
       }
     }
   }
-
   const clearModalShow = () => {
     setShowClearModal(true)
   }
   const clearInputs = () => {
       valuesForInputs({}, {}, grid)
   }
-
   const onInputChange = ({name, questionNumber, value}) => {
     if (name === 'q') {
         setQuestions((questions) => ({...questions, [questionNumber]:value}))
@@ -96,7 +91,6 @@ const App = (id) => {
 
   return (
     <ThemeProvider theme={theme}>
-      <div className='App'>
         <Helmet>
           <title>Tarsia Maker</title>
           <meta property='description' content='A simple, online editor for Tarsia puzzles.' />
@@ -108,11 +102,13 @@ const App = (id) => {
           <meta property='og:description' content='A simple, online editor for Tarsia puzzles.' />
           <meta property='og:image' content='https://i.postimg.cc/MTnhLVH3/preview-image.png' />
         </Helmet>
-        <div className='header'>
-          <div className='title'>Tarsia Maker</div>
-        </div>
-        <div className='content'>
-          <Flex mt={2} mb={2}>
+        
+        <Container variant='header'>
+          <Heading>Tarsia Maker</Heading>
+        </Container>
+        
+        <Container variant='body'>
+          <Flex variant='layout.menu' mt={2} mb={2}>
             <GridIcon ariaLabel='Small triangle grid' icon={gridIcons.smallTriangleGrid} onClick={() => setGrid(grids.smallTriangleGrid)}/>
             <GridIcon ariaLabel='Small hexagon grid' icon={gridIcons.smallHexGrid} onClick={() => setGrid(grids.smallHexGrid)}/>
             <GridIcon ariaLabel='Large triangle grid' icon={gridIcons.triangleGrid} onClick={() => setGrid(grids.triangleGrid)}/>
@@ -121,7 +117,7 @@ const App = (id) => {
           <div id='hexGridSvgDiv' className='previewContainer'>
             <PreviewSvg id='tarsiaPreview' grid={grid} gridParams={gridParams} questions={questions} answers={answers}/>
           </div>
-          <Flex>
+          <Flex variant='layout.menu'>
             <Button mr={2} onClick={exportToPdf}>Export to PDF</Button>
             <Button mr={2} onClick={saveToText}>Save</Button>
             <Button mr={2} onClick={loadModalShow}>Load</Button>
@@ -130,21 +126,26 @@ const App = (id) => {
           <div className='questions'>
             <Questions onChange={(data) => onInputChange(data)} nQuestions={gridParams.nQuestions} loadedQuestions={loadedQuestions} loadedAnswers={loadedAnswers} key={`questions-${loadCount}`}/>
           </div>
-        </div>
-        <div className='footer'>
-          <ul>
-            <li>Feedback or ideas? Reach out to me on twitter at <a href='https://twitter.com/peter_graham_'>@peter_graham_</a>.</li>
-            <li>A more comprehensive editor is available online (not created or supported by me), links to it and ideas on how to use Tarsia Puzzles are available from <a href='http://mrbartonmaths.com/teachers/rich-tasks/tarsia-jigsaw.html'>Mr Barton Maths</a>.</li>
-            <li><a href='https://github.com/PeterGrahamJersey/tarsia-generator'>Source code</a></li>
-          </ul>
-        </div>
+
+        </Container>
+
+        <Container variant='footer'>
+          <Container variant='body'>
+            <ul>
+              <li>Feedback or ideas? Reach out to me on twitter at <a href='https://twitter.com/peter_graham_'>@peter_graham_</a>.</li>
+              <li>A more comprehensive editor is available online (not created or supported by me), links to it and ideas on how to use Tarsia Puzzles are available from <a href='http://mrbartonmaths.com/teachers/rich-tasks/tarsia-jigsaw.html'>Mr Barton Maths</a>.</li>
+              <li><a href='https://github.com/PeterGrahamJersey/tarsia-generator'>Source code</a></li>
+            </ul>
+          </Container>
+        </Container>
+
         <SaveModal handleClose={hideModals} show={showSaveModal} saveString={saveString}/>
         <LoadModal key={`loadModal-${loadCount}`} handleClose={hideModals} show={showLoadModal} loadFromText={loadFromText}></LoadModal>
         <ClearModal handleClose={hideModals} show={showClearModal} clearInputs={clearInputs}></ClearModal>
+        
         <div className='hidden'>
           <PrintableSvgDiv id='printSvgDiv' grid={grid} questions={questions} answers={answers}/>
         </div>
-      </div>
     </ThemeProvider>
   );
 }
