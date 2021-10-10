@@ -1,12 +1,13 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { Input, Label, Box, Flex} from 'theme-ui'
-import {appConfig} from '../../data/config'
+import { appConfig } from '../../data/config'
+import { splitUpText } from '../../utils/grid'
 
 const ManagedInput = ({name, loadedValue, questionNumber, onChange, ...props}) => {
   const [value, setValue] = useState(loadedValue ? loadedValue : '');
   const handleInputChange = (event) => {
     setValue(event.target.value);
-    onChange({name:name, questionNumber:questionNumber, value:event.target.value});
+    onChange({name:name, questionNumber:questionNumber, value:splitUpText(event.target.value, appConfig.triangle.text)});
   }
   return (
     <Input

@@ -1,4 +1,5 @@
 import React from 'react'
+import { appConfig } from '../../data/config'
 
 const Triangle = ({row, col, values, config}) => {
   const {side, style, text, height} = config
@@ -9,10 +10,17 @@ const Triangle = ({row, col, values, config}) => {
   const transform = `translate(${translateX},${translateY}) rotate(${rotate} ${side/2},${height/2})`
 
   const Text = ({children, ...props}) => {
+    let linesText = [...children].reverse();
+    // console.log(linesText)
+    const linesSvgText = linesText.map((line, index) =>
+        <text x={side/2} y={-text.paddingY - appConfig.triangle.text.yHeightStep * index} style={text.style} textAnchor='middle' {...props}>
+          {line}
+        </text>
+    )
     return (
-      <text x={side/2} y={-text.paddingY} style={text.style} textAnchor='middle' {...props}>
-        {children}
-      </text>
+      <g>
+        {linesSvgText}
+      </g>
     )
   }
 

@@ -10,7 +10,7 @@ const appConfig = {
       paddingY: 8, // px
       style: { // css classes didn't export to pdf, so using style
         fill: 'black',
-        fontSize: 15, // px? pdf doesn't like 
+        fontSize: 13  , // px? pdf doesn't like 
         fontFamily: 'helvetica',
         lineSpace: 0.1, // gap as number of lines 
         lineLength: [25, 18, 10], // max line lengths
