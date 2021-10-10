@@ -107,7 +107,7 @@ const App = (id) => {
         </Container>
         
         <Container variant='body'>
-          <Flex variant='layout.menu' mt={2} mb={2}>
+          <Flex variant='layout.menu'>
             <GridIcon ariaLabel='Small triangle grid' icon={gridIcons.smallTriangleGrid} onClick={() => setGrid(grids.smallTriangleGrid)}/>
             <GridIcon ariaLabel='Small hexagon grid' icon={gridIcons.smallHexGrid} onClick={() => setGrid(grids.smallHexGrid)}/>
             <GridIcon ariaLabel='Large triangle grid' icon={gridIcons.triangleGrid} onClick={() => setGrid(grids.triangleGrid)}/>

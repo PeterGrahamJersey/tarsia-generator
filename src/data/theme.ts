@@ -66,6 +66,7 @@ export const theme: Theme = {
       justifyContent: 'space-evenly',
       flexWrap:'wrap',
       gap:'2',
+      my:'3'
     },
     
     previewSvg: {
