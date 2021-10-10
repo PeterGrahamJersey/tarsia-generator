@@ -121,7 +121,7 @@ const App = (id) => {
           <div id='hexGridSvgDiv' className='previewContainer'>
             <PreviewSvg id='tarsiaPreview' grid={grid} gridParams={gridParams} questions={questions} answers={answers}/>
           </div>
-          <Flex >
+          <Flex>
             <Button mr={2} onClick={exportToPdf}>Export to PDF</Button>
             <Button mr={2} onClick={saveToText}>Save</Button>
             <Button mr={2} onClick={loadModalShow}>Load</Button>

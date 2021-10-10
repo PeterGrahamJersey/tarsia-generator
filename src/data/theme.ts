@@ -7,13 +7,21 @@ export const theme: Theme = {
     monospace: 'Menlo, monospace',
   },
   colors: {
-    bgDark: '#4c5355',
-    bgLight: '#cbcdcb',
-    textLight: '#eee',
-    textDark: '#222',
-    accent1: '#c44b4f',
-    accent1Dark:'#AB3236',
-    accent2: '#607d86',
+    text: '#222',
+    background: '#4c5355',
+    primary: '#c44b4f',
+    secondary: '#AB3236',
+    accent:'#607d86',
+    highlight:'#fff',
+    muted: '#cbcdcb',
+    primaryDark:'#AB3236' 
+    // bgDark: '#4c5355',
+    // bgLight: '#cbcdcb',
+    // textLight: '#eee',
+    // textDark: '#222',
+    // accent1: '#c44b4f',
+    // accent1Dark:'#AB3236',
+    // accent2: '#607d86',
     // text: '#000',
     // background: '#fff',
     // primary: '#33e',
@@ -21,17 +29,35 @@ export const theme: Theme = {
 
   buttons: {
     primary: {
-      color: 'textLight',
-      bg: 'accent1',
+      // color: 'textLight',
       '&:hover': {
-        bg: 'accent1Dark',
+        bg: 'primaryDark',
       },
     },
     icon: {
       width: '50px',
-      fill: 'accent1',
-      stroke:'textDark',
+      fill: 'primary',
+      stroke:'text',
       strokeWidth: '3',
+      '&:hover': {
+        fill: 'primaryDark',
+      },
     },
   },
+
+  forms: {
+    label: {
+      fontSize: 1,
+      fontWeight: 'bold',
+    },
+    input: {
+      // borderColor: 'gray',
+      // bg:'bgLight',
+      '&:focus': {
+        // borderColor: 'primary',
+        // boxShadow: t => `0 0 0 2px ${t.colors.accent1}`,
+        // outline: 'none',
+      },
+    },
+  }
 }
