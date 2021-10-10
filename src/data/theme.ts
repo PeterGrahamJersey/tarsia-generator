@@ -14,7 +14,9 @@ export const theme: Theme = {
     accent:'#607d86',
     highlight:'#fff',
     muted: '#cbcdcb',
-    primaryDark:'#AB3236' 
+    primaryDark:'#AB3236',
+    modalBg: '#fefefe',
+    modalOverlayBg: 'rgba(0,0,0,0.4)',
     // bgDark: '#4c5355',
     // bgLight: '#cbcdcb',
     // textLight: '#eee',
@@ -25,6 +27,29 @@ export const theme: Theme = {
     // text: '#000',
     // background: '#fff',
     // primary: '#33e',
+  },
+
+  layout: {
+    container: {
+    },
+    modal: {
+      position: 'fixed', /* Stay in place */
+      zIndex: 1, /* Sit on top */
+      left: 0,
+      top: 0,
+      width: '100%', /* Full width */
+      height: '100%', /* Full height */
+      overflow: 'auto', /* Enable scroll if needed */
+      bg: 'modalOverlayBg', /* Black w/ opacity */
+    },
+    modalContent: {
+      bg: 'modalBg',
+      mt: '15%', /* 15% from the top and centered */
+      padding: '20px',
+      border: '1px solid #888',
+      width: ['90%', '600px'], /* Could be more or less, depending on screen size */
+      color: 'text',
+    }
   },
 
   buttons: {
