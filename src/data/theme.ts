@@ -71,6 +71,7 @@ export const theme: Theme = {
     
     previewSvg: {
       maxWidth: 'maxPreview',
+      my:'2'
     },
     
     hidden: {

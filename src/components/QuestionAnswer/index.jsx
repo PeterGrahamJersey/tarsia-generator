@@ -1,16 +1,13 @@
 import React, {useState} from 'react'
-import './QuestionAnswer.css'
 import { Input, Label, Box, Flex} from 'theme-ui'
 import {appConfig} from '../../data/config'
 
 const ManagedInput = ({name, loadedValue, questionNumber, onChange, ...props}) => {
   const [value, setValue] = useState(loadedValue ? loadedValue : '');
-
   const handleInputChange = (event) => {
     setValue(event.target.value);
     onChange({name:name, questionNumber:questionNumber, value:event.target.value});
   }
-
   return (
     <Input
       name={name}
@@ -25,13 +22,12 @@ const ManagedInput = ({name, loadedValue, questionNumber, onChange, ...props}) =
 }
 
 const QuestionAnswer = ({questionNumber, onChange, loadedQuestion, loadedAnswer}) => { 
-
   return (
     <Box>
       <Label>{questionNumber}</Label>
       <Flex>
-        <ManagedInput mr={2} name='q' className='qa-input-question qa-input' loadedValue={loadedQuestion} questionNumber={questionNumber} onChange={onChange} />
-        <ManagedInput name='a' className='qa-input' loadedValue={loadedAnswer} questionNumber={questionNumber} onChange={onChange} />
+        <ManagedInput mr={2} name='q' loadedValue={loadedQuestion} questionNumber={questionNumber} onChange={onChange} />
+        <ManagedInput name='a' loadedValue={loadedAnswer} questionNumber={questionNumber} onChange={onChange} />
       </Flex>
     </Box>
   );
@@ -50,7 +46,6 @@ const Questions = ({onChange, nQuestions, loadedQuestions, loadedAnswers}) => {
       </Box>
       )
   }
-
   return(
     <form>
       {questions}
