@@ -21,8 +21,6 @@ import {generateSaveCode, parseSaveCode, generateAndSavePdf} from '../../utils/s
 import {calculateGridParameters} from '../../utils/grid'
 
 const App = (id) => {
-  const [questions, setQuestions] = useState({})
-  const [answers, setAnswers] = useState({})
   const [loadedQuestions, setLoadedQuestions] = useState({
     '1': ['Write','your questions here...'],
     '2': ['The small shapes', 'above the diagram...']
@@ -31,6 +29,8 @@ const App = (id) => {
     '1': ['and your answers', 'here! Or vice versa.'],
     '2': ['change the puzzle shape.']
   })
+  const [questions, setQuestions] = useState(loadedQuestions)
+  const [answers, setAnswers] = useState(loadedAnswers)
   const [loadCount, setloadCount] = useState(0)
   const [grid, setGrid] = useState(grids.triangleGrid)
   const [showSaveModal, setShowSaveModal] = useState(false)

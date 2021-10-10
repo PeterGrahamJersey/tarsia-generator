@@ -18,7 +18,7 @@ const calculateGridParameters = (grid) => {
 const smartSplitByNChars = (text, n) => {
   if (text && text.length>n) {
     try {
-      const r = new RegExp('(^|\\s).{0,'+(n+1)+'}$');
+      const r = new RegExp('(^|\\s).{0,'+(n+1)+'}$'); // looks for a space in the first n chaacters to split on
       const matchedString = text.match(r)[0].trim()
       const remainingString = text.replace(r,'')
       return [remainingString, matchedString]
