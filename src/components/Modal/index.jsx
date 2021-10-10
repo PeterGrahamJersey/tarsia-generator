@@ -10,8 +10,8 @@ const ClearModal = ({handleClose, show, clearInputs}) => {
   return (
     <Modal handleClose={handleClose} show={show} closeButton={false}>
       <p>Clear all input?</p>
-      <Button mr={2} onClick={clearAndClose} className='clearModalButton'>Ok</Button>
-      <Button onClick={handleClose} className='clearModalButton'>Cancel</Button>
+      <Button mr={2} onClick={clearAndClose}>Ok</Button>
+      <Button onClick={handleClose}>Cancel</Button>
     </Modal>
   )
 }
@@ -49,7 +49,7 @@ const SaveModal = ({handleClose, show, saveString}) => {
     <Modal handleClose={handleClose} show={show}>
       <p>Copy and store the code to come back to your tarsia later:</p>
       <Flex>
-        <Input mr={2} id='saveStringInput' value={saveString} readOnly='readonly' className='saveStringInput'/>
+        <Input mr={2} id='saveStringInput' value={saveString} readOnly='readonly'/>
         <Button onClick={copySaveString}>Copy</Button>
       </Flex>
     </Modal>
