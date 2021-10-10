@@ -2,9 +2,10 @@ import React, { useState } from 'react'
 import { Input, Label, Box, Flex} from 'theme-ui'
 import { appConfig } from '../../data/config'
 import { splitUpText } from '../../utils/grid'
+import { convertTextArrayToInputString } from '../../utils/saveLoadExport'
 
 const ManagedInput = ({name, loadedValue, questionNumber, onChange, ...props}) => {
-  const [value, setValue] = useState(loadedValue ? loadedValue : '');
+  const [value, setValue] = useState(loadedValue ? convertTextArrayToInputString(loadedValue) : '');
   const handleInputChange = (event) => {
     setValue(event.target.value);
     onChange({name:name, questionNumber:questionNumber, value:splitUpText(event.target.value, appConfig.triangle.text)});

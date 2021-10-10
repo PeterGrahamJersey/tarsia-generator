@@ -21,10 +21,16 @@ import {generateSaveCode, parseSaveCode, generateAndSavePdf} from '../../utils/s
 import {calculateGridParameters} from '../../utils/grid'
 
 const App = (id) => {
-  const [questions, setQuestions] = useState({})
-  const [loadedQuestions, setLoadedQuestions] = useState({})
-  const [answers, setAnswers] = useState({})
-  const [loadedAnswers, setLoadedAnswers] = useState({})
+  const [loadedQuestions, setLoadedQuestions] = useState({
+    '1': ['Write','your questions here...'],
+    '2': ['The small shapes', 'above the diagram...']
+  })
+  const [loadedAnswers, setLoadedAnswers] = useState({
+    '1': ['and your answers', 'here! Or vice versa.'],
+    '2': ['change the puzzle shape.']
+  })
+  const [questions, setQuestions] = useState(loadedQuestions)
+  const [answers, setAnswers] = useState(loadedAnswers)
   const [loadCount, setloadCount] = useState(0)
   const [grid, setGrid] = useState(grids.triangleGrid)
   const [showSaveModal, setShowSaveModal] = useState(false)
@@ -127,7 +133,7 @@ const App = (id) => {
 
         <Container variant='footer'>
           <Container variant='body'>
-            <Paragraph mb={2}>Feedback or ideas? Reach out to me on twitter at <a href='https://twitter.com/peter_graham_'>@peter_graham_</a>.</Paragraph>
+            <Paragraph mb={2}>Feedback or ideas? Reach out to me on twitter at <a href='https://twitter.com/mrgraham__'>@peter_graham_</a>.</Paragraph>
             <Paragraph mb={2}>A more comprehensive editor is available online (not created or supported by me), links to it and ideas on how to use Tarsia Puzzles are available from <a href='http://mrbartonmaths.com/teachers/rich-tasks/tarsia-jigsaw.html'>Mr Barton Maths</a>.</Paragraph>
             <Paragraph mb={2}><a href='https://github.com/PeterGrahamJersey/tarsia-generator'>Source code</a></Paragraph>
           </Container>

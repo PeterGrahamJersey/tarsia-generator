@@ -106,12 +106,8 @@ export const theme: Theme = {
       fontWeight: 'bold',
     },
     input: {
-      // borderColor: 'gray',
-      // bg:'bgLight',
+      borderWidth: '1.5px',
       '&:focus': {
-        // borderColor: 'primary',
-        // boxShadow: t => `0 0 0 2px ${t.colors.accent1}`,
-        // outline: 'none',
       },
     },
   }

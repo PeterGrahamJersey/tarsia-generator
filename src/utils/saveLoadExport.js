@@ -15,6 +15,22 @@ const generateSaveCode = (questions, answers, grid) => {
 
 
 // Load from string
+const convertTextArrayToInputString = (array) => {
+  // Questions/answers are saved as arrays, this handles converting them back to strings for loading into
+  // the input fields.
+  var inputString = array.map(str => {
+    if (str) { 
+      // If the element ends in a '-' then remove the '-' and don't add a space
+      if (str.substring(str.length -1) === '-'){ // hardcoding the assumption that grid.smartSplitByNChars adds a '-'
+        str = str.substring(0, str.length - 1)
+      } else { // Otherwise just use a space
+        str = str.concat(' ')
+      }
+    }
+    return str
+  })
+  return inputString.join('')
+}
 const objectValueStringsToArrays = (object) => {
   // Converts each key's value within an object to an array
   Object.keys(object).forEach((key) => { object[key] = [object[key]]})
@@ -90,5 +106,6 @@ const generateAndSavePdf = (saveCode, previewSvg, printSvgs, pdfConfig) => {
 export {
   generateSaveCode, 
   parseSaveCode, 
-  generateAndSavePdf
+  generateAndSavePdf,
+  convertTextArrayToInputString
 };
