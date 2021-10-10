@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import React, {useState} from 'react';
 import { Helmet } from 'react-helmet';
 import {appConfig} from '../../data/config';
 
@@ -22,9 +22,15 @@ import {calculateGridParameters} from '../../utils/grid'
 
 const App = (id) => {
   const [questions, setQuestions] = useState({})
-  const [loadedQuestions, setLoadedQuestions] = useState({})
   const [answers, setAnswers] = useState({})
-  const [loadedAnswers, setLoadedAnswers] = useState({})
+  const [loadedQuestions, setLoadedQuestions] = useState({
+    '1': ['Write','your questions here...'],
+    '2': ['The small shapes', 'above the diagram...']
+  })
+  const [loadedAnswers, setLoadedAnswers] = useState({
+    '1': ['and your answers', 'here! Or vice versa.'],
+    '2': ['change the puzzle shape.']
+  })
   const [loadCount, setloadCount] = useState(0)
   const [grid, setGrid] = useState(grids.triangleGrid)
   const [showSaveModal, setShowSaveModal] = useState(false)
