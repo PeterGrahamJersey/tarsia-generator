@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import './Modal.css';
-import { Button, Input, Container, Flex } from 'theme-ui';
+import { Button, Input, Container, Flex, Paragraph} from 'theme-ui';
 
 const ClearModal = ({handleClose, show, clearInputs}) => {
   const clearAndClose = () => {
@@ -9,7 +8,7 @@ const ClearModal = ({handleClose, show, clearInputs}) => {
   }
   return (
     <Modal handleClose={handleClose} show={show} closeButton={false}>
-      <p>Clear all input?</p>
+      <Paragraph>Clear all input?</Paragraph>
       <Button mr={2} onClick={clearAndClose}>Ok</Button>
       <Button onClick={handleClose}>Cancel</Button>
     </Modal>
@@ -26,10 +25,9 @@ const LoadModal = ({handleClose, show, loadFromText}) => {
     setValue(event.target.value);
     //onChange({name:name, questionNumber:questionNumber, value:event.target.value}); // pass back to parent
   }
-
   return (
     <Modal handleClose={handleClose} show={show} closeButton={false}>
-      <p>Paste your tarsia code here:</p>
+      <Paragraph>Paste your tarsia code here:</Paragraph>
       <Input mb={2} id='loadStringInput' value={value} onChange={(event) => handleInputChange(event)}/>
       <Button mr={2} onClick={closeAndLoad}>Load</Button>
       <Button onClick={handleClose}>Cancel</Button>
@@ -44,10 +42,9 @@ const SaveModal = ({handleClose, show, saveString}) => {
     saveString.setSelectionRange(0, 99999); /* For mobile devices */
     document.execCommand("copy")
   }
-
   return (
     <Modal handleClose={handleClose} show={show}>
-      <p>Copy and store the code to come back to your tarsia later:</p>
+      <Paragraph>Copy and store the code to come back to your tarsia later:</Paragraph>
       <Flex>
         <Input mr={2} id='saveStringInput' value={saveString} readOnly='readonly'/>
         <Button onClick={copySaveString}>Copy</Button>
@@ -65,7 +62,6 @@ const Modal = ({handleClose, show, children, closeButton=true}) => {
       return null
     }
   }
-
   return (
     <Container variant='modal' style={modalDisplay}>
       <Container variant='modalContent'>

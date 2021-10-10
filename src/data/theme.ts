@@ -4,7 +4,10 @@ export const theme: Theme = {
   sizes: {
     maxApp: '600px',
     minApp: '90%',
-    maxPreview: '500px'
+    maxPreview: '500px',
+    buttonW: '140px',
+    iconW:'50px'
+
   },
   fonts: {
     body: 'system-ui, sans-serif',
@@ -62,6 +65,8 @@ export const theme: Theme = {
     
     menu: {
       justifyContent: 'space-evenly',
+      flexWrap:'wrap',
+      gap:'2',
     },
     
     previewSvg: {
@@ -77,13 +82,14 @@ export const theme: Theme = {
 
   buttons: {
     primary: {
+      width:'buttonW',
       color: 'text',
       '&:hover': {
         bg: 'primaryDark',
       },
     },
     icon: {
-      width: '50px',
+      width: 'iconW',
       fill: 'primary',
       stroke:'textDark',
       strokeWidth: '3',

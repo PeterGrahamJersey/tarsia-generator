@@ -117,9 +117,9 @@ const App = (id) => {
             <PreviewSvg id='tarsiaPreview' grid={grid} gridParams={gridParams} questions={questions} answers={answers}/>
           </Container>
           <Flex variant='layout.menu'>
-            <Button mr={2} onClick={exportToPdf}>Export to PDF</Button>
-            <Button mr={2} onClick={saveToText}>Save</Button>
-            <Button mr={2} onClick={loadModalShow}>Load</Button>
+            <Button onClick={exportToPdf}>Export to PDF</Button>
+            <Button onClick={saveToText}>Save</Button>
+            <Button onClick={loadModalShow}>Load</Button>
             <Button onClick={clearModalShow}>Clear</Button>
           </Flex>
           <Questions onChange={(data) => onInputChange(data)} nQuestions={gridParams.nQuestions} loadedQuestions={loadedQuestions} loadedAnswers={loadedAnswers} key={`questions-${loadCount}`}/>
