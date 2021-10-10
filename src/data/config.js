@@ -13,7 +13,7 @@ const appConfig = {
         fontSize: 13  , // px? pdf doesn't like 
         fontFamily: 'helvetica',
         lineSpace: 0.1, // gap as number of lines 
-        lineLength: [25, 18, 10], // max line lengths
+        lineLength: [25, 18, 10, 5, 0], // max line lengths
       }
     }
   },
