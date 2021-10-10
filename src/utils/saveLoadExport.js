@@ -5,7 +5,9 @@ import 'svg2pdf.js';
 // Save to string
 const generateSaveCode = (questions, answers, grid) => {
   // Prep Output
-  var output = {questions, answers, grid, saveVersion:1}
+  // Save version 1 - pre-support for splitting up lines, questions and answers were strings
+  // Save cersion 2 - after support for splitting up lines, questions and answers are now arrays
+  var output = {questions, answers, grid, saveVersion:2}
   var outputString = JSON.stringify(output)
   var compressedOutputString = LZString.compressToBase64(outputString)
   return compressedOutputString
@@ -13,6 +15,10 @@ const generateSaveCode = (questions, answers, grid) => {
 
 
 // Load from string
+const objectValueStringsToArrays = (object) => {
+  // Converts each key's value within an object to an array
+  Object.keys(object).forEach((key) => { object[key] = [object[key]]})
+}
 const parseSaveCode = (text) => {
   if (text) { 
     var strippedText = text.split(' ').join('') // removing spaces that copying from a pdf introduces
@@ -20,6 +26,10 @@ const parseSaveCode = (text) => {
     var promptQ = parsedText['questions']
     var promptA = parsedText['answers']
     var promptGrid = parsedText['grid']
+    if (parsedText['saveVersion'] === 1) { // pre-support for splitting up lines, questions and answers were strings
+      objectValueStringsToArrays(promptQ)
+      objectValueStringsToArrays(promptA)
+    }
     return {promptQ, promptA, promptGrid}
   }
 };
