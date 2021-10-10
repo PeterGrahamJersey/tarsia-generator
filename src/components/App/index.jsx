@@ -1,11 +1,10 @@
 import React, {useState} from 'react';
 import { Helmet } from 'react-helmet';
-import './App.css';
 import {appConfig} from '../../data/config';
 
 /** @jsx jsx */
 import { ThemeProvider, jsx } from 'theme-ui'
-import { Button, Flex,  Container, Heading, Box} from 'theme-ui'
+import { Button, Flex,  Container, Heading, Paragraph} from 'theme-ui'
 import { theme } from '../../data/theme'
 
 // Components
@@ -128,11 +127,9 @@ const App = (id) => {
 
         <Container variant='footer'>
           <Container variant='body'>
-            <ul>
-              <li>Feedback or ideas? Reach out to me on twitter at <a href='https://twitter.com/peter_graham_'>@peter_graham_</a>.</li>
-              <li>A more comprehensive editor is available online (not created or supported by me), links to it and ideas on how to use Tarsia Puzzles are available from <a href='http://mrbartonmaths.com/teachers/rich-tasks/tarsia-jigsaw.html'>Mr Barton Maths</a>.</li>
-              <li><a href='https://github.com/PeterGrahamJersey/tarsia-generator'>Source code</a></li>
-            </ul>
+            <Paragraph mb={2}>Feedback or ideas? Reach out to me on twitter at <a href='https://twitter.com/peter_graham_'>@peter_graham_</a>.</Paragraph>
+            <Paragraph mb={2}>A more comprehensive editor is available online (not created or supported by me), links to it and ideas on how to use Tarsia Puzzles are available from <a href='http://mrbartonmaths.com/teachers/rich-tasks/tarsia-jigsaw.html'>Mr Barton Maths</a>.</Paragraph>
+            <Paragraph mb={2}><a href='https://github.com/PeterGrahamJersey/tarsia-generator'>Source code</a></Paragraph>
           </Container>
         </Container>
 
@@ -140,9 +137,9 @@ const App = (id) => {
         <LoadModal key={`loadModal-${loadCount}`} handleClose={hideModals} show={showLoadModal} loadFromText={loadFromText}></LoadModal>
         <ClearModal handleClose={hideModals} show={showClearModal} clearInputs={clearInputs}></ClearModal>
         
-        <div className='hidden'>
+        <Container variant='hidden'>
           <PrintableSvgDiv id='printSvgDiv' grid={grid} questions={questions} answers={answers}/>
-        </div>
+        </Container>
     </ThemeProvider>
   );
 }
