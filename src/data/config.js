@@ -13,7 +13,7 @@ const appConfig = {
         fontSize: 13  , // px? pdf doesn't like 
         fontFamily: 'helvetica',
         lineSpace: 0.1, // gap as number of lines 
-        lineLength: [25, 18, 10, 5, 0], // max line lengths
+        lineLength: [25, 18, 10, 5], // max line lengths
       }
     }
   },
@@ -36,8 +36,9 @@ appConfig.pdf.orientation = appConfig.pdf.width > appConfig.pdf.height ? 'landsc
 appConfig.pdf.ratio = appConfig.pdf.width / appConfig.pdf.height
 appConfig.icons.height = Math.sqrt(3)/2 * appConfig.icons.width
 
-appConfig.triangle.text.maxLines = Math.floor(appConfig.triangle.height / (2*(appConfig.triangle.text.style.fontSize + appConfig.triangle.text.style.fontSize*appConfig.triangle.text.style.lineSpace)))
-appConfig.questions.maxLength = appConfig.triangle.text.style.lineLength.reduce((a,b) => (a+b))
+appConfig.triangle.text.maxLines = 3 // seemed easier to hard code //Math.floor(appConfig.triangle.height / (2*(appConfig.triangle.text.style.fontSize + appConfig.triangle.text.style.fontSize*appConfig.triangle.text.style.lineSpace)))
+appConfig.questions.maxLength = appConfig.triangle.text.style.lineLength.slice(0, appConfig.triangle.text.maxLines).reduce((a,b) => (a+b))
+console.log(appConfig.questions.maxLength)
 appConfig.triangle.text.yHeightStep = appConfig.triangle.text.style.fontSize * (1 + appConfig.triangle.text.style.lineSpace)
 
 export {appConfig}

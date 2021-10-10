@@ -12,16 +12,15 @@ ToDo:
     - Tests & github actions
         - inlc. duplicate q and a in config
     - Support for theming the SVG separately for display and pdf
+    - Consider react table for data entry
 - Functionality
     - Add og:image tag
-    - Signpost / initial test prompting people to enter a question / answer
     - Accessibility check + improvement
     - Randomised order for print out
     - Distractors (that end up on the outside)
     - Dark/Light Theme
     - Tarsia Maker Maths 
 
-react table
 
 ## To Run
 
