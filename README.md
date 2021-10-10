@@ -8,10 +8,10 @@ Huge thanks to [Dale Blackburn](https://github.com/dakebl) for his amazing advic
 ToDo:
 - Behind the scenes
     - Use of 'Map' - consider for print triangles and questions
-    - CSS tidying
     - Update package versions
     - Tests & github actions
         - inlc. duplicate q and a in config
+    - Support for theming the SVG separately for display and pdf
 - Functionality
     - Add og:image tag
     - Signpost / initial test prompting people to enter a question / answer
@@ -19,9 +19,8 @@ ToDo:
     - Randomised order for print out
     - Distractors (that end up on the outside)
     - Support longer inputs
+    - Dark/Light Theme
 
-
-Theme UI - component library (incl. accessability)
 react table
 
 ## To Run

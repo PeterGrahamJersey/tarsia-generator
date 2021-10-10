@@ -7,7 +7,6 @@ export const theme: Theme = {
     maxPreview: '500px',
     buttonW: '140px',
     iconW:'50px'
-
   },
   fonts: {
     body: 'system-ui, sans-serif',
@@ -71,7 +70,7 @@ export const theme: Theme = {
     
     previewSvg: {
       maxWidth: 'maxPreview',
-      my:'2'
+      my:'2',
     },
     
     hidden: {
