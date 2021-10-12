@@ -23,7 +23,8 @@ import {calculateGridParameters} from '../../utils/grid'
 const App = (id) => {
   const [loadedQuestions, setLoadedQuestions] = useState({
     '1': ['Write','your questions here...'],
-    '2': ['The small shapes', 'above the diagram...']
+    '2': ['The small shapes', 'above the diagram...'],
+    '3': [`'f(x) = 2x + 3'`]
   })
   const [loadedAnswers, setLoadedAnswers] = useState({
     '1': ['and your answers', 'here! Or vice versa.'],
@@ -96,56 +97,58 @@ const App = (id) => {
 
   return (
     <ThemeProvider theme={theme}>
-        <Helmet>
-          <title>Tarsia Maker</title>
-          <meta property='description' content='A simple, online editor for Tarsia puzzles.' />
-          <meta property='theme-color' content="#607d86" />
-          <meta property='title' content='Tarsia Maker' />
-          <meta property='og:title' content='Tarsia Maker' />
-          <meta property='og:type' content='website' />
-          <meta property='og:url' content='https://www.tarsiamaker.co.uk/' />
-          <meta property='og:description' content='A simple, online editor for Tarsia puzzles.' />
-          <meta property='og:image' content='https://i.postimg.cc/MTnhLVH3/preview-image.png' />
-        </Helmet>
-        
-        <Container variant='header'>
-          <Heading>Tarsia Maker</Heading>
+      <Helmet>
+        <title>Tarsia Maker</title>
+        {/* Meta Tags */}
+        <meta property='description' content='A simple, online editor for Tarsia puzzles.' />
+        <meta property='theme-color' content="#607d86" />
+        <meta property='title' content='Tarsia Maker' />
+        <meta property='og:title' content='Tarsia Maker' />
+        <meta property='og:type' content='website' />
+        <meta property='og:url' content='https://www.tarsiamaker.co.uk/' />
+        <meta property='og:description' content='A simple, online editor for Tarsia puzzles.' />
+        <meta property='og:image' content='https://i.postimg.cc/MTnhLVH3/preview-image.png' />
+      </Helmet>
+
+      <Container variant='header'>
+        <Heading>Tarsia Maker</Heading>
+        <p>This is a test: `f(x) = 1 + 1`</p>
+      </Container>
+      
+      <Container variant='body'>
+        <Flex variant='layout.menu'>
+          <GridIcon ariaLabel='Small triangle grid' icon={gridIcons.smallTriangleGrid} onClick={() => setGrid(grids.smallTriangleGrid)}/>
+          <GridIcon ariaLabel='Small hexagon grid' icon={gridIcons.smallHexGrid} onClick={() => setGrid(grids.smallHexGrid)}/>
+          <GridIcon ariaLabel='Large triangle grid' icon={gridIcons.triangleGrid} onClick={() => setGrid(grids.triangleGrid)}/>
+          <GridIcon ariaLabel='Large hexagon grid' icon={gridIcons.hexGrid} onClick={() => setGrid(grids.hexGrid)}/>  
+        </Flex>
+        <Container variant='previewSvg'>
+          <PreviewSvg id='tarsiaPreview' grid={grid} gridParams={gridParams} questions={questions} answers={answers}/>
         </Container>
-        
+        <Flex variant='layout.menu'>
+          <Button onClick={exportToPdf}>Export to PDF</Button>
+          <Button onClick={saveToText}>Save</Button>
+          <Button onClick={loadModalShow}>Load</Button>
+          <Button onClick={clearModalShow}>Clear</Button>
+        </Flex>
+        <Questions onChange={(data) => onInputChange(data)} nQuestions={gridParams.nQuestions} loadedQuestions={loadedQuestions} loadedAnswers={loadedAnswers} key={`questions-${loadCount}`}/>
+      </Container>
+
+      <Container variant='footer'>
         <Container variant='body'>
-          <Flex variant='layout.menu'>
-            <GridIcon ariaLabel='Small triangle grid' icon={gridIcons.smallTriangleGrid} onClick={() => setGrid(grids.smallTriangleGrid)}/>
-            <GridIcon ariaLabel='Small hexagon grid' icon={gridIcons.smallHexGrid} onClick={() => setGrid(grids.smallHexGrid)}/>
-            <GridIcon ariaLabel='Large triangle grid' icon={gridIcons.triangleGrid} onClick={() => setGrid(grids.triangleGrid)}/>
-            <GridIcon ariaLabel='Large hexagon grid' icon={gridIcons.hexGrid} onClick={() => setGrid(grids.hexGrid)}/>  
-          </Flex>
-          <Container variant='previewSvg'>
-            <PreviewSvg id='tarsiaPreview' grid={grid} gridParams={gridParams} questions={questions} answers={answers}/>
-          </Container>
-          <Flex variant='layout.menu'>
-            <Button onClick={exportToPdf}>Export to PDF</Button>
-            <Button onClick={saveToText}>Save</Button>
-            <Button onClick={loadModalShow}>Load</Button>
-            <Button onClick={clearModalShow}>Clear</Button>
-          </Flex>
-          <Questions onChange={(data) => onInputChange(data)} nQuestions={gridParams.nQuestions} loadedQuestions={loadedQuestions} loadedAnswers={loadedAnswers} key={`questions-${loadCount}`}/>
+          <Paragraph mb={2}>Feedback or ideas? Reach out to me on twitter at <a href='https://twitter.com/mrgraham__'>@mrgraham__</a>.</Paragraph>
+          <Paragraph mb={2}>A more comprehensive editor is available online (not created or supported by me), links to it and ideas on how to use Tarsia Puzzles are available from <a href='http://mrbartonmaths.com/teachers/rich-tasks/tarsia-jigsaw.html'>Mr Barton Maths</a>.</Paragraph>
+          <Paragraph mb={2}><a href='https://github.com/PeterGrahamJersey/tarsia-generator'>Source code</a></Paragraph>
         </Container>
+      </Container>
 
-        <Container variant='footer'>
-          <Container variant='body'>
-            <Paragraph mb={2}>Feedback or ideas? Reach out to me on twitter at <a href='https://twitter.com/mrgraham__'>@mrgraham__</a>.</Paragraph>
-            <Paragraph mb={2}>A more comprehensive editor is available online (not created or supported by me), links to it and ideas on how to use Tarsia Puzzles are available from <a href='http://mrbartonmaths.com/teachers/rich-tasks/tarsia-jigsaw.html'>Mr Barton Maths</a>.</Paragraph>
-            <Paragraph mb={2}><a href='https://github.com/PeterGrahamJersey/tarsia-generator'>Source code</a></Paragraph>
-          </Container>
-        </Container>
-
-        <SaveModal handleClose={hideModals} show={showSaveModal} saveString={saveString}/>
-        <LoadModal key={`loadModal-${loadCount}`} handleClose={hideModals} show={showLoadModal} loadFromText={loadFromText}></LoadModal>
-        <ClearModal handleClose={hideModals} show={showClearModal} clearInputs={clearInputs}></ClearModal>
-        
-        <Container variant='hidden'>
-          <PrintableSvgDiv id='printSvgDiv' grid={grid} questions={questions} answers={answers}/>
-        </Container>
+      <SaveModal handleClose={hideModals} show={showSaveModal} saveString={saveString}/>
+      <LoadModal key={`loadModal-${loadCount}`} handleClose={hideModals} show={showLoadModal} loadFromText={loadFromText}></LoadModal>
+      <ClearModal handleClose={hideModals} show={showClearModal} clearInputs={clearInputs}></ClearModal>
+      
+      <Container variant='hidden'>
+        <PrintableSvgDiv id='printSvgDiv' grid={grid} questions={questions} answers={answers}/>
+      </Container>
     </ThemeProvider>
   );
 }
