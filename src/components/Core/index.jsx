@@ -20,7 +20,7 @@ import {ClearModal, LoadModal, SaveModal} from '../Modal'
 import {generateSaveCode, parseSaveCode, generateAndSavePdf} from '../../utils/saveLoadExport'
 import {calculateGridParameters} from '../../utils/grid'
 
-const App = (id) => {
+const Core = (id) => {
   const [loadedQuestions, setLoadedQuestions] = useState({
     '1': ['Write','your questions here...'],
     '2': ['The small shapes', 'above the diagram...'],
@@ -153,4 +153,4 @@ const App = (id) => {
   );
 }
 
-export default App;
+export default Core;
