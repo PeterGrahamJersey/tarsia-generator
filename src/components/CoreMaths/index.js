@@ -21,7 +21,6 @@ import GridIcon from '../GridIcon'
 import {ClearModal, LoadModal, SaveModal} from '../Modal'
 
 // Functions
-import reactElementToJSXString from 'react-element-to-jsx-string';
 import {generateSaveCode, parseSaveCode, generateAndSavePdf} from '../../utils/saveLoadExport'
 import {calculateGridParameters} from '../../utils/grid'
 
@@ -59,15 +58,13 @@ const CoreMaths = (id) => {
     console.log('Child Svg:')
     var child = html.children[0] // accessing the child
     console.log(child)
-    // Converting to a nice html string
-    console.log('React element to JSZ string:')
-    // var htmlString = reactElementToJSXString(child)
     var s = new XMLSerializer(); // convert element / object to xml string
     var htmlString = s.serializeToString(child);
     console.log(htmlString)
-    // Sanitising
-    var cleanHtmlString = DOMPurify.sanitize(htmlString)
-    console.log(cleanHtmlString)
+    // Sanitising -- can't as it removes data elements of the svgs
+    // However, html inputted appears to be interpreted as latex so might be ok
+    // var cleanHtmlString = DOMPurify.sanitize(htmlString)
+    // console.log(cleanHtmlString)
     // Updating State
     setMathSvg(htmlString)
     console.log('--stateUpdated--')
@@ -97,8 +94,9 @@ const CoreMaths = (id) => {
           <ManagedMathsInput key='mathsInput1-overall' name='mathsInput1' onChange={(data) => setMaths(data)}/>
         </form>
         <Tex2SVG latex={maths} id='svgOutputContainer' onSuccess={(html) => {onSuccess(html)}} />
-        <div dangerouslySetInnerHTML={{'__html':mathSvg}}/>
+        
         <svg>
+          <g dangerouslySetInnerHTML={{'__html':mathSvg}}/>
           <polygon points={`25,0 50,50 0,50`}/>
         </svg>
     </ThemeProvider>
