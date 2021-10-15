@@ -1,28 +1,27 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 import { Helmet } from 'react-helmet';
-import {appConfig} from '../../data/config';
-import DOMPurify from 'dompurify';
+// import {appConfig} from '../../data/config';
+// import DOMPurify from 'dompurify';
 
 /** @jsx jsx */
-import { ThemeProvider, jsx } from 'theme-ui'
-import { Button, Flex,  Container, Heading, Paragraph, Input } from 'theme-ui'
-import { theme } from '../../data/theme'
+import { jsx } from 'theme-ui'
+import { Container, Heading, Input } from 'theme-ui'
 
 // Components
 // import { MathJaxContext, MathJax } from 'better-react-mathjax'
 // import { MathJaxSvg } from 'react-native-mathjax-html-to-svg';
 import Tex2SVG from "react-hook-mathjax";
-import Questions from '../QuestionAnswer'
-import grids from '../../data/grids';
-import PrintableSvgDiv from '../PrintableSvgDiv'
-import PreviewSvg from '../PreviewSvgDiv';
-import gridIcons from '../../data/gridIcons'
-import GridIcon from '../GridIcon'
-import {ClearModal, LoadModal, SaveModal} from '../Modal'
+// import Questions from '../QuestionAnswer'
+// import grids from '../../data/grids';
+// import PrintableSvgDiv from '../PrintableSvgDiv'
+// import PreviewSvg from '../PreviewSvgDiv';
+// import gridIcons from '../../data/gridIcons'
+// import GridIcon from '../GridIcon'
+// import {ClearModal, LoadModal, SaveModal} from '../Modal'
 
 // Functions
-import {generateSaveCode, parseSaveCode, generateAndSavePdf} from '../../utils/saveLoadExport'
-import {calculateGridParameters} from '../../utils/grid'
+// import {generateSaveCode, parseSaveCode, generateAndSavePdf} from '../../utils/saveLoadExport'
+// import {calculateGridParameters} from '../../utils/grid'
 
 const ManagedMathsInput = ({name, onChange, ...props}) => {
   const [value, setValue] = useState('');
@@ -39,12 +38,6 @@ const ManagedMathsInput = ({name, onChange, ...props}) => {
       type="text"
       onChange={(event) => handleInputChange(event)}
       {...props} />
-  )
-}
-
-const Wrapper = ({svg}) => {
-  return (
-    svg
   )
 }
 
@@ -72,8 +65,7 @@ const CoreMaths = (id) => {
   }
 
   return (
-    <ThemeProvider theme={theme}>
-      {/* <MathJaxContext {...mathJaxConfig}> */}
+    <Container>
         <Helmet>
           <title>Tarsia Maker | Maths</title>
           {/* Meta Tags */}
@@ -99,7 +91,7 @@ const CoreMaths = (id) => {
           <g dangerouslySetInnerHTML={{'__html':mathSvg}}/>
           <polygon points={`25,0 50,50 0,50`}/>
         </svg>
-    </ThemeProvider>
+    </Container>
   );
 }
 

@@ -1,11 +1,8 @@
-import {useState} from 'react';
+import React, {useState} from 'react';
 import { Helmet } from 'react-helmet';
 import {appConfig} from '../../data/config';
 
-/** @jsx jsx */
-import { ThemeProvider, jsx } from 'theme-ui'
 import { Button, Flex,  Container, Heading, Paragraph} from 'theme-ui'
-import { theme } from '../../data/theme'
 
 // Components
 import Questions from '../QuestionAnswer'
@@ -23,8 +20,7 @@ import {calculateGridParameters} from '../../utils/grid'
 const Core = (id) => {
   const [loadedQuestions, setLoadedQuestions] = useState({
     '1': ['Write','your questions here...'],
-    '2': ['The small shapes', 'above the diagram...'],
-    '3': [`'f(x) = 2x + 3'`]
+    '2': ['The small shapes', 'above the diagram...']
   })
   const [loadedAnswers, setLoadedAnswers] = useState({
     '1': ['and your answers', 'here! Or vice versa.'],
@@ -96,7 +92,7 @@ const Core = (id) => {
   }
 
   return (
-    <ThemeProvider theme={theme}>
+    <Container>
       <Helmet>
         <title>Tarsia Maker</title>
         {/* Meta Tags */}
@@ -149,7 +145,7 @@ const Core = (id) => {
       <Container variant='hidden'>
         <PrintableSvgDiv id='printSvgDiv' grid={grid} questions={questions} answers={answers}/>
       </Container>
-    </ThemeProvider>
+    </Container>
   );
 }
 
