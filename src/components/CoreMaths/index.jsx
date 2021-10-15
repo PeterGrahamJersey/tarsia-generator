@@ -69,19 +69,14 @@ const CoreMaths = (id) => {
         <Helmet>
           <title>Tarsia Maker | Maths</title>
           {/* Meta Tags */}
-          <meta property='description' content='A simple, online editor for Tarsia puzzles.' />
-          <meta property='theme-color' content="#607d86" />
           <meta property='title' content='Tarsia Maker | Maths' />
+          <meta property='description' content='A simple, online editor for mathematical Tarsia puzzles.' />
           <meta property='og:title' content='Tarsia Maker |  Maths' />
-          <meta property='og:type' content='website' />
           <meta property='og:url' content='https://www.tarsiamaker.co.uk/maths' />
           <meta property='og:description' content='A simple, online editor for mathematical Tarsia puzzles.' />
           <meta property='og:image' content='https://i.postimg.cc/MTnhLVH3/preview-image.png' />
         </Helmet>
 
-        <Container variant='header'>
-          <Heading>Tarsia Maker | <Tex2SVG display='inline' latex={'\\text{Maths}'}/></Heading>
-        </Container>
         <form key='formy'>
           <ManagedMathsInput key='mathsInput1-overall' name='mathsInput1' onChange={(data) => setMaths(data)}/>
         </form>

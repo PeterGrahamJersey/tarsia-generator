@@ -81,6 +81,15 @@ export const theme: Theme = {
 
   },
 
+  links: {
+    nav: {
+      px: 2,
+      py: 1,
+      // textTransform: 'uppercase',
+      // letterSpacing: '0.2em',
+    }
+  },
+
   buttons: {
     primary: {
       width:'buttonW',

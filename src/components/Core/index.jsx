@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { Helmet } from 'react-helmet';
 import {appConfig} from '../../data/config';
 
-import { Button, Flex,  Container, Heading, Paragraph} from 'theme-ui'
+import { Button, Flex,  Container} from 'theme-ui'
 
 // Components
 import Questions from '../QuestionAnswer'
@@ -106,11 +106,6 @@ const Core = (id) => {
         <meta property='og:image' content='https://i.postimg.cc/MTnhLVH3/preview-image.png' />
       </Helmet>
 
-      <Container variant='header'>
-        <Heading>Tarsia Maker</Heading>
-        <p>This is a test: `f(x) = 1 + 1`</p>
-      </Container>
-      
       <Container variant='body'>
         <Flex variant='layout.menu'>
           <GridIcon ariaLabel='Small triangle grid' icon={gridIcons.smallTriangleGrid} onClick={() => setGrid(grids.smallTriangleGrid)}/>
@@ -128,14 +123,6 @@ const Core = (id) => {
           <Button onClick={clearModalShow}>Clear</Button>
         </Flex>
         <Questions onChange={(data) => onInputChange(data)} nQuestions={gridParams.nQuestions} loadedQuestions={loadedQuestions} loadedAnswers={loadedAnswers} key={`questions-${loadCount}`}/>
-      </Container>
-
-      <Container variant='footer'>
-        <Container variant='body'>
-          <Paragraph mb={2}>Feedback or ideas? Reach out to me on twitter at <a href='https://twitter.com/mrgraham__'>@mrgraham__</a>.</Paragraph>
-          <Paragraph mb={2}>A more comprehensive editor is available online (not created or supported by me), links to it and ideas on how to use Tarsia Puzzles are available from <a href='http://mrbartonmaths.com/teachers/rich-tasks/tarsia-jigsaw.html'>Mr Barton Maths</a>.</Paragraph>
-          <Paragraph mb={2}><a href='https://github.com/PeterGrahamJersey/tarsia-generator'>Source code</a></Paragraph>
-        </Container>
       </Container>
 
       <SaveModal handleClose={hideModals} show={showSaveModal} saveString={saveString}/>
