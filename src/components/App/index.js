@@ -27,10 +27,10 @@ export default function App() {
             renders the first one that matches the current URL. */}
         <Switch>
           <Route path="/">
-            <CoreMaths />
+            <Core />
           </Route>
           <Route path="/maths">
-            <Core />
+            <CoreMaths />
           </Route>
         </Switch>
       </div>

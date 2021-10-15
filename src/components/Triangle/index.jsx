@@ -1,7 +1,8 @@
 import React from 'react'
 import { appConfig } from '../../data/config'
 
-const Triangle = ({row, col, values, config}) => {
+const Triangle = ({row, col, values, config, textOrSvg}) => {
+  textOrSvg = 'text'
   const {side, style, text, height} = config
   const orientation = ((col + row) % 2 === 0) ? 'down' : 'up'
   const rotate = orientation === 'up' ? 180 : 0
@@ -24,20 +25,43 @@ const Triangle = ({row, col, values, config}) => {
     )
   }
 
+  const Svg = ({children, ...props}) => {
+    return (
+      <g y={-text.paddingY} {...props}>
+        {children}
+      </g>
+    )
+  }
+  
+  const SvgElement = ({children, textOrSvg, ...props}) => {
+    if (textOrSvg === 'svg') { 
+      return (
+        <Svg {...props}>{children}</Svg>
+      ) 
+    }
+    else if (textOrSvg === 'text') {
+      return ( 
+      <Text {...props}>{children}</Text>
+      )
+    }
+  }
+
   return (
     <g transform={transform}>
       <polygon points={`0,0 ${side},0 ${side/2},${height}`} style={style}/>
-      <Text transform={`rotate(180 ${side/2},0)`}>
+      <SvgElement textOrSvg={textOrSvg} transform={`rotate(180 ${side/2},0)`}>
         {values[0]}
-      </Text>
-      <Text transform={'rotate(60 0,0)'}>
+      </SvgElement>
+      <SvgElement textOrSvg={textOrSvg} transform={'rotate(60 0,0)'}>
         {values[1]}
-      </Text>
-      <Text transform={`rotate(300 ${side},0)`}>
+      </SvgElement>
+      <SvgElement textOrSvg={textOrSvg} transform={`rotate(300 ${side},0)`}>
         {values[2]}
-      </Text>
+      </SvgElement>
     </g>
     )
 }
+
+
 
 export default Triangle;
