@@ -65,17 +65,13 @@ const Layout = () => {
         <meta property='og:type' content='website' />
         <meta property='og:image' content='https://i.postimg.cc/MTnhLVH3/preview-image.png' />
       </Helmet>
-
       <Header/>      
-      
       {/* Body */}
       <Switch>
-      <Route exact path="/" component={Core} />
-      <Route path="/maths" component={CoreMaths} />
+        <Route exact path="/" component={Core} />
+        <Route path="/maths" component={CoreMaths} />
       </Switch>
-
-      {/* Footer */}
-
+      <Footer/>
     </div>
   );
 }

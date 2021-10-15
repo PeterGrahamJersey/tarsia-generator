@@ -97,13 +97,10 @@ const Core = (id) => {
         <title>Tarsia Maker</title>
         {/* Meta Tags */}
         <meta property='description' content='A simple, online editor for Tarsia puzzles.' />
-        <meta property='theme-color' content="#607d86" />
         <meta property='title' content='Tarsia Maker' />
         <meta property='og:title' content='Tarsia Maker' />
-        <meta property='og:type' content='website' />
         <meta property='og:url' content='https://www.tarsiamaker.co.uk/' />
         <meta property='og:description' content='A simple, online editor for Tarsia puzzles.' />
-        <meta property='og:image' content='https://i.postimg.cc/MTnhLVH3/preview-image.png' />
       </Helmet>
 
       <Container variant='body'>
