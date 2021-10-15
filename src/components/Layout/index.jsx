@@ -13,11 +13,28 @@ import { Helmet } from 'react-helmet';
 import { jsx } from 'theme-ui'
 import { Container, Heading, Paragraph } from 'theme-ui'
 
-const Header= () => {
+const Header = () => {
+  const location = useLocation()
+  
+  const generateHeading = () => {
+    // Changing header suffix
+    var headingCore = 'Tarsia Maker'
+    var headingSuffix
+    if (location.pathname === '/') {
+      headingSuffix = ''
+    } else if (location.pathname === '/maths') {
+      headingSuffix = 'Maths'
+    }
+    if (headingSuffix) {
+      return headingCore + ' | ' + headingSuffix
+    }
+    return headingCore
+  } 
+  
   return (
     <Container>
       <Container variant='header'>
-        <Heading>Tarsia Maker</Heading>
+        <Heading>{generateHeading()}</Heading>
       </Container>
       <nav>
         <Link to='/' sx={{ variant: 'links.nav' }}>Home</Link>
@@ -40,7 +57,7 @@ const Footer = () => {
 }
 const Layout = () => {
   const location = useLocation();
-  console.log(location)
+  console.log(location.pathname)
   return (
     <div>
       <Helmet>
