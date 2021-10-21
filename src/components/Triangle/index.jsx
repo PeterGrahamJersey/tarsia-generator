@@ -2,7 +2,6 @@ import React from 'react'
 import { appConfig } from '../../data/config'
 
 const Triangle = ({row, col, values, config, textOrSvg}) => {
-  textOrSvg = 'text'
   const {side, style, text, height} = config
   const orientation = ((col + row) % 2 === 0) ? 'down' : 'up'
   const rotate = orientation === 'up' ? 180 : 0
@@ -27,9 +26,7 @@ const Triangle = ({row, col, values, config, textOrSvg}) => {
 
   const Svg = ({children, ...props}) => {
     return (
-      <g y={-text.paddingY} {...props}>
-        {children}
-      </g>
+      <g y={-text.paddingY} dangerouslySetInnerHTML={{'__html':children}} {...props}/> // should this take children or a string?
     )
   }
   

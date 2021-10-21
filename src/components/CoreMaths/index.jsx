@@ -10,7 +10,9 @@ import { Container, Heading, Input } from 'theme-ui'
 // Components
 // import { MathJaxContext, MathJax } from 'better-react-mathjax'
 // import { MathJaxSvg } from 'react-native-mathjax-html-to-svg';
-import Tex2SVG from "react-hook-mathjax";
+import Tex2SVG from 'react-hook-mathjax';
+import Triangle from '../Triangle'
+import { appConfig } from '../../data/config'
 // import Questions from '../QuestionAnswer'
 // import grids from '../../data/grids';
 // import PrintableSvgDiv from '../PrintableSvgDiv'
@@ -82,10 +84,11 @@ const CoreMaths = (id) => {
         </form>
         <Tex2SVG latex={maths} id='svgOutputContainer' onSuccess={(html) => {onSuccess(html)}} />
         
-        <svg>
+        {/* <svg>
           <g dangerouslySetInnerHTML={{'__html':mathSvg}}/>
           <polygon points={`25,0 50,50 0,50`}/>
-        </svg>
+        </svg> */}
+        <Triangle row={1} col={1} values={[null, null, mathSvg]} config={appConfig.triangle} key={`${id}-1-1`} textOrSvg='svg'/>)
     </Container>
   );
 }
