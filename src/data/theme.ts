@@ -100,6 +100,12 @@ export const theme: Theme = {
     },
   },
 
+  images: {
+    shuffleIcon: {
+      width: '1em',
+    },
+  },
+
   forms: {
     label: {
       fontSize: 1,

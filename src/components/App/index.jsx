@@ -146,7 +146,7 @@ const App = (id) => {
             <Button onClick={saveToText}>Save</Button>
             <Button onClick={loadModalShow}>Load</Button>
             <Button onClick={clearModalShow}>Clear</Button>
-            <Button onClick={shuffleOrder}><Image src={shuffleImg}/></Button>
+            <Button onClick={shuffleOrder}><Image src={shuffleImg} variant='images.shuffleIcon'/></Button>
           </Flex>
           <Questions onChange={(data) => onInputChange(data)} nQuestions={gridParams.nQuestions} loadedQuestions={loadedQuestions} loadedAnswers={loadedAnswers} key={`questions-${loadCount}`}/>
         </Container>
