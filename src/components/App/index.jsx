@@ -4,7 +4,7 @@ import {appConfig} from '../../data/config';
 
 /** @jsx jsx */
 import { ThemeProvider, jsx } from 'theme-ui'
-import { Button, Flex,  Container, Heading, Paragraph} from 'theme-ui'
+import { Button, Flex,  Container, Heading, Paragraph, Image} from 'theme-ui'
 import { theme } from '../../data/theme'
 
 // Components
@@ -16,8 +16,12 @@ import gridIcons from '../../data/gridIcons'
 import GridIcon from '../GridIcon'
 import {ClearModal, LoadModal, SaveModal} from '../Modal'
 
+// Data
+import shuffleImg from '../../data/shuffle.png'
+
 // Functions
 import {generateSaveCode, parseSaveCode, generateAndSavePdf} from '../../utils/saveLoadExport'
+import {shuffleArray} from '../../utils/shuffeArray'
 import {calculateGridParameters} from '../../utils/grid'
 
 const App = (id) => {
@@ -127,6 +131,7 @@ const App = (id) => {
             <Button onClick={saveToText}>Save</Button>
             <Button onClick={loadModalShow}>Load</Button>
             <Button onClick={clearModalShow}>Clear</Button>
+            <Button onClick={shuffleArray}><Image src={shuffleImg}/></Button>
           </Flex>
           <Questions onChange={(data) => onInputChange(data)} nQuestions={gridParams.nQuestions} loadedQuestions={loadedQuestions} loadedAnswers={loadedAnswers} key={`questions-${loadCount}`}/>
         </Container>
