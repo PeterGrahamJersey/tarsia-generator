@@ -8,6 +8,39 @@ function shuffleArray(array) {
   }
 }
 
+const mapKeys = (dict, mapping) => {
+  // Assumes integer keys in the old dictionary
+  // Creates a new dict with different integer keys
+  let tempDict = {}
+  if (dict) {
+    for (const [key, value] of Object.entries(dict)) {
+      tempDict[mapping[key-1]] = value
+    }
+  }
+  return tempDict
+}
+
+const generateMapping = (maxIndex) => {
+  let mapping = Array.from({length: maxIndex}, (_, i) => i + 1)
+  shuffleArray(mapping)
+  return mapping
+}
+
+const getMaxIndex = (gridParams, questions, answers) => {
+  let maxIndex = gridParams.nQuestions
+  // max of current shape
+  if (questions) {
+    maxIndex = Math.max(maxIndex, Math.max(...(Object.keys(questions))))
+  }
+  if (answers) {
+    maxIndex = Math.max(maxIndex, Math.max(...(Object.keys(answers))))
+  }
+  return maxIndex
+}
+
 export {
-  shuffleArray
+  shuffleArray,
+  generateMapping,
+  mapKeys,
+  getMaxIndex
 }

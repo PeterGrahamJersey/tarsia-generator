@@ -21,7 +21,7 @@ import shuffleImg from '../../data/shuffle.png'
 
 // Functions
 import {generateSaveCode, parseSaveCode, generateAndSavePdf} from '../../utils/saveLoadExport'
-import {shuffleArray} from '../../utils/shuffeArray'
+import {generateMapping, mapKeys, getMaxIndex} from '../../utils/shuffeArray'
 import {calculateGridParameters} from '../../utils/grid'
 
 const App = (id) => {
@@ -98,6 +98,21 @@ const App = (id) => {
       }
   }
 
+  const shuffleOrder = () => {
+    // Get max index
+    let maxIndex = getMaxIndex(gridParams, questions, answers)
+
+    // Generate mapping
+    let mapping = generateMapping(maxIndex)
+    
+    // Generate new dictionaries
+    let newQuestions = mapKeys(questions, mapping)
+    let newAnswers = mapKeys(answers, mapping)
+
+    // Update states
+    valuesForInputs(newQuestions, newAnswers, grid)
+  }
+
   return (
     <ThemeProvider theme={theme}>
         <Helmet>
@@ -131,7 +146,7 @@ const App = (id) => {
             <Button onClick={saveToText}>Save</Button>
             <Button onClick={loadModalShow}>Load</Button>
             <Button onClick={clearModalShow}>Clear</Button>
-            <Button onClick={shuffleArray}><Image src={shuffleImg}/></Button>
+            <Button onClick={shuffleOrder}><Image src={shuffleImg}/></Button>
           </Flex>
           <Questions onChange={(data) => onInputChange(data)} nQuestions={gridParams.nQuestions} loadedQuestions={loadedQuestions} loadedAnswers={loadedAnswers} key={`questions-${loadCount}`}/>
         </Container>
