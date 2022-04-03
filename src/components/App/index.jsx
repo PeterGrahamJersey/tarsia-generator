@@ -4,7 +4,7 @@ import {appConfig} from '../../data/config';
 
 /** @jsx jsx */
 import { ThemeProvider, jsx } from 'theme-ui'
-import { Button, Flex,  Container, Heading, Paragraph} from 'theme-ui'
+import { Button, Flex,  Container, Heading, Paragraph, Image} from 'theme-ui'
 import { theme } from '../../data/theme'
 
 // Components
@@ -16,8 +16,12 @@ import gridIcons from '../../data/gridIcons'
 import GridIcon from '../GridIcon'
 import {ClearModal, LoadModal, SaveModal} from '../Modal'
 
+// Data
+import shuffleImg from '../../data/shuffle.png'
+
 // Functions
 import {generateSaveCode, parseSaveCode, generateAndSavePdf} from '../../utils/saveLoadExport'
+import {generateMapping, mapKeys, getMaxIndex} from '../../utils/shuffeArray'
 import {calculateGridParameters} from '../../utils/grid'
 
 const App = (id) => {
@@ -94,6 +98,21 @@ const App = (id) => {
       }
   }
 
+  const shuffleOrder = () => {
+    // Get max index
+    let maxIndex = getMaxIndex(gridParams, questions, answers)
+
+    // Generate mapping
+    let mapping = generateMapping(maxIndex)
+    
+    // Generate new dictionaries
+    let newQuestions = mapKeys(questions, mapping)
+    let newAnswers = mapKeys(answers, mapping)
+
+    // Update states
+    valuesForInputs(newQuestions, newAnswers, grid)
+  }
+
   return (
     <ThemeProvider theme={theme}>
         <Helmet>
@@ -127,6 +146,7 @@ const App = (id) => {
             <Button onClick={saveToText}>Save</Button>
             <Button onClick={loadModalShow}>Load</Button>
             <Button onClick={clearModalShow}>Clear</Button>
+            <Button onClick={shuffleOrder}><Image src={shuffleImg} variant='images.shuffleIcon'/></Button>
           </Flex>
           <Questions onChange={(data) => onInputChange(data)} nQuestions={gridParams.nQuestions} loadedQuestions={loadedQuestions} loadedAnswers={loadedAnswers} key={`questions-${loadCount}`}/>
         </Container>
@@ -136,6 +156,7 @@ const App = (id) => {
             <Paragraph mb={2}>Feedback or ideas? Reach out to me on twitter at <a href='https://twitter.com/mrgraham__'>@mrgraham__</a>.</Paragraph>
             <Paragraph mb={2}>A more comprehensive editor is available online (not created or supported by me), links to it and ideas on how to use Tarsia Puzzles are available from <a href='http://mrbartonmaths.com/teachers/rich-tasks/tarsia-jigsaw.html'>Mr Barton Maths</a>.</Paragraph>
             <Paragraph mb={2}><a href='https://github.com/PeterGrahamJersey/tarsia-generator'>Source code</a></Paragraph>
+            <Paragraph mb={2}>Shffle icon made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect"> Pixel perfect </a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></Paragraph>
           </Container>
         </Container>
 
