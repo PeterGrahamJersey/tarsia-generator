@@ -156,6 +156,7 @@ const App = (id) => {
             <Paragraph mb={2}>Feedback or ideas? Reach out to me on twitter at <a href='https://twitter.com/mrgraham__'>@mrgraham__</a>.</Paragraph>
             <Paragraph mb={2}>A more comprehensive editor is available online (not created or supported by me), links to it and ideas on how to use Tarsia Puzzles are available from <a href='http://mrbartonmaths.com/teachers/rich-tasks/tarsia-jigsaw.html'>Mr Barton Maths</a>.</Paragraph>
             <Paragraph mb={2}><a href='https://github.com/PeterGrahamJersey/tarsia-generator'>Source code</a></Paragraph>
+            <Paragraph mb={2}>Shffle icon made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect"> Pixel perfect </a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></Paragraph>
           </Container>
         </Container>
 
