@@ -91,11 +91,9 @@ export const theme: Theme = {
     },
     icon: {
       width: 'iconW',
-      fill: 'primary',
-      stroke:'textDark',
-      strokeWidth: '3',
+      height: 'iconW',
       '&:hover': {
-        fill: 'primaryDark',
+        bg: 'modalOverlayBg',
       },
     },
   },
