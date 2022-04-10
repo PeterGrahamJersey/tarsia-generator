@@ -12,12 +12,15 @@ import Questions from '../QuestionAnswer'
 import grids from '../../data/grids';
 import PrintableSvgDiv from '../PrintableSvgDiv'
 import PreviewSvg from '../PreviewSvgDiv';
-import gridIcons from '../../data/gridIcons'
 import GridIcon from '../GridIcon'
 import {ClearModal, LoadModal, SaveModal} from '../Modal'
 
 // Data
 import shuffleImg from '../../data/shuffle.png'
+import iconBigHex from '../../data/iconBigHex.png'
+import iconBigTriangle from '../../data/iconBigTriangle.png'
+import iconSmallHex from '../../data/iconSmallHex.png'
+import iconSmallTriangle from '../../data/iconSmallTriangle.png'
 
 // Functions
 import {generateSaveCode, parseSaveCode, generateAndSavePdf} from '../../utils/saveLoadExport'
@@ -134,10 +137,10 @@ const App = (id) => {
         
         <Container variant='body'>
           <Flex variant='layout.menu'>
-            <GridIcon ariaLabel='Small triangle grid' icon={gridIcons.smallTriangleGrid} onClick={() => setGrid(grids.smallTriangleGrid)}/>
-            <GridIcon ariaLabel='Small hexagon grid' icon={gridIcons.smallHexGrid} onClick={() => setGrid(grids.smallHexGrid)}/>
-            <GridIcon ariaLabel='Large triangle grid' icon={gridIcons.triangleGrid} onClick={() => setGrid(grids.triangleGrid)}/>
-            <GridIcon ariaLabel='Large hexagon grid' icon={gridIcons.hexGrid} onClick={() => setGrid(grids.hexGrid)}/>  
+            <GridIcon ariaLabel='Small triangle grid' icon={iconSmallTriangle} onClick={() => setGrid(grids.smallTriangleGrid)}/>
+            <GridIcon ariaLabel='Small hexagon grid' icon={iconSmallHex} onClick={() => setGrid(grids.smallHexGrid)}/>
+            <GridIcon ariaLabel='Large triangle grid' icon={iconBigTriangle} onClick={() => setGrid(grids.triangleGrid)}/>
+            <GridIcon ariaLabel='Large hexagon grid' icon={iconBigHex} onClick={() => setGrid(grids.hexGrid)}/>  
           </Flex>
           <Container variant='previewSvg'>
             <PreviewSvg id='tarsiaPreview' grid={grid} gridParams={gridParams} questions={questions} answers={answers}/>
