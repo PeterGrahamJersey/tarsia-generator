@@ -15,7 +15,6 @@ ToDo:
     - Consider react table for data entry
 - Functionality
     - Accessibility check + improvement
-    - Randomised order for print out
     - Distractors (that end up on the outside)
     - Dark/Light Theme
     - Tarsia Maker Maths 
