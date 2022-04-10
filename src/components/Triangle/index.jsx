@@ -11,7 +11,6 @@ const Triangle = ({row, col, values, config}) => {
 
   const Text = ({children, ...props}) => {
     let linesText = [...children].reverse();
-    // console.log(linesText)
     const linesSvgText = linesText.map((line, index) =>
         <text x={side/2} y={-text.paddingY - appConfig.triangle.text.yHeightStep * index} style={text.style} textAnchor='middle' {...props}>
           {line}
