@@ -1,7 +1,7 @@
 import jsPDF from 'jspdf';
 import LZString from 'lz-string'
 import 'svg2pdf.js';
-// import {robotoRegularNormal} from '../data/Roboto-Regular-normal.js';
+import {robotoRegularNormal} from '../data/Roboto-Regular-normal.js';
 
 
 // Save to string
@@ -59,12 +59,11 @@ const generateAndSavePdf = (saveCode, previewSvg, printSvgs, pdfConfig) => {
     orientation: 'landscape',
     unit:'mm'
   });
-  // pdf.addFileToVFS('Roboto-Regular-normal.ttf', robotoRegularNormal);
-  // pdf.addFont('Roboto-Regular-normal.ttf', 'Roboto', 'normal');
-  // pdf.setFont('Roboto');
+  pdf.addFileToVFS('Roboto-Regular-normal.ttf', robotoRegularNormal);
+  pdf.addFont('Roboto-Regular-normal.ttf', 'Roboto', 'normal');
+  pdf.setFont('Roboto');
   const addSaveCodeToPdf = (pdf, saveCode, pdfConfig) => {
     pdf.addPage({orientation:'l', format:'a4'})
-    // pdf.setFont('Roboto');
     pdf.text(
       'To edit your tarsia, go to www.tarsiamaker.co.uk, click load and paste this code: âçğıİîöşüûÂÇĞIİÎÖŞÜÛ',
       pdfConfig.printMargin, //x
