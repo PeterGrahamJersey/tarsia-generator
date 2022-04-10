@@ -65,7 +65,7 @@ const generateAndSavePdf = (saveCode, previewSvg, printSvgs, pdfConfig) => {
   const addSaveCodeToPdf = (pdf, saveCode, pdfConfig) => {
     pdf.addPage({orientation:'l', format:'a4'})
     pdf.text(
-      'To edit your tarsia, go to www.tarsiamaker.co.uk, click load and paste this code: âçğıİîöşüûÂÇĞIİÎÖŞÜÛ',
+      'To edit your tarsia, go to www.tarsiamaker.co.uk, click load and paste this code:',
       pdfConfig.printMargin, //x
       pdfConfig.printMargin + 5  //y
     )
