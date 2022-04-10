@@ -28,7 +28,7 @@ const App = (id) => {
   const [loadedQuestions, setLoadedQuestions] = useState({
     '1': ['Write','your questions here...'],
     '2': ['The small shapes', 'above the diagram...'],
-    '3': ['âçğıİîöşüûÂÇĞIİÎÖŞÜÛ']
+    // '3': ['âçğıİîöşüûÂÇĞIİÎÖŞÜÛ'] // testing extended latin characters
   })
   const [loadedAnswers, setLoadedAnswers] = useState({
     '1': ['and your answers', 'here! Or vice versa.'],
