@@ -24,10 +24,14 @@ import {generateSaveCode, parseSaveCode, generateAndSavePdf} from '../../utils/s
 import {generateMapping, mapKeys, getMaxIndex} from '../../utils/shuffeArray'
 import {calculateGridParameters} from '../../utils/grid'
 
+// jspdf
+import '../../data/Roboto-Regular-normal.js';
+
 const App = (id) => {
   const [loadedQuestions, setLoadedQuestions] = useState({
     '1': ['Write','your questions here...'],
-    '2': ['The small shapes', 'above the diagram...']
+    '2': ['The small shapes', 'above the diagram...'],
+    '3': ['âçğıİîöşüûÂÇĞIİÎÖŞÜÛ']
   })
   const [loadedAnswers, setLoadedAnswers] = useState({
     '1': ['and your answers', 'here! Or vice versa.'],
