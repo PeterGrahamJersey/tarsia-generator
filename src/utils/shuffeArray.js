@@ -20,8 +20,8 @@ const mapKeys = (dict, mapping) => {
   return tempDict
 }
 
-const generateMapping = (maxIndex) => {
-  let mapping = Array.from({length: maxIndex}, (_, i) => i + 1)
+const generateMapping = (maxIndex, shift=1) => {
+  let mapping = Array.from({length: maxIndex}, (_, i) => i + shift)
   shuffleArray(mapping)
   return mapping
 }

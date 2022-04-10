@@ -5,6 +5,7 @@ import printGrid from '../../data/printGrid'
 // Functions
 import {appConfig} from '../../data/config'
 import {calculateGridParameters} from '../../utils/grid'
+import {generateMapping} from '../../utils/shuffeArray'
 
 const PrintPage = ({id, grid, gridParameters, questions, answers}) => {
   const side = appConfig.triangle.side
@@ -24,6 +25,7 @@ const PrintPage = ({id, grid, gridParameters, questions, answers}) => {
 const PrintableSvgDiv = ({id, grid, questions, answers}) => {
     // TODO: Replace with a more efficient method, probably map or zip?
     const gridParameters = calculateGridParameters(printGrid);
+    var mapping = generateMapping(grid.length, 0)
     let gridTriangleId=0;
     var printTriangle;
     let printArray = [];
@@ -36,7 +38,7 @@ const PrintableSvgDiv = ({id, grid, questions, answers}) => {
             row: printGrid[printTriangle].location.row,
             col: printGrid[printTriangle].location.col
           },
-          values: grid[gridTriangleId]['values']
+          values: grid[mapping[gridTriangleId]]['values']
         })
         gridTriangleId = gridTriangleId+1
         if (gridTriangleId === grid.length) {

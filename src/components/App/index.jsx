@@ -104,7 +104,7 @@ const App = (id) => {
     let maxIndex = getMaxIndex(gridParams, questions, answers)
 
     // Generate mapping
-    let mapping = generateMapping(maxIndex)
+    let mapping = generateMapping(maxIndex, 1)
     
     // Generate new dictionaries
     let newQuestions = mapKeys(questions, mapping)
