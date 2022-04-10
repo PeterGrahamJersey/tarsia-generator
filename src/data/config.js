@@ -11,7 +11,7 @@ const appConfig = {
       style: { // css classes didn't export to pdf, so using style
         fill: 'black',
         fontSize: 13  , // px? pdf doesn't like 
-        fontFamily: 'helvetica',
+        fontFamily: 'Roboto',
         lineSpace: 0.1, // gap as number of lines 
         lineLength: [25, 18, 10, 5], // max line lengths
       }

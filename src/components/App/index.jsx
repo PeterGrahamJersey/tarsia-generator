@@ -24,9 +24,6 @@ import {generateSaveCode, parseSaveCode, generateAndSavePdf} from '../../utils/s
 import {generateMapping, mapKeys, getMaxIndex} from '../../utils/shuffeArray'
 import {calculateGridParameters} from '../../utils/grid'
 
-// jspdf
-import '../../data/Roboto-Regular-normal.js';
-
 const App = (id) => {
   const [loadedQuestions, setLoadedQuestions] = useState({
     '1': ['Write','your questions here...'],
