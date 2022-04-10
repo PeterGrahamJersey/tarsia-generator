@@ -14,12 +14,13 @@ ToDo:
     - Support for theming the SVG separately for display and pdf
     - Consider react table for data entry
 - Functionality
-    - Add og:image tag
     - Accessibility check + improvement
     - Randomised order for print out
     - Distractors (that end up on the outside)
     - Dark/Light Theme
     - Tarsia Maker Maths 
+    - Hebrew / non-latin support
+    - Export to new tab
 
 
 ## To Run

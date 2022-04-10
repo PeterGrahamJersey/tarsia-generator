@@ -11,6 +11,7 @@ const PreviewSvg = ({id, grid, gridParams, questions, answers}) => {
 
   return (
     <svg viewBox={`${viewBoxOffsetX} 0 ${viewBoxMinWidth} ${viewBoxMinHeight}`} id='previewSvg'>
+      
       <TarsiaGrid id={id} grid={grid} questions={questions} answers={answers}/>
     </svg>
   )
