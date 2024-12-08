@@ -1,8 +1,8 @@
 import jsPDF from 'jspdf';
 import LZString from 'lz-string'
 import 'svg2pdf.js';
-import {robotoRegularNormal} from '../data/Roboto-Regular-normal.js';
-
+import {notoSansRegular} from '../data/Noto-Sans-regular.js';
+//Something to do with roboto regular normal here? 
 
 // Save to string
 const generateSaveCode = (questions, answers, grid) => {
@@ -59,9 +59,10 @@ const generateAndSavePdf = (saveCode, previewSvg, printSvgs, pdfConfig) => {
     orientation: 'landscape',
     unit:'mm'
   });
-  pdf.addFileToVFS('Roboto-Regular-normal.ttf', robotoRegularNormal);
-  pdf.addFont('Roboto-Regular-normal.ttf', 'Roboto', 'normal');
-  pdf.setFont('Roboto');
+  //does change when I change the font output - but still not correct
+  pdf.addFileToVFS('Noto-Sans-regular.ttf', notoSansRegular);
+  pdf.addFont('Noto-Sans-regular.ttf', 'Noto Sans', 'normal');
+  pdf.setFont('Noto Sans');
   const addSaveCodeToPdf = (pdf, saveCode, pdfConfig) => {
     pdf.addPage({orientation:'l', format:'a4'})
     pdf.text(
@@ -81,6 +82,9 @@ const generateAndSavePdf = (saveCode, previewSvg, printSvgs, pdfConfig) => {
     // Recursive, adds an svg, waits for it to finish, then adds the next one until saving
     // Get svg
     let svgToExport = svgsToExport[page]
+    console.log(svgToExport)
+    // the save code still contains the data, as does the svg 
+    // roboto clearly does support that character as its displaying online
     let text = textToExport[page]
     // Add to pdf
     pdf.text(text, pdfConfig.printMargin, pdfConfig.printMargin+5)
@@ -100,7 +104,7 @@ const generateAndSavePdf = (saveCode, previewSvg, printSvgs, pdfConfig) => {
   var svgsToExport = []
   var textToExport = []
   svgsToExport.push(previewSvg)
-  textToExport.push('Solution:')
+  textToExport.push('Solution ⁶ ⁴ ⁻:')
   for (const printSvg of printSvgs) {
     svgsToExport.push(printSvg)
     textToExport.push('Print and cut out:')
