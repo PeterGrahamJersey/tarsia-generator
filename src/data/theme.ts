@@ -9,8 +9,8 @@ export const theme: Theme = {
     iconW:'50px'
   },
   fonts: {
-    body: 'Roboto',
-    heading: 'Roboto',
+    body: 'Noto Sans',
+    heading: 'Noto Sans',
     monospace: 'monospace'
   },
   colors: {
