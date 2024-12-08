@@ -2,7 +2,6 @@ import jsPDF from 'jspdf';
 import LZString from 'lz-string'
 import 'svg2pdf.js';
 import {notoSansRegular} from '../data/Noto-Sans-regular.js';
-//Something to do with roboto regular normal here? 
 
 // Save to string
 const generateSaveCode = (questions, answers, grid) => {
@@ -59,7 +58,8 @@ const generateAndSavePdf = (saveCode, previewSvg, printSvgs, pdfConfig) => {
     orientation: 'landscape',
     unit:'mm'
   });
-  //does change when I change the font output - but still not correct
+  // Embed font in pdf (ok under open font licence I think?)
+  // If SVG font is different - also update the CSS / theme
   pdf.addFileToVFS('Noto-Sans-regular.ttf', notoSansRegular);
   pdf.addFont('Noto-Sans-regular.ttf', 'Noto Sans', 'normal');
   pdf.setFont('Noto Sans');
@@ -83,8 +83,6 @@ const generateAndSavePdf = (saveCode, previewSvg, printSvgs, pdfConfig) => {
     // Get svg
     let svgToExport = svgsToExport[page]
     console.log(svgToExport)
-    // the save code still contains the data, as does the svg 
-    // roboto clearly does support that character as its displaying online
     let text = textToExport[page]
     // Add to pdf
     pdf.text(text, pdfConfig.printMargin, pdfConfig.printMargin+5)
