@@ -157,7 +157,7 @@ const App = (id) => {
 
         <Container variant='footer'>
           <Container variant='body'>
-            <Paragraph mb={2}>Feedback or ideas? <a href='mailto:petergrahamjerseysite@gmail.co.uk'>Email me</a>.</Paragraph>
+            <Paragraph mb={2}>Feedback or ideas? <a href='mailto:petergrahamjerseysite@gmail.com'>Email me</a>.</Paragraph>
             <Paragraph mb={2}>My <a href='https://mr-graham.co.uk'>website</a>.</Paragraph>
             <Paragraph mb={2}>A more comprehensive editor is available online (not created or supported by me), links to it and ideas on how to use Tarsia Puzzles are available from <a href='http://mrbartonmaths.com/teachers/rich-tasks/tarsia-jigsaw.html'>Mr Barton Maths</a>.</Paragraph>
             <Paragraph mb={2}><a href='https://github.com/PeterGrahamJersey/tarsia-generator'>Source code</a></Paragraph>
