@@ -102,7 +102,7 @@ const generateAndSavePdf = (saveCode, previewSvg, printSvgs, pdfConfig) => {
   var svgsToExport = []
   var textToExport = []
   svgsToExport.push(previewSvg)
-  textToExport.push('Solution ⁶ ⁴ ⁻:')
+  textToExport.push('Solution:')
   for (const printSvg of printSvgs) {
     svgsToExport.push(printSvg)
     textToExport.push('Print and cut out:')
